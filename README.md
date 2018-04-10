@@ -24,13 +24,16 @@ $ curl https://api.pangu.space/v1/spacing-text -G --data-urlencode "t=當你凝�
 [pangu.space](https://api.pangu.space/) is built on AWS Lambda and Amazon API Gateway. I use [Apex](http://apex.run/) to manage and deploy Lambda functions.
 
 ```console
+# deploy all functions
 $ apex deploy
 
+# view logs
+$ apex logs -f
+
+# invoke a function with an input event
 $ cat fixtures/spacing_text_event.json
 {
-    "queryStringParameters": {
-        "t": "與PM戰鬥的人，應當小心自己不要成為PM"
-    }
+    "queryStringParameters": {"t": "與PM戰鬥的人，應當小心自己不要成為PM"}
 }
 $ apex invoke spacing_text --logs < fixtures/spacing_text_event.json
 {
