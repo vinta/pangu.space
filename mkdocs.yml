@@ -1,0 +1,24 @@
+site_name: 'pangu.space'
+site_url: 'https://pangu.space/'
+site_description: 'Paranoid text spacing as a service'
+site_author: 'Vinta Chen'
+repo_name: 'vinta/pangu.space'
+repo_url: 'https://github.com/vinta/pangu.space'
+theme: 'material'
+extra:
+  feature:
+    tabs: false
+  palette:
+    primary: 'red'
+    accent: 'pink'
+  social:
+    - type: 'github'
+      link: 'https://github.com/vinta'
+    - type: 'twitter'
+      link: 'https://twitter.com/vinta'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/in/vinta'
+extra_css:
+    - css/extra.css
+pages:
+  - "盤古之白": "index.md"
