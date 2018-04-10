@@ -1,3 +1,9 @@
+deploy:
+	apex deploy
+
+logs:
+	apex logs -f
+
 site_install:
 	pip install mkdocs==0.16.3
 	pip install mkdocs-material==1.12.2
