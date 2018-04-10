@@ -15,7 +15,7 @@ Paranoid text spacing for good readability, to automatically insert whitespace b
 Yeah, you are free to use the API key for accessing the service. Although it has a quota of 100000 requests per month.
 
 ```console
-$ curl -H "x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm" -w "\n" -G --data-urlencode "t=當你凝視著bug，bug也凝視著你" https://api.pangu.space/v1/spacing-text
+$ curl https://api.pangu.space/v1/spacing-text -G --data-urlencode "t=當你凝視著bug，bug也凝視著你" -H "x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm" -w "\n"
 當你凝視著 bug，bug 也凝視著你
 ```
 
