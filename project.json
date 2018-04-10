@@ -1,0 +1,9 @@
+{
+  "name": "panguspace",
+  "description": "A Pangu project",
+  "runtime": "golang",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::004615714446:role/panguspace_lambda_function",
+  "environment": {}
+}
