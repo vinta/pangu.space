@@ -1,0 +1,24 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "pangu.space\n\n\n\n\nParanoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).\n\n\n\n\npangu.go\n (Go)\n\n\npangu.java\n (Java)\n\n\npangu.js\n (JavaScript)\n\n\npangu.py\n (Python)\n\n\npangu.space\n (Web API)\n\n\n\n\nUsage\n\n\nYeah, you are free to use the API key for accessing the service. Although it has a quota of 100000 requests per month.\n\n\n$ curl https://api.pangu.space/v1/spacing-text -G --data-urlencode \"t=\u7576\u4f60\u51dd\u8996\u8457bug\uff0cbug\u4e5f\u51dd\u8996\u8457\u4f60\" -H \"x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm\" -w \"\\n\"\n\u7576\u4f60\u51dd\u8996\u8457 bug\uff0cbug \u4e5f\u51dd\u8996\u8457\u4f60\n\n\n\n\nDevelopment\n\n\npangu.space\n is built on AWS Lambda and Amazon API Gateway. I use \nApex\n to manage and deploy Lambda functions.\n\n\n# deploy all functions\n$ apex deploy\n\n# view logs\n$ apex logs -f\n\n# invoke a function with an input event\n$ cat fixtures/spacing_text_event.json\n{\n    \"queryStringParameters\": {\"t\": \"\u8207PM\u6230\u9b25\u7684\u4eba\uff0c\u61c9\u7576\u5c0f\u5fc3\u81ea\u5df1\u4e0d\u8981\u6210\u70baPM\"}\n}\n$ apex invoke spacing_text --logs < fixtures/spacing_text_event.json\n{\n    \"statusCode\": 200,\n    \"headers\": {\"content-type\": \"text/plain; charset=utf-8\"},\n    \"body\": \"\u8207 PM \u6230\u9b25\u7684\u4eba\uff0c\u61c9\u7576\u5c0f\u5fc3\u81ea\u5df1\u4e0d\u8981\u6210\u70ba PM\"\n}",
+            "title": "\u76e4\u53e4\u4e4b\u767d"
+        },
+        {
+            "location": "/#panguspace",
+            "text": "Paranoid text spacing for good readability, to automatically insert whitespace between CJK (Chinese, Japanese, Korean) and half-width characters (alphabetical letters, numerical digits and symbols).   pangu.go  (Go)  pangu.java  (Java)  pangu.js  (JavaScript)  pangu.py  (Python)  pangu.space  (Web API)",
+            "title": "pangu.space"
+        },
+        {
+            "location": "/#usage",
+            "text": "Yeah, you are free to use the API key for accessing the service. Although it has a quota of 100000 requests per month.  $ curl https://api.pangu.space/v1/spacing-text -G --data-urlencode \"t=\u7576\u4f60\u51dd\u8996\u8457bug\uff0cbug\u4e5f\u51dd\u8996\u8457\u4f60\" -H \"x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm\" -w \"\\n\"\n\u7576\u4f60\u51dd\u8996\u8457 bug\uff0cbug \u4e5f\u51dd\u8996\u8457\u4f60",
+            "title": "Usage"
+        },
+        {
+            "location": "/#development",
+            "text": "pangu.space  is built on AWS Lambda and Amazon API Gateway. I use  Apex  to manage and deploy Lambda functions.  # deploy all functions\n$ apex deploy\n\n# view logs\n$ apex logs -f\n\n# invoke a function with an input event\n$ cat fixtures/spacing_text_event.json\n{\n    \"queryStringParameters\": {\"t\": \"\u8207PM\u6230\u9b25\u7684\u4eba\uff0c\u61c9\u7576\u5c0f\u5fc3\u81ea\u5df1\u4e0d\u8981\u6210\u70baPM\"}\n}\n$ apex invoke spacing_text --logs < fixtures/spacing_text_event.json\n{\n    \"statusCode\": 200,\n    \"headers\": {\"content-type\": \"text/plain; charset=utf-8\"},\n    \"body\": \"\u8207 PM \u6230\u9b25\u7684\u4eba\uff0c\u61c9\u7576\u5c0f\u5fc3\u81ea\u5df1\u4e0d\u8981\u6210\u70ba PM\"\n}",
+            "title": "Development"
+        }
+    ]
+}
