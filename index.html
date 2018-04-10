@@ -320,13 +320,17 @@
 <li><a href="https://github.com/vinta/pangu.space">pangu.space</a> (Web API)</li>
 </ul>
 <h2 id="usage">Usage</h2>
-<p>Yeah, you are free to use the API key for accessing the service. Although it has a quota of 100000 requests per month.</p>
+<p>Current APIs:</p>
+<ul>
+<li><code>https://api.pangu.space/v1/spacing-text?t=YOUR-TEXT</code></li>
+</ul>
 <pre><code class="console">$ curl https://api.pangu.space/v1/spacing-text -G --data-urlencode &quot;t=當你凝視著bug，bug也凝視著你&quot; -H &quot;x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm&quot; -w &quot;\n&quot;
 當你凝視著 bug，bug 也凝視著你
 </code></pre>
 
+<p>You must request the API with a HTTP header <code>x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm</code>. Yeah, you are free to use the API key for accessing the service. Although it has a quota of 100000 requests per month.</p>
 <h2 id="development">Development</h2>
-<p><a href="https://api.pangu.space/">pangu.space</a> is built on AWS Lambda and Amazon API Gateway. I use <a href="http://apex.run/">Apex</a> to manage and deploy Lambda functions.</p>
+<p><a href="https://api.pangu.space/v1/">pangu.space</a> is built on AWS Lambda and Amazon API Gateway. I use <a href="http://apex.run/">Apex</a> to manage and deploy Lambda functions.</p>
 <pre><code class="console"># deploy all functions
 $ apex deploy
 
