@@ -15,3 +15,4 @@
 
 docs/index.md
 site/
+infrastructure/.terraform/
