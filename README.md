@@ -34,7 +34,15 @@ $ apex deploy
 # view logs
 $ apex logs -f
 
-# invoke a function with an input event
+# invoke a function directly
+$ apex invoke spacing_text --logs
+{
+    "statusCode": 400,
+    "headers": null,
+    "body":"{\"message\": \"No text was provided in HTTP query string\"}"
+}
+
+# invoke a function with an API Gateway event
 $ cat fixtures/spacing_text_event.json
 {
     "queryStringParameters": {"t": "與PM戰鬥的人，應當小心自己不要成為PM"}
@@ -46,3 +54,7 @@ $ apex invoke spacing_text --logs < fixtures/spacing_text_event.json
     "body": "與 PM 戰鬥的人，應當小心自己不要成為 PM"
 }
 ```
+
+## Related Posts
+
+- [Apex and Terraform: The easiest way to manage AWS Lambda functions](https://vinta.ws/code/apex-and-terraform-the-easiest-way-to-manage-aws-lambda-functions.html)

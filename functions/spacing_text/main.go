@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	// ErrTextNotProvided is thrown when text is not provided
-	ErrTextNotProvided = errors.New("No text was provided in the HTTP query string")
+	// ErrTextNotProvided is thrown when text is not provided in HTTP query string
+	ErrTextNotProvided = errors.New("No text was provided in HTTP query string")
 )
 
 // Handler is the AWS Lambda function handler
