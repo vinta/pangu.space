@@ -16,9 +16,22 @@ Current APIs:
 
 - `https://api.pangu.space/v1/spacing-text?t=YOUR-TEXT`
 
+in Command-line interface:
+
 ```console
 $ curl https://api.pangu.space/v1/spacing-text -G --data-urlencode "t=當你凝視著bug，bug也凝視著你" -H "x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm" -w "\n"
 當你凝視著 bug，bug 也凝視著你
+```
+
+in Python:
+
+```python
+import requests
+
+headers = {'x-api-key': 'TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm'}
+r = requests.get('https://api.pangu.space/v1/spacing-text?t=當你凝視著bug，bug也凝視著你', headers=headers)
+print(r.content.decode('utf-8'))
+# 當你凝視著 bug，bug 也凝視著你
 ```
 
 You must request the API with a HTTP header `x-api-key: TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm`. Yeah, you are free to use the API key for accessing the service. Although it has a quota of 100000 requests per month.
