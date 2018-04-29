@@ -28,8 +28,7 @@ in Python:
 ```python
 import requests
 
-headers = {'x-api-key': 'TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm'}
-r = requests.get('https://api.pangu.space/v1/spacing-text?t=當你凝視著bug，bug也凝視著你', headers=headers)
+r = requests.get('https://api.pangu.space/v1/spacing-text?t=當你凝視著bug，bug也凝視著你', headers={'x-api-key': 'TiEeVInyGza4ta0kougRH4MBBfdGe2Q91TjrbQLm'})
 print(r.content.decode('utf-8'))
 # 當你凝視著 bug，bug 也凝視著你
 ```
