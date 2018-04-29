@@ -13,7 +13,8 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	log.Printf("request id: %s\n", request.RequestContext.RequestID)
 
 	simpleMap := map[string]string{
-		"hello": "world",
+		"description": "Paranoid text spacing as a service",
+		"usage":       "https://github.com/vinta/pangu.space",
 	}
 	simpleMapJSON, _ := json.MarshalIndent(simpleMap, "", "  ")
 
