@@ -1,0 +1,12 @@
+{
+  "name": "pangu-py",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "uv run pywrangler dev",
+    "deploy": "uv run pywrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.114.0"
+  }
+}

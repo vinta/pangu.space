@@ -1,0 +1,13 @@
+{
+  "name": "pangu-go",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "go run github.com/syumai/workers-go/cmd/workers-assets-gen -mode=go && GOOS=js GOARCH=wasm go build -o ./build/app.wasm .",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.114.0"
+  }
+}

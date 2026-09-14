@@ -1,0 +1,16 @@
+{
+  "name": "pangu-gateway",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev -c wrangler.jsonc -c ../pangu-py/wrangler.jsonc -c ../pangu-go/wrangler.jsonc",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "pangu": "10.1.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.114.0"
+  }
+}

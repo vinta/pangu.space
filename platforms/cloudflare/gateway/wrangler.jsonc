@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pangu-gateway",
+  "main": "src/index.ts",
+  // With a compatibility_date on or after 2026-08-04, nodejs_compat is on by default. The pangu Node build imports node:fs, so it needs it
+  "compatibility_date": "2026-09-14",
+  "routes": [{ "pattern": "api.pangu.space", "custom_domain": true }],
+  "services": [
+    { "binding": "PY", "service": "pangu-py" },
+    { "binding": "GO", "service": "pangu-go" }
+  ],
+  "observability": { "enabled": true }
+}
