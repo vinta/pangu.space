@@ -1,0 +1,176 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: api.pangu.space. CloudFront picks a Lambda Function URL origin per ?lib=
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: api.pangu.space
+  CertificateArn:
+    Type: String
+    Description: ACM certificate for DomainName. Must live in us-east-1, DNS-validated via a CNAME at Cloudflare
+
+Globals:
+  Function:
+    Architectures: [arm64]
+    MemorySize: 128
+    Timeout: 5
+    FunctionUrlConfig:
+      AuthType: AWS_IAM # only CloudFront's OAC signature can invoke
+
+Resources:
+  # One Lambda per lib. SAM builds each from its CodeUri: npm install, pip install, go build
+
+  PanguJsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: pangu-js
+      CodeUri: pangu-js/
+      Handler: index.handler
+      Runtime: nodejs24.x
+
+  PanguPyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: pangu-py
+      CodeUri: pangu-py/
+      Handler: handler.handler
+      Runtime: python3.14
+
+  PanguGoFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: go1.x # the build method keeps this name even though the runtime is provided.al2023
+    Properties:
+      FunctionName: pangu-go
+      CodeUri: pangu-go/
+      Handler: bootstrap
+      Runtime: provided.al2023
+
+  # CloudWatch never expires logs unless a log group says so
+
+  PanguJsLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${PanguJsFunction}
+      RetentionInDays: 14
+
+  PanguPyLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${PanguPyFunction}
+      RetentionInDays: 14
+
+  PanguGoLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${PanguGoFunction}
+      RetentionInDays: 14
+
+  # Let this distribution, and nothing else, call the Function URLs
+
+  PanguJsInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref PanguJsFunction
+      Action: lambda:InvokeFunctionUrl
+      Principal: cloudfront.amazonaws.com
+      SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}
+
+  PanguPyInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref PanguPyFunction
+      Action: lambda:InvokeFunctionUrl
+      Principal: cloudfront.amazonaws.com
+      SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}
+
+  PanguGoInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref PanguGoFunction
+      Action: lambda:InvokeFunctionUrl
+      Principal: cloudfront.amazonaws.com
+      SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}
+
+  LambdaOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub ${AWS::StackName}-lambda
+        OriginAccessControlOriginType: lambda
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # Runs on every viewer request. Rewriting request.uri would not change the origin, CloudFront picks the origin from the original URI, so the function swaps the origin itself
+  RouterFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: !Sub ${AWS::StackName}-router
+      AutoPublish: true
+      FunctionConfig:
+        Comment: Pick the Lambda origin named by ?lib=
+        Runtime: cloudfront-js-2.0
+      FunctionCode: |
+        import cf from 'cloudfront';
+
+        // Origin IDs from the distribution. pangu-js is the default origin, so it needs no entry
+        var ORIGIN_IDS = { 'pangu-py': 'pangu-py', 'pangu-go': 'pangu-go' };
+
+        function handler(event) {
+          var request = event.request;
+          var lib = request.querystring.lib && request.querystring.lib.value;
+          if (ORIGIN_IDS[lib]) {
+            cf.selectRequestOriginById(ORIGIN_IDS[lib]);
+          }
+          return request;
+        }
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: !Ref DomainName
+        HttpVersion: http2and3
+        Aliases: [!Ref DomainName]
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+        Origins:
+          # Function URL attribute is https://<id>.lambda-url.<region>.on.aws/ and an origin wants only the host
+          - Id: pangu-js
+            DomainName: !Select [2, !Split ['/', !GetAtt PanguJsFunctionUrl.FunctionUrl]]
+            OriginAccessControlId: !GetAtt LambdaOriginAccessControl.Id
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols: [TLSv1.2]
+          - Id: pangu-py
+            DomainName: !Select [2, !Split ['/', !GetAtt PanguPyFunctionUrl.FunctionUrl]]
+            OriginAccessControlId: !GetAtt LambdaOriginAccessControl.Id
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols: [TLSv1.2]
+          - Id: pangu-go
+            DomainName: !Select [2, !Split ['/', !GetAtt PanguGoFunctionUrl.FunctionUrl]]
+            OriginAccessControlId: !GetAtt LambdaOriginAccessControl.Id
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols: [TLSv1.2]
+        DefaultCacheBehavior:
+          TargetOriginId: pangu-js
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD, OPTIONS]
+          Compress: true
+          CachePolicyId: 4135ea2d-6df8-44a3-9df3-4b5a84be39ad # Managed-CachingDisabled
+          OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac # Managed-AllViewerExceptHostHeader, forwards the query string
+          ResponseHeadersPolicyId: 5cc3b908-e619-4b99-88e5-2cf7f45965bd # Managed-CORS-With-Preflight, so the Lambdas set no CORS headers
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: !GetAtt RouterFunction.FunctionMetadata.FunctionARN
+
+Outputs:
+  DistributionDomainName:
+    Description: CNAME target for DomainName at Cloudflare, DNS only, no proxy
+    Value: !GetAtt Distribution.DomainName
