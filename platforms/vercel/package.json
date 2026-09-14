@@ -1,0 +1,8 @@
+{
+  "name": "pangu-space-vercel",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "pangu": "10.1.1"
+  }
+}
