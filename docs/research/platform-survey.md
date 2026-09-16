@@ -2,7 +2,7 @@
 
 Where to host `api.pangu.space`: pangu.js plus AI Spacing for now. pangu.py and pangu.go come later, maybe on another host, called over HTTP. So the host is ranked on one Node runtime making many LLM calls per request, not on 3 runtimes. Each platform has a sketch in this repo. None of them has been deployed yet, so the cons below are from docs, not from getting burned. I've used all 3 before, so none of them is new to me.
 
-Verdict: Cloudflare Workers. Waiting on the LLM costs nothing there, there is no duration cap, the model is Workers AI on the same account, and rate-limiting rules are free.
+Verdict: Cloudflare Workers. Waiting on the LLM costs nothing there, there is no duration cap, and the model is Workers AI on the same account.
 
 ## What AI Spacing changes
 
@@ -19,7 +19,7 @@ No host fixes the daily budget. About 3 neurons per candidate means about 3,300 
 | Free allowance | 100,000 requests/day | 1M invocations, 4h Active CPU, 360 GB-hrs/month | 1M requests, 400,000 GB-seconds/month |
 | Calls per request | 50 external, 1,000 to Cloudflare services | No cap, 1,024 file descriptors | No cap, 1,024 file descriptors |
 | Runtime logs | AI Gateway logs every LLM call | Kept 1 hour | CloudWatch, until you expire them |
-| Free rate limiting | Yes | No | No |
+| Free rate limiting | 1 rule, per IP, 10s window, 10s block | No | No |
 
 ## Cloudflare Workers
 
@@ -29,13 +29,14 @@ Pros:
 
 - `env.AI.run()` binding, no API token to store
 - Waiting on network calls is not CPU time, so a slow LLM call is free
-- Rate-limiting rules are free, which is the fix for the quota-drain premortem
 - AI Gateway logs every call, which is the point of the project
 
 Cons:
 
 - 50 external subrequests per request on Free. The OpenAI-compatible REST path from `llm-provider-eval.md` is a `fetch()`, so it counts there. The binding probably counts toward the 1,000 for Cloudflare services, but the docs only name R2, KV, and D1
 - 10ms CPU per invocation for `spaceText` plus N `JSON.parse` on a 1,500-char input. Probably fine, unmeasured
+- The free rate-limiting rule can't protect a daily budget: 1 rule, per IP, 10s window, 10s block. One IP sending 1 request every 10s with 50 candidates each is 432,000 candidates/day, 130x the budget
+- Past 10,000 neurons/day, Workers AI calls fail with an error until 00:00 UTC. No bill, but AI Spacing is off for everyone, eval runs included
 - Multi-config `wrangler dev` is marked experimental
 
 ## Vercel
@@ -108,6 +109,8 @@ https://developers.cloudflare.com/workers/platform/limits/
 https://developers.cloudflare.com/workers/platform/pricing/
 https://developers.cloudflare.com/changelog/post/2026-02-11-subrequests-limit/
 https://developers.cloudflare.com/workers-ai/platform/limits/
+https://developers.cloudflare.com/workers-ai/platform/pricing/
+https://developers.cloudflare.com/waf/rate-limiting-rules/
 https://vercel.com/docs/functions/limitations
 https://vercel.com/docs/limits
 https://vercel.com/docs/limits/fair-use-guidelines
