@@ -72,13 +72,39 @@ One full 60-case pass on Gemma 4 with thinking off is about 18.6k prompt and 311
 
 In production the number that matters is per candidate: roughly 3 neurons, so about 3,300 classifications per day free. That, not the token counts, is what the drain premortem should be sized against. One 1,500-character GET can hold 500 candidates.
 
+## Which endpoint
+
+Use `/accounts/{account_id}/ai/v1/chat/completions`, Cloudflare's OpenAI-compatible REST path. Two reasons, and the second was a surprise.
+
+The gateway's own proxy at `gateway.ai.cloudflare.com/v1/{account_id}/{gateway}/compat/chat/completions` is deprecated for this use: "For standard single-model chat completions, this endpoint is deprecated. Use the REST API instead". It survives only for dynamic routes, which the REST API does not cover.
+
+And the REST path already routes to third-party providers, so there is nothing to migrate to later. Probed on 2026-09-16:
+
+| model string | result |
+| --- | --- |
+| `@cf/google/gemma-4-26b-a4b-it` | 200 |
+| `google/gemini-2.5-flash` | 402 `Insufficient balance; add money to your gateway or use BYOK` |
+| `openai/gpt-5.2` | 402, same |
+| `anthropic/claude-4-5-sonnet` | 404 model not found, but the model name was guessed |
+| `workers-ai/@cf/google/gemma-4-26b-a4b-it` | 404 model not found |
+
+A 402 means routing worked and stopped at the billing check. Adding a BYOK key for that provider is the whole migration: same URL, same headers, same client code, one different model string.
+
+Model naming is not portable between the two paths. On the REST path Workers AI models are bare `@cf/...` and the `workers-ai/` prefix 404s; on the compat proxy both forms answer.
+
+Unified Billing fails closed. A third-party model with no BYOK key and no gateway balance returns 402 rather than silently charging, so a zero balance is its own spend limit. The risk only appears after adding gateway credit.
+
 ## Notes on the setup
 
-Workers AI is reached at `/accounts/{account_id}/ai/v1/chat/completions`, its own OpenAI-compatible path, with `cf-aig-gateway-id` pointing at the AI Gateway so calls land in gateway analytics. Workers AI and AI Gateway are separate products: the gateway is a proxy with logging, caching and rate limiting, and holds no models. Dropping the header still works and only loses the analytics.
+Workers AI and AI Gateway are separate products: the gateway is a proxy with logging, caching and rate limiting, and holds no models. It is optional and provider-agnostic, not Workers AI's front door.
 
-No BYOK provider key is needed for `@cf/` models, which draw the free neuron allocation. That matters, because on the gateway's compat endpoint a missing `default` BYOK key does not fail the request, it falls through to Unified Billing, which is prepaid credit. `@cf/` models avoid that path entirely.
+`cf-aig-gateway-id` attaches the gateway to a REST call for analytics without proxying it. That costs about 90ms median, measured paired over 53 cases with the same model and prompts, alternating order: 608ms direct against 700ms with the header, slower in 41 of 53 cases. The compat proxy measured 788ms median but was slower in only 31 of 53, which is inside the noise.
 
-The Cloudflare token needs AI Gateway Run plus Workers AI Read and Edit. Read alone can 403.
+Ignore means on any of these. One unproxied call stalled for 42.7 seconds and inverted the averages by itself. The tail is far fatter than a 770ms average suggests, which matters when picking a timeout.
+
+No BYOK provider key is needed for `@cf/` models, which draw the free neuron allocation.
+
+The Cloudflare token needs AI Gateway Run plus Workers AI Read and Edit. Read alone can 403. Reading gateway logs needs AI Gateway Read as well; without it the logs API returns 403 and the dashboard is the only view.
 
 ## Open
 
@@ -91,6 +117,7 @@ ref:
 https://developers.cloudflare.com/workers-ai/configuration/open-ai-compatibility/
 https://developers.cloudflare.com/workers-ai/get-started/workers-wrangler/
 https://developers.cloudflare.com/ai-gateway/usage/providers/workersai/
+https://developers.cloudflare.com/ai-gateway/usage/chat-completion/
 https://developers.cloudflare.com/ai-gateway/configuration/bring-your-own-keys/
 https://developers.cloudflare.com/workers-ai/get-started/rest-api/
 https://openrouter.ai/docs/faq
