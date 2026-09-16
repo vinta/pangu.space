@@ -1,0 +1,74 @@
+{
+  "provider": "openrouter",
+  "model": "nvidia/nemotron-3.5-lightning:free",
+  "experiment": "digit-plus",
+  "promptVersion": "v18-en-real-examples",
+  "timestamp": "2026-09-16T05:58:25.812Z",
+  "passed": 7,
+  "total": 7,
+  "errors": 0,
+  "avgMs": 20761,
+  "classes": {
+    "conjunction": "1/1",
+    "lower-bound": "6/6",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "tw-conj-diablo-1",
+      "expected": "conjunction",
+      "answer": "conjunction",
+      "raw": "conjunction",
+      "error": null,
+      "ms": 30404
+    },
+    {
+      "id": "tw-lb-02-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 16182
+    },
+    {
+      "id": "tw-lb-04-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 27075
+    },
+    {
+      "id": "tw-lb-06-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 29968
+    },
+    {
+      "id": "tw-lb-07-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 18884
+    },
+    {
+      "id": "tw-lb-08-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 11485
+    },
+    {
+      "id": "tw-lb-10-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 11326
+    }
+  ]
+}

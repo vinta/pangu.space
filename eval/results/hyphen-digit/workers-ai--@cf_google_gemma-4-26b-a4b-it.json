@@ -1,0 +1,442 @@
+{
+  "provider": "workers-ai",
+  "model": "@cf/google/gemma-4-26b-a4b-it",
+  "experiment": "hyphen-digit",
+  "promptVersion": "v29-zh",
+  "timestamp": "2026-09-16T06:00:24.742Z",
+  "passed": 53,
+  "total": 53,
+  "errors": 0,
+  "avgMs": 5806,
+  "classes": {
+    "signed-number": "16/16",
+    "range-or-separator": "37/37",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "readme-negative-273-15",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4328
+    },
+    {
+      "id": "real-development-01",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4584
+    },
+    {
+      "id": "real-development-02",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 7376
+    },
+    {
+      "id": "real-development-03",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 3896
+    },
+    {
+      "id": "real-development-04",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 5482
+    },
+    {
+      "id": "real-development-05",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4384
+    },
+    {
+      "id": "real-development-06",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 3250
+    },
+    {
+      "id": "real-development-07",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4188
+    },
+    {
+      "id": "real-development-08",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4991
+    },
+    {
+      "id": "real-development-09",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5641
+    },
+    {
+      "id": "real-development-10",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 9094
+    },
+    {
+      "id": "real-development-10-stage-1",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 7865
+    },
+    {
+      "id": "real-development-10-stage-2",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 7526
+    },
+    {
+      "id": "real-development-11",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 2851
+    },
+    {
+      "id": "real-development-12",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 2972
+    },
+    {
+      "id": "real-development-blocktempo-19",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6105
+    },
+    {
+      "id": "real-development-blocktempo-18",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5549
+    },
+    {
+      "id": "real-development-blocktempo-17",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5644
+    },
+    {
+      "id": "books-4-percent-ebook",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 12578
+    },
+    {
+      "id": "macromicro-labor-15-64",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 7495
+    },
+    {
+      "id": "macromicro-global-labor-25-54",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 7396
+    },
+    {
+      "id": "macromicro-us-cds-5y",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 3223
+    },
+    {
+      "id": "macromicro-us-treasury-10y",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 4755
+    },
+    {
+      "id": "real-holdout-01",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 5521
+    },
+    {
+      "id": "real-holdout-02",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4879
+    },
+    {
+      "id": "real-holdout-03",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6287
+    },
+    {
+      "id": "real-holdout-04",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5015
+    },
+    {
+      "id": "real-holdout-05",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5730
+    },
+    {
+      "id": "real-holdout-06",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5060
+    },
+    {
+      "id": "real-holdout-07",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 9444
+    },
+    {
+      "id": "real-holdout-08",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4829
+    },
+    {
+      "id": "jinbao-frozen-egg-white-minus-18",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 4186
+    },
+    {
+      "id": "ncku-advanced-course-file-1",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 7276
+    },
+    {
+      "id": "ptt-delivery-duration-3-to-5-days",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5652
+    },
+    {
+      "id": "macromicro-labor-15-plus",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6534
+    },
+    {
+      "id": "blind-age-threshold-20260913-01",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6765
+    },
+    {
+      "id": "blind-age-threshold-20260913-02",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 3623
+    },
+    {
+      "id": "blind-age-threshold-20260913-03",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 7519
+    },
+    {
+      "id": "blind-age-threshold-20260913-04",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 3806
+    },
+    {
+      "id": "blind-age-threshold-20260913-05",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 7469
+    },
+    {
+      "id": "blind-age-threshold-20260913-06",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6710
+    },
+    {
+      "id": "blind-age-threshold-20260913-07",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 8583
+    },
+    {
+      "id": "blind-age-threshold-20260913-08",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5302
+    },
+    {
+      "id": "blind-age-threshold-20260913-09",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5190
+    },
+    {
+      "id": "blind-age-threshold-20260913-10",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 3066
+    },
+    {
+      "id": "blind-age-threshold-20260913-11",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6386
+    },
+    {
+      "id": "blind-age-threshold-20260913-12",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5836
+    },
+    {
+      "id": "blind-age-threshold-20260913-13",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6632
+    },
+    {
+      "id": "blind-age-threshold-20260913-14",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6566
+    },
+    {
+      "id": "blind-age-threshold-20260913-15",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 4759
+    },
+    {
+      "id": "blind-age-threshold-20260913-16",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6033
+    },
+    {
+      "id": "blind-age-threshold-20260913-17",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 6350
+    },
+    {
+      "id": "blind-age-threshold-20260913-18",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5559
+    }
+  ]
+}

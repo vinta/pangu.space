@@ -1,0 +1,74 @@
+{
+  "provider": "workers-ai",
+  "model": "@cf/google/gemma-4-26b-a4b-it",
+  "experiment": "digit-plus",
+  "promptVersion": "v18-en-real-examples",
+  "timestamp": "2026-09-16T06:01:03.404Z",
+  "passed": 7,
+  "total": 7,
+  "errors": 0,
+  "avgMs": 5522,
+  "classes": {
+    "conjunction": "1/1",
+    "lower-bound": "6/6",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "tw-conj-diablo-1",
+      "expected": "conjunction",
+      "answer": "conjunction",
+      "raw": "conjunction",
+      "error": null,
+      "ms": 6131
+    },
+    {
+      "id": "tw-lb-02-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 4594
+    },
+    {
+      "id": "tw-lb-04-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 5808
+    },
+    {
+      "id": "tw-lb-06-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 3897
+    },
+    {
+      "id": "tw-lb-07-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 5544
+    },
+    {
+      "id": "tw-lb-08-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 5415
+    },
+    {
+      "id": "tw-lb-10-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 7267
+    }
+  ]
+}
