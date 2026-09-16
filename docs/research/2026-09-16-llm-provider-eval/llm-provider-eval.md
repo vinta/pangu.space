@@ -1,6 +1,6 @@
 # LLM provider eval
 
-Runs of `eval/eval.mjs` on 2026-09-16, asking which gateway to integrate with and which model classifies better. The gateway question has an answer. The model question turned out to be two questions, and the useful one was never about size.
+Runs of `eval.mjs` on 2026-09-16, asking which gateway to integrate with and which model classifies better. The gateway question has an answer. The model question turned out to be two questions, and the useful one was never about size.
 
 ## What was run
 
@@ -110,7 +110,7 @@ The Cloudflare token needs AI Gateway Run plus Workers AI Read and Edit. Read al
 
 - `real-development-10`, the single case thinking-off loses. Not yet inspected.
 - Batching every candidate into one call, the other latency lever. Untested.
-- Whether any model separates from the others needs harder cases: text where the shipping prompts stay ambiguous, or the shapes [ADR 0016](../../../pangu.js/docs/adr/0016-hyphen-before-digit-gets-a-model-layer.md) deferred, which failed the zero-regression bar on Nano and have never been tried on anything stronger.
+- Whether any model separates from the others needs harder cases: text where the shipping prompts stay ambiguous, or the shapes [ADR 0016](../../../../pangu.js/docs/adr/0016-hyphen-before-digit-gets-a-model-layer.md) deferred, which failed the zero-regression bar on Nano and have never been tried on anything stronger.
 - The prompts are Nano-tuned and Nano is roughly 3B-class, yet `llama-3.2-3b` scores 0/16 on `signed-number` at the same size. Same size, opposite outcome, so the small-model failures here are model-specific rather than a size limit. Optimizing prompts for a small model would buy nothing for pangu.space, since Gemma 4 is already faster and better, but it is the one result that would justify a prompt experiment for its own sake.
 
 ref:

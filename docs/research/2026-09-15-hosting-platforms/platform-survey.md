@@ -6,7 +6,7 @@ Verdict: Cloudflare Workers. Waiting on the LLM costs nothing there, there is no
 
 ## What AI Spacing changes
 
-One request is N LLM calls, one per candidate. Gemma 4 on Workers AI takes 770ms on average, but one call stalled for 42.7s (see [llm-provider-eval.md](llm-provider-eval.md)).
+One request is N LLM calls, one per candidate. Gemma 4 on Workers AI takes 770ms on average, but one call stalled for 42.7s (see [llm-provider-eval.md](../2026-09-16-llm-provider-eval/llm-provider-eval.md)).
 
 Run candidates one by one and duration caps bind: 500 candidates × 770ms = 385s. Run them in parallel and duration is roughly the slowest call, so the binding limits become calls per request and Workers AI's 300 requests/minute.
 
@@ -23,7 +23,7 @@ No host fixes the daily budget. About 3 neurons per candidate means about 3,300 
 
 ## Cloudflare Workers
 
-Sketch: [cloudflare/](../../platforms/cloudflare/). The gateway Worker owns the custom domain and runs pangu.js itself.
+Sketch: [cloudflare/](cloudflare/). The gateway Worker owns the custom domain and runs pangu.js itself.
 
 Pros:
 
@@ -41,7 +41,7 @@ Cons:
 
 ## Vercel
 
-Sketch: [vercel/](../../platforms/vercel/). One project, one file per function in `api/`.
+Sketch: [vercel/](vercel/). One project, one file per function in `api/`.
 
 Pros:
 
@@ -61,7 +61,7 @@ Cons:
 
 ## AWS Lambda
 
-Sketch: [aws-lambda/](../../platforms/aws-lambda/). One SAM stack. CloudFront owns the domain and fronts Lambda Function URLs.
+Sketch: [aws-lambda/](aws-lambda/). One SAM stack. CloudFront owns the domain and fronts Lambda Function URLs.
 
 Pros:
 

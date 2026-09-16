@@ -1,13 +1,13 @@
 // Runs pangu.js's shipping AI-spacing prompts against a hosted model over the OpenAI chat-completions API and scores the answers on the pangu.js corpora.
 //
-//   node --env-file-if-exists=eval/.env eval/eval.mjs run <provider>:<model> [--experiment hyphen-digit|digit-plus]
-//   node eval/eval.mjs compare
+//   node --env-file-if-exists=docs/research/2026-09-16-llm-provider-eval/.env docs/research/2026-09-16-llm-provider-eval/eval.mjs run <provider>:<model> [--experiment hyphen-digit|digit-plus]
+//   node docs/research/2026-09-16-llm-provider-eval/eval.mjs compare
 //
-// Provider keys come from the env vars named in PROVIDERS. Results land in eval/results/<experiment>/<provider>--<model>.json; a rerun overwrites.
+// Provider keys come from the env vars named in PROVIDERS. Results land in results/<experiment>/<provider>--<model>.json; a rerun overwrites.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 
-const PANGU_JS = new URL('../../pangu.js/', import.meta.url);
+const PANGU_JS = new URL('../../../../pangu.js/', import.meta.url);
 const RESULTS = new URL('./results/', import.meta.url);
 
 const EXPERIMENTS = {
