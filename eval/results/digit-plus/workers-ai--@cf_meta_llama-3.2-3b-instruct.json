@@ -1,0 +1,142 @@
+{
+  "provider": "workers-ai",
+  "model": "@cf/meta/llama-3.2-3b-instruct",
+  "experiment": "digit-plus",
+  "thinking": true,
+  "promptVersion": "v18-en-real-examples",
+  "timestamp": "2026-09-16T06:07:44.458Z",
+  "passed": 6,
+  "total": 7,
+  "errors": 0,
+  "avgMs": 446,
+  "tokens": {
+    "prompt_tokens": 2153,
+    "completion_tokens": 21
+  },
+  "classes": {
+    "conjunction": "0/1",
+    "lower-bound": "6/6",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "tw-conj-diablo-1",
+      "expected": "conjunction",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 398,
+      "usage": {
+        "prompt_tokens": 303,
+        "completion_tokens": 3,
+        "total_tokens": 306,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.4926725625991821
+      }
+    },
+    {
+      "id": "tw-lb-02-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 488,
+      "usage": {
+        "prompt_tokens": 303,
+        "completion_tokens": 3,
+        "total_tokens": 306,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.4926725625991821
+      }
+    },
+    {
+      "id": "tw-lb-04-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 480,
+      "usage": {
+        "prompt_tokens": 313,
+        "completion_tokens": 3,
+        "total_tokens": 316,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.538918375968933
+      }
+    },
+    {
+      "id": "tw-lb-06-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 464,
+      "usage": {
+        "prompt_tokens": 294,
+        "completion_tokens": 3,
+        "total_tokens": 297,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.4510512351989746
+      }
+    },
+    {
+      "id": "tw-lb-07-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 405,
+      "usage": {
+        "prompt_tokens": 300,
+        "completion_tokens": 3,
+        "total_tokens": 303,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.478798747062683
+      }
+    },
+    {
+      "id": "tw-lb-08-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 492,
+      "usage": {
+        "prompt_tokens": 289,
+        "completion_tokens": 3,
+        "total_tokens": 292,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.4279283285140991
+      }
+    },
+    {
+      "id": "tw-lb-10-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 392,
+      "usage": {
+        "prompt_tokens": 351,
+        "completion_tokens": 3,
+        "total_tokens": 354,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.714652419090271
+      }
+    }
+  ]
+}

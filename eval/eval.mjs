@@ -50,13 +50,14 @@ function parseLabel(raw, labels) {
   return labels.find((label) => label === cleaned) ?? null;
 }
 
-async function complete({ url, headers }, model, messages) {
-  const body = JSON.stringify({ model, messages, temperature: 0 });
+async function complete({ url, headers, thinking }, model, messages) {
+  // Workers AI turns a reasoning model's thinking off through the chat template, not a top-level field
+  const body = JSON.stringify({ model, messages, temperature: 0, ...(thinking ? {} : { chat_template_kwargs: { enable_thinking: false } }) });
   for (let attempt = 0; ; attempt++) {
     const response = await fetch(url, { method: 'POST', headers, body });
     if (response.ok) {
       const data = await response.json();
-      return data.choices[0].message.content ?? '';
+      return { content: data.choices[0].message.content ?? '', usage: data.usage ?? null };
     }
     const text = await response.text();
     if ((response.status === 429 || response.status >= 500) && attempt < RETRIES) {
@@ -69,7 +70,7 @@ async function complete({ url, headers }, model, messages) {
   }
 }
 
-async function run(target, experiments) {
+async function run(target, experiments, thinking) {
   const [provider, ...rest] = target.split(':');
   const model = rest.join(':');
   if (!PROVIDERS[provider] || !model) {
@@ -80,6 +81,7 @@ async function run(target, experiments) {
   const endpoint = {
     url: expand(url),
     headers: { 'Content-Type': 'application/json', ...Object.fromEntries(Object.entries(headers).map(([name, value]) => [name, expand(value)])) },
+    thinking,
   };
   for (const experiment of experiments) {
     const { spec, cases } = await loadExperiment(experiment);
@@ -91,14 +93,15 @@ async function run(target, experiments) {
       ];
       const started = performance.now();
       let raw = null;
+      let usage = null;
       let error = null;
       try {
-        raw = await complete(endpoint, model, messages);
+        ({ content: raw, usage } = await complete(endpoint, model, messages));
       } catch (caught) {
         error = String(caught.message ?? caught);
       }
       const answer = raw === null ? null : parseLabel(raw, spec.candidateLabels);
-      results.push({ id: kase.id, expected: kase.expected_label, answer, raw, error, ms: Math.round(performance.now() - started) });
+      results.push({ id: kase.id, expected: kase.expected_label, answer, raw, error, ms: Math.round(performance.now() - started), usage });
       process.stderr.write(answer === kase.expected_label ? '.' : 'x');
     }
     process.stderr.write('\n');
@@ -114,20 +117,22 @@ async function run(target, experiments) {
       provider,
       model,
       experiment,
+      thinking,
       promptVersion: spec.version,
       timestamp: new Date().toISOString(),
       passed,
       total: results.length,
       errors: results.filter((result) => result.error).length,
       avgMs: Math.round(results.reduce((sum, result) => sum + result.ms, 0) / results.length),
+      tokens: ['prompt_tokens', 'completion_tokens'].reduce((totals, field) => ({ ...totals, [field]: results.reduce((sum, result) => sum + (result.usage?.[field] ?? 0), 0) }), {}),
       classes,
       results,
     };
     const directory = new URL(`${experiment}/`, RESULTS);
     mkdirSync(directory, { recursive: true });
-    writeFileSync(new URL(`${provider}--${model.replaceAll('/', '_')}.json`, directory), `${JSON.stringify(summary, null, 2)}\n`);
+    writeFileSync(new URL(`${provider}--${model.replaceAll('/', '_')}${thinking ? '' : '--nothink'}.json`, directory), `${JSON.stringify(summary, null, 2)}\n`);
 
-    console.log(`${target} ${experiment}: ${passed}/${results.length}; classes ${JSON.stringify(classes)}; errors ${summary.errors}; avg ${summary.avgMs}ms`);
+    console.log(`${target}${thinking ? '' : ' (no thinking)'} ${experiment}: ${passed}/${results.length}; classes ${JSON.stringify(classes)}; errors ${summary.errors}; avg ${summary.avgMs}ms; tokens ${JSON.stringify(summary.tokens)}`);
     console.log(
       'Misses:',
       results
@@ -142,21 +147,21 @@ function compare() {
   const rows = [];
   for (const experiment of readdirSync(RESULTS)) {
     for (const file of readdirSync(new URL(`${experiment}/`, RESULTS))) {
-      const { provider, model, promptVersion, passed, total, errors, avgMs, timestamp } = JSON.parse(readFileSync(new URL(`${experiment}/${file}`, RESULTS), 'utf8'));
-      rows.push({ experiment, target: `${provider}:${model}`, passed: `${passed}/${total}`, errors, avgMs, promptVersion, ran: timestamp.slice(0, 16) });
+      const { provider, model, thinking, passed, total, errors, avgMs, tokens } = JSON.parse(readFileSync(new URL(`${experiment}/${file}`, RESULTS), 'utf8'));
+      rows.push({ experiment, target: `${provider}:${model}`, think: thinking === false ? 'off' : 'on', passed: `${passed}/${total}`, errors, avgMs, out: tokens?.completion_tokens ?? null });
     }
   }
   rows.sort((left, right) => left.experiment.localeCompare(right.experiment) || Number(right.passed.split('/')[0]) - Number(left.passed.split('/')[0]));
   console.table(rows);
 }
 
-const { positionals, values } = parseArgs({ allowPositionals: true, options: { experiment: { type: 'string' } } });
+const { positionals, values } = parseArgs({ allowPositionals: true, options: { experiment: { type: 'string' }, 'no-thinking': { type: 'boolean' } } });
 const [command, target] = positionals;
 if (command === 'run' && target) {
-  await run(target, values.experiment ? [values.experiment] : Object.keys(EXPERIMENTS));
+  await run(target, values.experiment ? [values.experiment] : Object.keys(EXPERIMENTS), !values['no-thinking']);
 } else if (command === 'compare') {
   compare();
 } else {
-  console.error('usage: eval.mjs run <provider>:<model> [--experiment <name>] | eval.mjs compare');
+  console.error('usage: eval.mjs run <provider>:<model> [--experiment <name>] [--no-thinking] | eval.mjs compare');
   process.exitCode = 1;
 }

@@ -1,0 +1,923 @@
+{
+  "provider": "workers-ai",
+  "model": "@cf/ibm-granite/granite-4.0-h-micro",
+  "experiment": "hyphen-digit",
+  "promptVersion": "v29-zh",
+  "timestamp": "2026-09-16T06:07:11.267Z",
+  "passed": 42,
+  "total": 53,
+  "errors": 0,
+  "avgMs": 1129,
+  "tokens": {
+    "prompt_tokens": 25718,
+    "completion_tokens": 255
+  },
+  "classes": {
+    "signed-number": "5/16",
+    "range-or-separator": "37/37",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "readme-negative-273-15",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 1225,
+      "usage": {
+        "prompt_tokens": 408,
+        "completion_tokens": 3,
+        "total_tokens": 411,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.65947227
+      }
+    },
+    {
+      "id": "real-development-01",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 1540,
+      "usage": {
+        "prompt_tokens": 407,
+        "completion_tokens": 3,
+        "total_tokens": 410,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.65793061
+      }
+    },
+    {
+      "id": "real-development-02",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 1560,
+      "usage": {
+        "prompt_tokens": 407,
+        "completion_tokens": 3,
+        "total_tokens": 410,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.65793061
+      }
+    },
+    {
+      "id": "real-development-03",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 482,
+      "usage": {
+        "prompt_tokens": 407,
+        "completion_tokens": 3,
+        "total_tokens": 410,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.65793061
+      }
+    },
+    {
+      "id": "real-development-04",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 823,
+      "usage": {
+        "prompt_tokens": 488,
+        "completion_tokens": 5,
+        "total_tokens": 493,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.80312173
+      }
+    },
+    {
+      "id": "real-development-05",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 679,
+      "usage": {
+        "prompt_tokens": 486,
+        "completion_tokens": 5,
+        "total_tokens": 491,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.80003841
+      }
+    },
+    {
+      "id": "real-development-06",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1203,
+      "usage": {
+        "prompt_tokens": 424,
+        "completion_tokens": 5,
+        "total_tokens": 429,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.70445549
+      }
+    },
+    {
+      "id": "real-development-07",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "signed-number",
+      "error": null,
+      "ms": 510,
+      "usage": {
+        "prompt_tokens": 396,
+        "completion_tokens": 3,
+        "total_tokens": 399,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.64097235
+      }
+    },
+    {
+      "id": "real-development-08",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1505,
+      "usage": {
+        "prompt_tokens": 442,
+        "completion_tokens": 5,
+        "total_tokens": 447,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.73220537
+      }
+    },
+    {
+      "id": "real-development-09",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 467,
+      "usage": {
+        "prompt_tokens": 446,
+        "completion_tokens": 5,
+        "total_tokens": 451,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.73837201
+      }
+    },
+    {
+      "id": "real-development-10",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1158,
+      "usage": {
+        "prompt_tokens": 446,
+        "completion_tokens": 5,
+        "total_tokens": 451,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.73837201
+      }
+    },
+    {
+      "id": "real-development-10-stage-1",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 442,
+      "usage": {
+        "prompt_tokens": 433,
+        "completion_tokens": 5,
+        "total_tokens": 438,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.71833043
+      }
+    },
+    {
+      "id": "real-development-10-stage-2",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1193,
+      "usage": {
+        "prompt_tokens": 432,
+        "completion_tokens": 5,
+        "total_tokens": 437,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.71678877
+      }
+    },
+    {
+      "id": "real-development-11",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 845,
+      "usage": {
+        "prompt_tokens": 397,
+        "completion_tokens": 5,
+        "total_tokens": 402,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.66283067
+      }
+    },
+    {
+      "id": "real-development-12",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 609,
+      "usage": {
+        "prompt_tokens": 412,
+        "completion_tokens": 5,
+        "total_tokens": 417,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.68595557
+      }
+    },
+    {
+      "id": "real-development-blocktempo-19",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1129,
+      "usage": {
+        "prompt_tokens": 420,
+        "completion_tokens": 5,
+        "total_tokens": 425,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.69828885
+      }
+    },
+    {
+      "id": "real-development-blocktempo-18",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 429,
+      "usage": {
+        "prompt_tokens": 455,
+        "completion_tokens": 5,
+        "total_tokens": 460,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.75224695
+      }
+    },
+    {
+      "id": "real-development-blocktempo-17",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 598,
+      "usage": {
+        "prompt_tokens": 432,
+        "completion_tokens": 5,
+        "total_tokens": 437,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.71678877
+      }
+    },
+    {
+      "id": "books-4-percent-ebook",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1586,
+      "usage": {
+        "prompt_tokens": 425,
+        "completion_tokens": 5,
+        "total_tokens": 430,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.70599715
+      }
+    },
+    {
+      "id": "macromicro-labor-15-64",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 563,
+      "usage": {
+        "prompt_tokens": 407,
+        "completion_tokens": 5,
+        "total_tokens": 412,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.67824727
+      }
+    },
+    {
+      "id": "macromicro-global-labor-25-54",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1261,
+      "usage": {
+        "prompt_tokens": 416,
+        "completion_tokens": 5,
+        "total_tokens": 421,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.69212221
+      }
+    },
+    {
+      "id": "macromicro-us-cds-5y",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 607,
+      "usage": {
+        "prompt_tokens": 406,
+        "completion_tokens": 5,
+        "total_tokens": 411,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.67670561
+      }
+    },
+    {
+      "id": "macromicro-us-treasury-10y",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1212,
+      "usage": {
+        "prompt_tokens": 406,
+        "completion_tokens": 5,
+        "total_tokens": 411,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.67670561
+      }
+    },
+    {
+      "id": "real-holdout-01",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 596,
+      "usage": {
+        "prompt_tokens": 459,
+        "completion_tokens": 5,
+        "total_tokens": 464,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.75841359
+      }
+    },
+    {
+      "id": "real-holdout-02",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 781,
+      "usage": {
+        "prompt_tokens": 428,
+        "completion_tokens": 5,
+        "total_tokens": 433,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.71062213
+      }
+    },
+    {
+      "id": "real-holdout-03",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5064,
+      "usage": {
+        "prompt_tokens": 447,
+        "completion_tokens": 5,
+        "total_tokens": 452,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.73991367
+      }
+    },
+    {
+      "id": "real-holdout-04",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 678,
+      "usage": {
+        "prompt_tokens": 472,
+        "completion_tokens": 5,
+        "total_tokens": 477,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.77845517
+      }
+    },
+    {
+      "id": "real-holdout-05",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1175,
+      "usage": {
+        "prompt_tokens": 402,
+        "completion_tokens": 5,
+        "total_tokens": 407,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.67053897
+      }
+    },
+    {
+      "id": "real-holdout-06",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 693,
+      "usage": {
+        "prompt_tokens": 398,
+        "completion_tokens": 5,
+        "total_tokens": 403,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.66437233
+      }
+    },
+    {
+      "id": "real-holdout-07",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1090,
+      "usage": {
+        "prompt_tokens": 409,
+        "completion_tokens": 5,
+        "total_tokens": 414,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.68133059
+      }
+    },
+    {
+      "id": "real-holdout-08",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 759,
+      "usage": {
+        "prompt_tokens": 554,
+        "completion_tokens": 5,
+        "total_tokens": 559,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.90487129
+      }
+    },
+    {
+      "id": "jinbao-frozen-egg-white-minus-18",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 588,
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 5,
+        "total_tokens": 406,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.66899731
+      }
+    },
+    {
+      "id": "ncku-advanced-course-file-1",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 738,
+      "usage": {
+        "prompt_tokens": 442,
+        "completion_tokens": 5,
+        "total_tokens": 447,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.73220537
+      }
+    },
+    {
+      "id": "ptt-delivery-duration-3-to-5-days",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 622,
+      "usage": {
+        "prompt_tokens": 410,
+        "completion_tokens": 5,
+        "total_tokens": 415,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.68287225
+      }
+    },
+    {
+      "id": "macromicro-labor-15-plus",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 738,
+      "usage": {
+        "prompt_tokens": 404,
+        "completion_tokens": 5,
+        "total_tokens": 409,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.67362229
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-01",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 606,
+      "usage": {
+        "prompt_tokens": 562,
+        "completion_tokens": 5,
+        "total_tokens": 567,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.91720457
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-02",
+      "expected": "signed-number",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1185,
+      "usage": {
+        "prompt_tokens": 471,
+        "completion_tokens": 5,
+        "total_tokens": 476,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.77691351
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-03",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 817,
+      "usage": {
+        "prompt_tokens": 527,
+        "completion_tokens": 5,
+        "total_tokens": 532,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.86324647
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-04",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 872,
+      "usage": {
+        "prompt_tokens": 539,
+        "completion_tokens": 5,
+        "total_tokens": 544,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.88174639
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-05",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 706,
+      "usage": {
+        "prompt_tokens": 550,
+        "completion_tokens": 5,
+        "total_tokens": 555,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.89870465
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-06",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 631,
+      "usage": {
+        "prompt_tokens": 566,
+        "completion_tokens": 5,
+        "total_tokens": 571,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.92337121
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-07",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1588,
+      "usage": {
+        "prompt_tokens": 582,
+        "completion_tokens": 5,
+        "total_tokens": 587,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.94803777
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-08",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 648,
+      "usage": {
+        "prompt_tokens": 598,
+        "completion_tokens": 5,
+        "total_tokens": 603,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.97270433
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-09",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 787,
+      "usage": {
+        "prompt_tokens": 612,
+        "completion_tokens": 5,
+        "total_tokens": 617,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.99428757
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-10",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 650,
+      "usage": {
+        "prompt_tokens": 624,
+        "completion_tokens": 5,
+        "total_tokens": 629,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.01278749
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-11",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1521,
+      "usage": {
+        "prompt_tokens": 633,
+        "completion_tokens": 5,
+        "total_tokens": 638,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.02666243
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-12",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 2864,
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 5,
+        "total_tokens": 652,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.04824567
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-13",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1633,
+      "usage": {
+        "prompt_tokens": 658,
+        "completion_tokens": 5,
+        "total_tokens": 663,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.06520393
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-14",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 5755,
+      "usage": {
+        "prompt_tokens": 653,
+        "completion_tokens": 5,
+        "total_tokens": 658,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.05749563
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-15",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 618,
+      "usage": {
+        "prompt_tokens": 640,
+        "completion_tokens": 5,
+        "total_tokens": 645,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.03745405
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-16",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 991,
+      "usage": {
+        "prompt_tokens": 624,
+        "completion_tokens": 5,
+        "total_tokens": 629,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 1.01278749
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-17",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 855,
+      "usage": {
+        "prompt_tokens": 611,
+        "completion_tokens": 5,
+        "total_tokens": 616,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.99274591
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-18",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "range-or-separator",
+      "error": null,
+      "ms": 1958,
+      "usage": {
+        "prompt_tokens": 597,
+        "completion_tokens": 5,
+        "total_tokens": 602,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.97116267
+      }
+    }
+  ]
+}

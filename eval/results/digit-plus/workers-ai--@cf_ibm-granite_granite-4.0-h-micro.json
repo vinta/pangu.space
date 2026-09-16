@@ -1,0 +1,141 @@
+{
+  "provider": "workers-ai",
+  "model": "@cf/ibm-granite/granite-4.0-h-micro",
+  "experiment": "digit-plus",
+  "promptVersion": "v18-en-real-examples",
+  "timestamp": "2026-09-16T06:07:18.871Z",
+  "passed": 7,
+  "total": 7,
+  "errors": 0,
+  "avgMs": 1085,
+  "tokens": {
+    "prompt_tokens": 2333,
+    "completion_tokens": 21
+  },
+  "classes": {
+    "conjunction": "1/1",
+    "lower-bound": "6/6",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "tw-conj-diablo-1",
+      "expected": "conjunction",
+      "answer": "conjunction",
+      "raw": "conjunction",
+      "error": null,
+      "ms": 852,
+      "usage": {
+        "prompt_tokens": 322,
+        "completion_tokens": 3,
+        "total_tokens": 325,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.5268895100000001
+      }
+    },
+    {
+      "id": "tw-lb-02-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 1146,
+      "usage": {
+        "prompt_tokens": 329,
+        "completion_tokens": 3,
+        "total_tokens": 332,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.53768113
+      }
+    },
+    {
+      "id": "tw-lb-04-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 1217,
+      "usage": {
+        "prompt_tokens": 340,
+        "completion_tokens": 3,
+        "total_tokens": 343,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.55463939
+      }
+    },
+    {
+      "id": "tw-lb-06-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 1524,
+      "usage": {
+        "prompt_tokens": 312,
+        "completion_tokens": 3,
+        "total_tokens": 315,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.5114729100000001
+      }
+    },
+    {
+      "id": "tw-lb-07-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 350,
+      "usage": {
+        "prompt_tokens": 320,
+        "completion_tokens": 3,
+        "total_tokens": 323,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.5238061900000001
+      }
+    },
+    {
+      "id": "tw-lb-08-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 895,
+      "usage": {
+        "prompt_tokens": 303,
+        "completion_tokens": 3,
+        "total_tokens": 306,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.49759797
+      }
+    },
+    {
+      "id": "tw-lb-10-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 1610,
+      "usage": {
+        "prompt_tokens": 407,
+        "completion_tokens": 3,
+        "total_tokens": 410,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 0.65793061
+      }
+    }
+  ]
+}
