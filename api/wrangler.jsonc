@@ -1,16 +1,16 @@
 {
-	"$schema": "../node_modules/wrangler/config-schema.json",
-	"name": "pangu-api",
-	"main": "src/index.ts",
-	"compatibility_date": "2026-09-11",
-	// pangu's Node build imports node:fs
-	"compatibility_flags": ["nodejs_compat"],
-	"workers_dev": false,
-	"routes": [{ "pattern": "api.pangu.space", "custom_domain": true }],
-	"observability": {
-		"enabled": true,
-		"logs": { "enabled": true },
-		"traces": { "enabled": true }
-	},
-	"upload_source_maps": true
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "pangu-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-11",
+  // pangu's Node build imports node:fs
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "routes": [{ "pattern": "api.pangu.space", "custom_domain": true }],
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true },
+    "traces": { "enabled": true },
+  },
+  "upload_source_maps": true,
 }
