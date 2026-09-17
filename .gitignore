@@ -1,5 +1,7 @@
 .env
 
-tmp/
 node_modules/
+
+tmp/
+
 .wrangler/
