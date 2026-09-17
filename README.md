@@ -17,5 +17,10 @@ Errors come with a `code` you can check:
 - `not_found` (404): any path other than `/text`
 
 ```json
-{"error":{"code":"missing_text","message":"missing query parameter: text"}}
+{
+  "error": {
+    "code": "missing_text",
+    "message": "missing query parameter: text"
+  }
+}
 ```
