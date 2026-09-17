@@ -1,0 +1,11 @@
+{
+	"$schema": "../node_modules/wrangler/config-schema.json",
+	"name": "pangu-web",
+	"compatibility_date": "2026-09-11",
+	"workers_dev": false,
+	"routes": [{ "pattern": "pangu.space", "custom_domain": true }],
+	"assets": {
+		// The path to the directory containing the `index.html` file to be served at `/`
+		"directory": "./public"
+	}
+}
