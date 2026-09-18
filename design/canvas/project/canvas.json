@@ -101,7 +101,7 @@
       "w": 320,
       "x": 1360,
       "y": 0,
-      "text": "Token names follow the extension's styles.css, values are Q's, so the extension migrates by editing values, not renaming. Orange = the extension's value changes (Tailwind gray to neutral ink). Green = new token, diff only. Left off on purpose: tokens Q never decided (purple secondary, status colors, spacing and text scales, transitions) and the dark set."
+      "text": "Token names follow the extension's styles.css, values are Q's, so the extension migrates by editing values, not renaming. Orange = the extension's value changes (Tailwind gray to neutral ink). Green = new token. Left off on purpose: tokens Q never decided (purple secondary, status colors, larger shadows) and the dark set. web/public/tokens.css is the source of truth, and this board documents it."
     },
     "t5": {
       "kind": "title1",
