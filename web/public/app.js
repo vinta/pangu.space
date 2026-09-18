@@ -10,7 +10,7 @@ const ZH_TW = {
   ai_spacing: "空格之神 AI",
   show_diff: "顯示差異",
   original: "原文",
-  spaced: "加了空格",
+  spaced: "加了空格之後",
   placeholder: "在這裡貼上或輸入文字",
   copy: "複製",
   copied: "已複製",
