@@ -90,8 +90,8 @@ const tokens = {
         name: "Text",
         family: "sans",
         styles: [
-          style("headline", vars["text-3xl"], 600, 1.2, "The page headline. One per page.", { letterSpacing: "-0.02em", sample: "Paranoid Text Spacing" }),
-          style("headline-phone", vars["text-2xl"], 600, 1.2, "The headline under 640px.", { letterSpacing: "-0.02em", sample: "Paranoid Text Spacing" }),
+          style("headline", vars["text-3xl"], 600, 1.2, "The page headline. One per page.", { sample: "Paranoid Text Spacing" }),
+          style("headline-phone", vars["text-2xl"], 600, 1.2, "The headline under 640px.", { sample: "Paranoid Text Spacing" }),
           style("body", vars["text-base"], 400, 1.6, "The description under the headline, in color-text-secondary."),
           style("pane", vars["text-base"], 400, 1.8, "Text in the panes and diff rows. The tall line height keeps mixed Chinese and Latin lines even.", { sample: "當你凝視著 bug，bug 也凝視著你" }),
           style("brand", vars["text-base"], 700, 1.5, "The site name beside the logo.", { sample: "pangu.space" }),

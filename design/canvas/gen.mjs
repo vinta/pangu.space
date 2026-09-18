@@ -3,12 +3,12 @@ import { readFileSync, writeFileSync } from "node:fs";
 const SANS = `-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Noto Sans", sans-serif`;
 
 const DIRS = {
-  StyleQ: { name: "Q · P + neutral ink (Apple) + hero -0.02em", vars: {
+  StyleQ: { name: "Q · P + neutral ink (Apple)", vars: {
     bg: "#ffffff", mainBg: "#fafafa", surface: "#ffffff", surface2: "#fafafa", border: "#e5e5e7", border2: "#f5f5f7",
     text: "#1d1d1f", text2: "#6e6e73", text3: "#a1a1a6", accent: "#3b82f6", track: "#dbeafe", knob: "#3b82f6", trackOff: "#f3f4f6",
     add: "#86efac", del: "#fca5a5", rowAdd: "#dcfce7", rowDel: "#fee2e2", rowMix: "#fef9c3",
     radius: "12px", radiusSm: "8px", radiusXs: "6px", bw: "1px", cardBorder: "1px solid #e5e5e7", cardShadow: "0 1px 2px rgb(0 0 0 / 0.05)",
-    font: SANS, fontPane: SANS, paneSize: "16px", fontHero: SANS, heroSize: "40px", heroWeight: "600", heroSpacing: "-0.02em",
+    font: SANS, fontPane: SANS, paneSize: "16px", fontHero: SANS, heroSize: "40px", heroWeight: "600", heroSpacing: "0",
     navBg: "#ffffff", paneHeadBg: "transparent", markRadius: "2px", labelSize: "14px",
   }},
   StyleP: { name: "P · Picked: A + F hero/bg + D diff + popup toggle", vars: {
@@ -39,5 +39,5 @@ for (const [file, d] of Object.entries(DIRS)) {
 }
 idx.notes.t4 = { kind: "title1", maxW: 3110, text: "Picked · Style Q, with the earlier pick P", w: 240, x: 0, y: 1750 };
 idx.notes.n7 = { color: "blue", w: 320, x: 3190, y: 2550, text: "A as base. Hero from F (40px, 600, -0.04em). Main background #fafafa from F, navbar stays white. Diff colors from D (#86efac / #fca5a5 marks, #dcfce7 / #fee2e2 / #fef9c3 rows). Disabled toggle as the extension popup: track #f3f4f6, white knob, label #6b7280, no fade. Shell max-width 1280px, fluid below." };
-idx.notes.n8 = { color: "green", w: 320, x: 3190, y: 2050, text: "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing -0.02em, since the system stack renders SF on Apple devices and SF is already tight. Blue accent, diff colors, toggle unchanged." };
+idx.notes.n8 = { color: "green", w: 320, x: 3190, y: 2050, text: "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing started at -0.02em and was dropped later: negative tracking squeezes Chinese glyphs. Blue accent, diff colors, toggle unchanged." };
 writeFileSync("project/canvas.json", JSON.stringify(idx, null, 2) + "\n");

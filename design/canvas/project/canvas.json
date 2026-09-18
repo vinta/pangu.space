@@ -44,7 +44,7 @@
       "y": 2050,
       "w": 1280,
       "h": 900,
-      "title": "Q · P + neutral ink (Apple) + hero -0.02em",
+      "title": "Q · P + neutral ink (Apple)",
       "is_interactive": true
     },
     "PhoneQ.dc.html": {
@@ -131,7 +131,7 @@
       "w": 320,
       "x": 3190,
       "y": 2050,
-      "text": "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing -0.02em, since the system stack renders SF on Apple devices and SF is already tight. Blue accent, diff colors, toggle unchanged."
+      "text": "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing started at -0.02em and was dropped later: negative tracking squeezes Chinese glyphs. Blue accent, diff colors, toggle unchanged."
     }
   },
   "order": [

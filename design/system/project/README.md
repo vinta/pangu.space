@@ -38,7 +38,7 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - Three text sizes do all the work: `text-xs`, `text-sm`, `text-base`. One headline size, `text-3xl`, dropping to `text-2xl` under 640px.
 
-- Use the `headline` style once per page, weight 600 with -0.02em tracking.
+- Use the `headline` style once per page, weight 600. Titles take no letter-spacing: negative tracking squeezes Chinese glyphs.
 
 - Pane and diff text uses the `pane` style. Its 1.8 line height keeps mixed Chinese and Latin lines even, and the two panes must stay line for line.
 
