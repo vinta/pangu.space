@@ -227,7 +227,7 @@ main .shell {
   left: 2px;
   width: 20px;
   height: 20px;
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow);
   transition: background-color var(--transition), transform var(--transition);
