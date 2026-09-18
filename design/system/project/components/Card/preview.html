@@ -1,0 +1,25 @@
+<!-- @dsCard group="Surfaces" height=240 subtitle="Toolbar, body, strip" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Card</title>
+<style>
+  body { min-height: 0; }
+  .stage { box-sizing: border-box; padding: 16px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .stage.block { display: block; }
+</style>
+</head>
+<body>
+<div class="stage block">
+  <section class="card">
+    <div class="toolbar">
+      <select class="select" aria-label="Library"><option>pangu.js</option></select>
+      <label class="toggle end"><input type="checkbox" class="toggle-input sr-only" checked><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></label>
+    </div>
+    <div class="diff"><div class="row">Content goes here</div></div>
+    <div class="strip"><div class="legend"><span><i class="a"></i><span>Added</span></span><span><i class="d"></i><span>Removed</span></span></div></div>
+  </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- @dsCard group="Controls" height=80 subtitle="Default and Copied" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Button</title>
+<style>
+  body { min-height: 0; }
+  .stage { box-sizing: border-box; padding: 16px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .stage.block { display: block; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <button type="button" class="btn btn-copy"><span class="when-idle">Copy</span><span class="when-copied" aria-hidden="true">Copied</span></button>
+  <button type="button" class="btn btn-copy copied"><span class="when-idle">Copy</span><span class="when-copied" aria-hidden="true">Copied</span></button>
+</div>
+</body>
+</html>

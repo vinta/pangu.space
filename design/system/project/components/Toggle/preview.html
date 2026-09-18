@@ -1,0 +1,20 @@
+<!-- @dsCard group="Controls" height=88 subtitle="On, off, disabled" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Toggle</title>
+<style>
+  body { min-height: 0; }
+  .stage { box-sizing: border-box; padding: 16px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .stage.block { display: block; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <label class="toggle"><input type="checkbox" class="toggle-input sr-only" checked><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></label>
+  <label class="toggle"><input type="checkbox" class="toggle-input sr-only"><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></label>
+  <label class="toggle"><input type="checkbox" class="toggle-input sr-only" disabled><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></label>
+</div>
+</body>
+</html>

@@ -1,0 +1,548 @@
+:root {
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-surface-secondary);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+a,
+.btn {
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+a:focus-visible,
+select:focus-visible,
+.btn:focus-visible,
+.toggle-input:focus-visible + .toggle-switch {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* The card clips overflow, so the ring sits inside the pane */
+.text:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-8);
+}
+
+.nav {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav .shell,
+.foot .shell {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.brand svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  font-size: var(--text-base);
+  font-weight: 500;
+}
+
+.select {
+  height: 32px;
+  /* The right side reserves room for the native arrow */
+  padding: 0 28px 0 var(--spacing-3);
+  font-size: var(--text-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+main {
+  flex-grow: 1;
+}
+
+main .shell {
+  padding-top: var(--spacing-12);
+  padding-bottom: var(--spacing-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  /* Chinese breaks only at the zero-width space in the title string, never mid-phrase */
+  word-break: keep-all;
+}
+
+.hero p {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  text-wrap: pretty;
+}
+
+.tool {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  cursor: pointer;
+}
+
+.toggle.end {
+  margin-left: auto;
+}
+
+.toggle:has(:disabled) {
+  cursor: not-allowed;
+}
+
+.toggle-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.toggle:has(:disabled) .toggle-label {
+  color: var(--color-text-secondary);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  background: var(--color-surface-tertiary);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+  transition: background-color var(--transition), box-shadow var(--transition);
+}
+
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.toggle-input:checked + .toggle-switch {
+  background: var(--color-primary-light);
+  box-shadow: none;
+}
+
+.toggle-input:checked + .toggle-switch::after {
+  background: var(--color-primary);
+  transform: translateX(20px);
+}
+
+.toggle-input:disabled + .toggle-switch {
+  box-shadow: none;
+}
+
+.panes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 380px;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.pane.left {
+  border-right: 1px solid var(--color-border);
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 var(--spacing-2) 0 var(--spacing-4);
+  border-bottom: 1px solid var(--color-border-light);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.btn {
+  height: 28px;
+  padding: 0 var(--spacing-3);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Both labels share one cell, so the button keeps the width of the longer one */
+.btn-copy {
+  display: inline-grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.btn-copy span {
+  grid-area: 1 / 1;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-copy .when-copied,
+.btn-copy.copied .when-idle {
+  opacity: 0;
+}
+
+.btn-copy.copied .when-copied {
+  opacity: 1;
+}
+
+.text {
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--spacing-4);
+  font-size: var(--text-base);
+  line-height: 1.8;
+  border: 0;
+  background: transparent;
+  resize: none;
+  white-space: pre;
+  overflow-x: auto;
+  /* Grows with its content, so both panes stay line for line */
+  field-sizing: content;
+}
+
+.text::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.diff {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-4) 0;
+  font-size: var(--text-base);
+  line-height: 1.8;
+  overflow-x: auto;
+}
+
+.row {
+  width: max-content;
+  min-width: 100%;
+  /* An empty line keeps its height */
+  min-height: 1.8em;
+  box-sizing: border-box;
+  padding: 0 var(--spacing-4);
+  white-space: pre;
+}
+
+.row.add {
+  background: var(--color-diff-row-add);
+}
+
+.row.del {
+  background: var(--color-diff-row-del);
+}
+
+.row.mix {
+  background: var(--color-diff-row-mix);
+}
+
+.a,
+.d {
+  border-radius: 2px;
+}
+
+.a {
+  background: var(--color-diff-add);
+}
+
+.d {
+  background: var(--color-diff-del);
+}
+
+.strip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-secondary);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.legend i {
+  width: 12px;
+  height: 12px;
+}
+
+.note {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.foot {
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.foot nav {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.foot a {
+  color: var(--color-text-secondary);
+}
+
+.foot a:hover {
+  color: var(--color-primary);
+}
+
+.foot i {
+  font-style: normal;
+  color: var(--color-text-tertiary);
+}
+
+.hscroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.hscroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 0 var(--spacing-4);
+  }
+
+  .nav .shell {
+    height: 52px;
+  }
+
+  .brand svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .links {
+    gap: var(--spacing-3);
+  }
+
+  .links .select {
+    padding: 0 24px 0 var(--spacing-2);
+  }
+
+  /* The footer keeps the GitHub link, and the Chinese language name needs the room */
+  .links .wide-only {
+    display: none;
+  }
+
+  main .shell {
+    padding-top: var(--spacing-8);
+    padding-bottom: var(--spacing-8);
+    gap: var(--spacing-6);
+  }
+
+  .hero h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    gap: var(--spacing-1) var(--spacing-6);
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .toolbar .select {
+    flex-basis: 100%;
+    width: 100%;
+    height: 40px;
+    font-size: var(--text-base);
+  }
+
+  .toggle {
+    min-height: 44px;
+  }
+
+  .toggle-label {
+    font-size: var(--text-base);
+  }
+
+  .panes {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .pane.left {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pane .text,
+  .pane .diff {
+    min-height: 262px;
+  }
+
+  .pane-head {
+    height: 44px;
+  }
+
+  .btn {
+    height: 36px;
+  }
+
+  .strip {
+    justify-content: flex-start;
+  }
+
+  .foot .shell {
+    height: auto;
+    padding: var(--spacing-5) var(--spacing-4);
+    flex-wrap: wrap;
+    gap: var(--spacing-3) var(--spacing-4);
+  }
+
+  .foot nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

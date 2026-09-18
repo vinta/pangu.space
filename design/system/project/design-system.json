@@ -1,0 +1,42 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-18T10:12:38Z"
+  },
+  "title": "pangu",
+  "namespace": "pangu",
+  "libraries": [],
+  "sections": {},
+  "groups": [
+    "Logos"
+  ],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": [
+        "pangu-mark.svg"
+      ],
+      "files": {
+        "pangu-mark.svg": {
+          "name": "pangu-mark.svg",
+          "blob": "368e6508e4e59629d0c87db0cd2e5cfe",
+          "size": 2826,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": {
+    "sections": []
+  },
+  "lastChange": {
+    "by": "Vinta",
+    "at": "2026-09-18T10:12:38Z",
+    "via": "GitHub · vinta/pangu.space@36c0d0a",
+    "note": "First sync from the site's stylesheets: tokens, 7 static components, logo, cover"
+  }
+}

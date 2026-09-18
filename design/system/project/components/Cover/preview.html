@@ -1,0 +1,68 @@
+<!-- @dsCard height=344 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cover</title>
+<style>
+  body { min-height: 0; display: block; background: var(--color-surface-secondary); }
+  .cover { position: relative; width: 960px; height: 344px; overflow: hidden; }
+  .cover svg { position: absolute; inset: 0; }
+  .tile { rx: var(--radius-lg); }
+  .pill { rx: var(--spacing-2); }
+  .ink { fill: var(--color-text-primary); }
+  .brand { fill: var(--color-primary); }
+  .add { fill: var(--color-diff-add); }
+  .mix { fill: var(--color-diff-row-mix); }
+  .soft { fill: var(--color-primary-light); }
+  .words { position: absolute; left: var(--spacing-12); bottom: var(--spacing-10); width: 400px; display: flex; flex-direction: column; gap: var(--spacing-4); }
+  .name { margin: 0; font-family: var(--font-sans); font-size: 120px; font-weight: 600; line-height: 0.9; letter-spacing: -0.02em; color: var(--color-text-primary); }
+  .tag { margin: 0; font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.5; color: var(--color-text-secondary); }
+</style>
+</head>
+<body>
+<div class="cover">
+  <!--
+    blocks: color-text-primary tiles 64x64, color-primary tiles 136 and 208 wide, color-diff-row-mix tiles 136 and 208 wide, one color-primary-light tile, all 64 tall
+    arrangement: four staggered lines of tiles, offset by spacing-8, bleeding off the right edge, like lines of mixed text
+    pattern: the literal motif. A color-diff-add pill between a square tile (a Chinese character) and a wide tile (a Latin word) is the space pangu inserts
+    scales: tile side spacing-8 x2, gap spacing-2, pill width spacing-4, corners radius-lg, pill corners spacing-2 (half its short side)
+  -->
+  <svg viewBox="0 0 960 344" width="960" height="344" aria-hidden="true">
+    <rect class="tile ink" x="480" y="32" width="64" height="64"></rect>
+    <rect class="tile ink" x="552" y="32" width="64" height="64"></rect>
+    <rect class="pill add" x="624" y="32" width="16" height="64"></rect>
+    <rect class="tile brand" x="648" y="32" width="208" height="64"></rect>
+    <rect class="pill add" x="864" y="32" width="16" height="64"></rect>
+    <rect class="tile ink" x="888" y="32" width="64" height="64"></rect>
+    <rect class="tile ink" x="960" y="32" width="64" height="64"></rect>
+    <rect class="tile mix" x="512" y="104" width="136" height="64"></rect>
+    <rect class="pill add" x="656" y="104" width="16" height="64"></rect>
+    <rect class="tile ink" x="680" y="104" width="64" height="64"></rect>
+    <rect class="tile ink" x="752" y="104" width="64" height="64"></rect>
+    <rect class="tile ink" x="824" y="104" width="64" height="64"></rect>
+    <rect class="pill add" x="896" y="104" width="16" height="64"></rect>
+    <rect class="tile soft" x="920" y="104" width="136" height="64"></rect>
+    <rect class="tile ink" x="480" y="176" width="64" height="64"></rect>
+    <rect class="pill add" x="552" y="176" width="16" height="64"></rect>
+    <rect class="tile brand" x="576" y="176" width="136" height="64"></rect>
+    <rect class="pill add" x="720" y="176" width="16" height="64"></rect>
+    <rect class="tile ink" x="744" y="176" width="64" height="64"></rect>
+    <rect class="tile ink" x="816" y="176" width="64" height="64"></rect>
+    <rect class="tile ink" x="888" y="176" width="64" height="64"></rect>
+    <rect class="tile ink" x="960" y="176" width="64" height="64"></rect>
+    <rect class="tile ink" x="512" y="248" width="64" height="64"></rect>
+    <rect class="tile ink" x="584" y="248" width="64" height="64"></rect>
+    <rect class="pill add" x="656" y="248" width="16" height="64"></rect>
+    <rect class="tile mix" x="680" y="248" width="208" height="64"></rect>
+    <rect class="pill add" x="896" y="248" width="16" height="64"></rect>
+    <rect class="tile ink" x="920" y="248" width="64" height="64"></rect>
+    <rect class="tile ink" x="992" y="248" width="64" height="64"></rect>
+  </svg>
+  <div class="words">
+    <h1 class="name">pangu</h1>
+    <p class="tag">Paranoid text spacing for CJK and Latin text.</p>
+  </div>
+</div>
+</body>
+</html>
