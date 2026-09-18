@@ -41,7 +41,6 @@ const USAGE = {
   "shadow-sm": "Cards.",
   "shadow": "The toggle knob.",
   "shadow-lg": "Overlays that float above the page, such as a notification. Never on a card.",
-  "text-xs": "Legend. 12px.",
 
   "text-sm": "Pane labels, notes, footer. 14px.",
   "text-base": "Body, pane text, nav links, and every control. 16px.",
@@ -102,7 +101,7 @@ const tokens = {
           style("control", vars["text-base"], 500, 1.5, "Toggle labels, buttons and selects. Controls are never smaller than this."),
           style("small", vars["text-sm"], 400, 1.5, "Notes and footer."),
 
-          style("legend", vars["text-xs"], 400, 1.5, "The diff legend."),
+          style("legend", vars["text-sm"], 400, 1.5, "The diff legend."),
         ],
       },
     ],
