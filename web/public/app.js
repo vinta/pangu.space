@@ -116,13 +116,15 @@ function renderRow(before, after) {
   let added = false;
   let removed = false;
   for (const part of whitespaceParts(before, after) ?? diffChars(before, after)) {
-    if (part.added || part.removed) {
+    if (part.removed) {
+      // Not drawn, so the row reads exactly as the output; the row tint is the only sign
+      removed = true;
+    } else if (part.added) {
       const mark = document.createElement("span");
-      mark.className = part.added ? "a" : "d";
+      mark.className = "a";
       mark.textContent = part.value;
       row.append(mark);
-      added ||= part.added;
-      removed ||= part.removed;
+      added = true;
     } else {
       row.append(part.value);
     }
