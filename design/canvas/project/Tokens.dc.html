@@ -35,7 +35,7 @@
     }
     body { margin: 0; font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
     code { font-family: var(--font-mono); font-size: 11.5px; line-height: 1.45; }
-    .board { width: 1280px; height: 1190px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 28px; background: var(--color-surface); }
+    .board { width: 1280px; height: 1350px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 28px; background: var(--color-surface); }
     .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
     .head h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
     .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
@@ -70,6 +70,16 @@
     .toggle.on i::after { background: var(--color-primary); transform: translateX(20px); }
     .toggle.off i { box-shadow: none; }
     .btn { height: 28px; padding: 0 12px; font: inherit; font-size: 14px; font-weight: 500; color: var(--color-text-primary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+    .ring { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    .ring-in { outline: 2px solid var(--color-primary); outline-offset: -2px; }
+    .toggle i.ring { outline-offset: 2px; }
+    .link { font-size: 16px; font-weight: 500; border-radius: 2px; }
+    .sel { display: inline-flex; align-items: center; height: 32px; padding: 0 28px 0 12px; font-size: 14px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); }
+    .ta { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; font-size: 16px; color: var(--color-text-secondary); border-radius: 2px; }
+    .btn.stack { display: inline-grid; align-items: center; justify-items: center; }
+    .btn.stack span { grid-area: 1 / 1; }
+    .btn.stack .ghost { visibility: hidden; }
+    .parts small { font-size: 12px; color: var(--color-text-secondary); }
     .radii { display: flex; align-items: flex-end; gap: 16px; }
     .radii div { display: flex; flex-direction: column; gap: 6px; }
     .radii i { display: block; width: 56px; height: 36px; background: var(--color-surface-secondary); border: 1px solid var(--color-border); }
@@ -149,6 +159,21 @@
         <span class="toggle off"><i></i>Disabled</span>
         <button type="button" class="btn">Copy</button>
       </div>
+      <h2>Focus, keyboard only</h2>
+      <div class="parts">
+        <span class="toggle on"><i class="ring"></i>Toggle</span>
+        <span class="sel ring">pangu.js</span>
+        <button type="button" class="btn ring">Copy</button>
+        <span class="link ring">GitHub</span>
+        <span class="ta ring-in">Text area, ring inset</span>
+      </div>
+      <h2>Copied</h2>
+      <div class="parts">
+        <button type="button" class="btn stack"><span>Copy</span><span class="ghost">Copied</span></button>
+        <small>click</small>
+        <button type="button" class="btn stack"><span class="ghost">Copy</span><span>Copied</span></button>
+        <small>2s, then back. Same width.</small>
+      </div>
       <h2>Radius and shadow</h2>
       <div class="radii">
         <div><i style="border-radius: 6px;"></i><code>--radius-sm 6</code></div>
@@ -186,12 +211,14 @@
     <li>Light only, dark set not designed yet</li>
     <li>Every gap, padding, margin is a spacing step</li>
     <li>Control heights are sizes, not spacing</li>
+    <li>Focus ring 2px primary, 2px offset, outline not shadow, :focus-visible only</li>
+    <li>Copied announces through a hidden status line. On failure the label stays Copy</li>
     <li>Text sizes 12, 14, 16. One headline size, 40, replaces the extension's 32. Revisit when applied there</li>
   </ul>
 
 </div>
 </x-dc>
-<script data-dc-script data-props='{"$preview":{"width":1280,"height":1190}}'>
+<script data-dc-script data-props='{"$preview":{"width":1280,"height":1350}}'>
 class Component extends DCLogic {
   renderVals() { return {}; }
 }
