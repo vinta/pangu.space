@@ -43,8 +43,8 @@ const USAGE = {
   "shadow-lg": "Overlays that float above the page, such as a notification. Never on a card.",
 
   "text-sm": "The diff legend. 14px.",
-  "text-base": "Body, pane text and labels, nav links, every control, notes and the footer. 16px.",
-  "text-lg": "The subtitle under a page headline. 18px.",
+  "text-base": "Pane text and labels, nav links, every control, notes and the footer. 16px.",
+  "text-lg": "The description under the page headline. 18px.",
   "text-xl": "Section titles. 22px.",
   "text-2xl": "The headline under 640px. 24px.",
   "text-3xl": "The one headline size. 40px.",
@@ -106,9 +106,9 @@ const tokens = {
           style("headline-phone", vars["text-2xl"], 600, 1.2, "The headline under 640px.", { sample: "Paranoid Text Spacing" }),
           style("section-title", vars["text-xl"], 600, 1.25, "Titles of page sections.", { sample: "Blacklist" }),
 
-          style("subtitle", vars["text-lg"], 400, 1.5, "The line under the headline on a page with sections, in color-text-secondary."),
+          style("subtitle", vars["text-lg"], 400, 1.5, "The description under the headline, in color-text-secondary."),
 
-          style("body", vars["text-base"], 400, 1.6, "The description under the headline, in color-text-secondary."),
+          style("body", vars["text-base"], 400, 1.5, "Notes and the footer, in color-text-secondary."),
           style("pane", vars["text-base"], 400, 1.8, "Text in the panes and diff rows. The tall line height keeps mixed Chinese and Latin lines even.", { sample: "當你凝視著 bug，bug 也凝視著你" }),
           style("brand", vars["text-base"], 700, 1.5, "The site name beside the logo.", { sample: "pangu.space" }),
           style("nav", vars["text-base"], 500, 1.5, "Nav links."),

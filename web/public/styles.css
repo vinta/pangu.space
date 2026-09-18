@@ -149,8 +149,8 @@ main .shell {
 
 .hero p {
   margin: 0;
-  font-size: var(--text-base);
-  line-height: 1.6;
+  font-size: var(--text-lg);
+  line-height: 1.5;
   color: var(--color-text-secondary);
   text-wrap: pretty;
 }

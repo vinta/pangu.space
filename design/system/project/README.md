@@ -60,7 +60,7 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 - One headline size, `text-3xl`, dropping to `text-2xl` on phones. Use the `headline` style once per page.
 
-- Two levels sit under the headline: `text-xl` for section titles, `text-lg` for the subtitle under the headline. A title is never set at `text-base`.
+- Two levels sit under the headline: `text-xl` for section titles, `text-lg` for the description under the headline. A title is never set at `text-base`.
 
 - Titles take no letter-spacing. Negative tracking squeezes Chinese glyphs.
 
