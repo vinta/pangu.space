@@ -35,8 +35,8 @@
   },
   "lastChange": {
     "by": "Vinta",
-    "at": "2026-09-18T18:52:43Z",
-    "via": "GitHub · vinta/pangu.space@4fcd4a5",
-    "note": "Supporting text raised to match the extension: note, footer and pane labels 16px, legend 14px, the 12px step retired"
+    "at": "2026-09-18T19:04:27Z",
+    "via": "GitHub · vinta/pangu.space@a6f0efa",
+    "note": "README rewritten as rules only, with a section on where values live"
   }
 }
