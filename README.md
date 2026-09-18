@@ -6,9 +6,13 @@ Opinionated paranoid text spacing: automatically inserts whitespace between CJK 
 - [pangu.py](https://github.com/vinta/pangu.py)
 - [pangu.go](https://github.com/vinta/pangu)
 - [pangu.java](https://github.com/vinta/pangu.java)
-- [pangu.space](https://github.com/vinta/pangu.space) (HTTP API)
+- [pangu.space](https://github.com/vinta/pangu.space) (Website and HTTP API)
 
-## Endpoints
+## Website
+
+Try it at [pangu.space](https://pangu.space): paste text on the left, get the spaced text on the right, with every added or removed space highlighted.
+
+## HTTP API
 
 - `https://api.pangu.space/text`
 
@@ -45,3 +49,21 @@ Errors come with a `code` you can check:
   }
 }
 ```
+
+## Development
+
+```bash
+$ npm install
+$ npm run dev -w web # the website, http://localhost:5566
+$ npm run dev -w api # the API, http://localhost:8787
+$ npm test -w api
+```
+
+The website has no bundler. `web/scripts/vendor.mjs` copies pangu.js into `web/public/vendor/`, and both `dev` and `deploy` run it first.
+
+```bash
+$ npm run deploy -w web
+$ npm run deploy -w api
+```
+
+Design tokens live in `web/public/tokens.css`. The design boards and their generators live in `design/`.

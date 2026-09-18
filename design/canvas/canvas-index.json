@@ -1,0 +1,115 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Tokens.dc.html": {
+      "h": 1450,
+      "title": "Tokens · Style Q",
+      "w": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "StyleP.dc.html": {
+      "x": 0,
+      "y": 9280,
+      "w": 1280,
+      "h": 900,
+      "title": "P · Picked: A + F hero/bg + D diff + popup toggle",
+      "is_interactive": true
+    },
+    "DiffCue.dc.html": {
+      "x": 0,
+      "y": 3950,
+      "w": 1280,
+      "h": 1140,
+      "title": "Diff · second cue options (decided: keep A)"
+    },
+    "Motion.dc.html": {
+      "x": 1360,
+      "y": 3950,
+      "w": 1280,
+      "h": 680,
+      "title": "Motion · try it (decided: toggle 200ms, fades 150ms)",
+      "is_interactive": true
+    },
+    "DiffRemoved.dc.html": {
+      "x": 0,
+      "y": 5690,
+      "w": 1600,
+      "h": 930,
+      "title": "Diff · removed space options (decided: B, row tint only)"
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-17T14:30:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "t0": {
+      "kind": "title1",
+      "maxW": 1280,
+      "text": "Tokens · Style Q (current)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t4": {
+      "kind": "title1",
+      "maxW": 1280,
+      "text": "Round 2 · Picked mix",
+      "w": 240,
+      "x": 0,
+      "y": 8980
+    },
+    "n7": {
+      "color": "blue",
+      "w": 320,
+      "x": 1360,
+      "y": 9280,
+      "text": "A as base. Hero from F (40px, 600, -0.04em). Main background #fafafa from F, navbar stays white. Diff colors from D (#86efac / #fca5a5 marks, #dcfce7 / #fee2e2 / #fef9c3 rows). Disabled toggle as the extension popup: track #f3f4f6, white knob, label #6b7280, no fade. Shell max-width 1280px, fluid below."
+    },
+    "n9": {
+      "color": "green",
+      "w": 320,
+      "x": 1360,
+      "y": 0,
+      "text": "Token names follow the extension's styles.css, values are Q's, so the extension migrates by editing values, not renaming. Orange = the extension's value changes (Tailwind gray to neutral ink). Green = new token, diff only. Left off on purpose: tokens Q never decided (purple secondary, status colors, spacing and text scales, transitions) and the dark set."
+    },
+    "t5": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Round 3 · States to decide",
+      "w": 240,
+      "x": 0,
+      "y": 3650
+    },
+    "n10": {
+      "color": "blue",
+      "w": 320,
+      "x": 2720,
+      "y": 3950,
+      "text": "Motion needs Play: press Play on the board, then click and hover. The same two pages also open as plain HTML from design/preview in the repo."
+    },
+    "t6": {
+      "kind": "title1",
+      "maxW": 1600,
+      "text": "Round 4 · Removed spaces",
+      "w": 240,
+      "x": 0,
+      "y": 5390
+    }
+  },
+  "order": [
+    "Tokens.dc.html",
+    "StyleP.dc.html",
+    "DiffCue.dc.html",
+    "Motion.dc.html",
+    "DiffRemoved.dc.html"
+  ],
+  "pages": [],
+  "title": "pangu.space"
+}

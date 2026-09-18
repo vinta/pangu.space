@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Motion options</title>
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    :root {
+      --color-primary: #3b82f6; --color-primary-light: #dbeafe;
+      --color-surface: #ffffff; --color-surface-secondary: #fafafa; --color-surface-tertiary: #f3f4f6;
+      --color-border: #e5e5e7; --color-border-light: #f5f5f7;
+      --color-text-primary: #1d1d1f; --color-text-secondary: #6e6e73; --color-text-tertiary: #a1a1a6;
+      --color-diff-add: #86efac; --color-diff-del: #fca5a5;
+      --color-diff-row-add: #dcfce7; --color-diff-row-del: #fee2e2; --color-diff-row-mix: #fef9c3;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Noto Sans", sans-serif;
+      --radius-sm: 6px; --radius: 8px; --radius-lg: 12px; --radius-full: 9999px;
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body { margin: 0; font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
+    .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+    .head h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+    .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
+    h2 { margin: 0; font-size: 14px; font-weight: 600; }
+    .desc { margin: 0; font-size: 14px; line-height: 1.5; color: var(--color-text-secondary); }
+    .board { width: 1280px; height: 680px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 24px; background: var(--color-surface); }
+    .sec { display: flex; flex-direction: column; gap: 12px; padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+    .parts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: center; }
+    .cell { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+    .cell small { font-size: 12px; color: var(--color-text-secondary); }
+    .toggle { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; cursor: pointer; position: relative; }
+    .toggle input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+    .toggle i { position: relative; width: 44px; height: 24px; border-radius: var(--radius-full); background: var(--color-surface-tertiary); box-shadow: inset 0 0 0 1px var(--color-border); }
+    .toggle i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: var(--radius-full); background: #ffffff; box-shadow: var(--shadow); }
+    .toggle input:checked + i { background: var(--color-primary-light); box-shadow: none; }
+    .toggle input:checked + i::after { background: var(--color-primary); transform: translateX(20px); }
+    .toggle input:focus-visible + i { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    .t150 i, .t150 i::after { transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast); }
+    .t200 i, .t200 i::after { transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition); }
+    .t300 i, .t300 i::after { transition: background-color var(--transition-slow), transform var(--transition-slow), box-shadow var(--transition-slow); }
+    .link { font-size: 16px; font-weight: 500; color: var(--color-text-primary); text-decoration: none; cursor: pointer; }
+    .link:hover { color: var(--color-primary); }
+    .btn { height: 28px; padding: 0 12px; font: inherit; font-size: 14px; font-weight: 500; color: var(--color-text-primary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); cursor: pointer; }
+    .btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .btn:focus-visible, .link:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    .ease { transition: color var(--transition-fast), border-color var(--transition-fast); }
+    .stack { display: inline-grid; align-items: center; justify-items: center; }
+    .stack span { grid-area: 1 / 1; }
+    .stack .on { opacity: 0; } .stack.copied .on { opacity: 1; } .stack.copied .off { opacity: 0; }
+    .stack.fade span { transition: opacity var(--transition-fast); }
+    @media (prefers-reduced-motion: reduce) { .board * { transition: none !important; } }
+  </style>
+</helmet>
+<div class="board">
+  <div class="head">
+    <h1>Motion · try it</h1>
+    <p>Press Play on this board, then click and hover. Speeds are the extension's three transition tokens.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Toggle</h2>
+    <p class="desc">Click each one. The extension slides its toggle at 200ms.</p>
+    <div class="parts">
+      <div class="cell"><label class="toggle"><input type="checkbox"><i></i>Show diff</label><small>Snap · now</small></div>
+      <div class="cell"><label class="toggle t150"><input type="checkbox"><i></i>Show diff</label><small>150ms · --transition-fast</small></div>
+      <div class="cell"><label class="toggle t200"><input type="checkbox"><i></i>Show diff</label><small>200ms · --transition · extension</small></div>
+      <div class="cell"><label class="toggle t300"><input type="checkbox"><i></i>Show diff</label><small>300ms · --transition-slow</small></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Hover</h2>
+    <p class="desc">Move the pointer over each. The extension fades hovers at 150ms.</p>
+    <div class="parts">
+      <div class="cell"><a class="link">GitHub</a><small>Link · snap · now</small></div>
+      <div class="cell"><a class="link ease">GitHub</a><small>Link · 150ms</small></div>
+      <div class="cell"><button type="button" class="btn">Copy</button><small>Button · snap · now</small></div>
+      <div class="cell"><button type="button" class="btn ease">Copy</button><small>Button · 150ms</small></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Copied</h2>
+    <p class="desc">Click. The label holds for 2 seconds, and a second click restarts the timer.</p>
+    <div class="parts">
+      <div class="cell"><button type="button" class="btn stack {{snapCls}}" onClick="{{copySnap}}"><span class="off">Copy</span><span class="on">Copied</span></button><small>Swap · snap</small></div>
+      <div class="cell"><button type="button" class="btn ease stack fade {{fadeCls}}" onClick="{{copyFade}}"><span class="off">Copy</span><span class="on">Copied</span></button><small>Swap · 150ms cross-fade</small></div>
+    </div>
+  </div>
+
+  <p class="desc">Focus rings appear instantly in every variant. All transitions switch off when the system asks for reduced motion.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":680}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { snap: false, fade: false };
+    this.timers = {};
+  }
+  copy(key) {
+    clearTimeout(this.timers[key]);
+    this.setState({ [key]: true });
+    this.timers[key] = setTimeout(() => this.setState({ [key]: false }), 2000);
+  }
+  renderVals() {
+    return {
+      snapCls: this.state.snap ? "copied" : "",
+      fadeCls: this.state.fade ? "copied" : "",
+      copySnap: () => this.copy("snap"),
+      copyFade: () => this.copy("fade"),
+    };
+  }
+}
+</script>
+</body>
+</html>
