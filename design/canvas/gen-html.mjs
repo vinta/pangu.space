@@ -4,7 +4,7 @@ const DIRS = eval(src.slice(src.indexOf("const SANS"), src.indexOf("const tpl"))
 const tpl = readFileSync("template.html", "utf8");
 const m = tpl.match(/const SAMPLE_IN = ("[^"]*");/); const SAMPLE_IN = JSON.parse(m[1]);
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-for (const file of ["StyleA", "StyleC", "StyleD", "StyleE", "StyleF", "StyleG", "StyleH", "StyleP", "StyleQ"]) {
+for (const file of ["StyleP", "StyleQ"]) {
   const d = DIRS[file];
   const css = Object.entries(d.vars).map(([k, v]) => `      --${k}: ${v};`).join("\n");
   let h = tpl.replace("@@VARS@@", css)
