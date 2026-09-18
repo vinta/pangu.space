@@ -85,7 +85,7 @@
       "w": 320,
       "x": 1360,
       "y": -390,
-      "text": "Token names follow the extension's styles.css, values are Q's, so the extension migrates by editing values, not renaming. Orange = the extension's value changes (Tailwind gray to neutral ink). Green = new token. Left off on purpose: tokens Q never decided (purple secondary, warning, larger shadows) and the dark set. web/public/tokens.css is the source of truth, and this board documents it."
+      "text": "Token names follow the pangu.js extension's styles.css, so both products read the same variables. web/public/tokens.css is the source of truth, and this board documents it. Left off on purpose: tokens the design never decided (purple secondary, warning) and the dark set."
     },
     "t5": {
       "kind": "title1",

@@ -43,7 +43,6 @@
     .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
     .head h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
     .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
-    .key { display: inline-flex; align-items: center; gap: 6px; margin-left: 14px; }
     h2 { margin: 0; font-size: 14px; font-weight: 600; color: var(--color-text-secondary); }
     .sec { display: flex; flex-direction: column; gap: 14px; }
     .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
@@ -52,8 +51,6 @@
     .sw div { height: 44px; border-radius: var(--radius); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08); }
     .sw code { display: flex; flex-direction: column; }
     .sw code span { color: var(--color-text-secondary); }
-    .tag { display: inline-block; width: 7px; height: 7px; border-radius: var(--radius-full); flex-shrink: 0; }
-    .tag.chg { background: #f59e0b; } .tag.new { background: #10b981; } .tag.same { background: var(--color-border); }
     .sw b { font-weight: 400; display: inline-flex; align-items: center; gap: 6px; }
     .type { display: flex; flex-direction: column; gap: 8px; }
     .type div { display: flex; align-items: baseline; gap: 16px; }
@@ -102,50 +99,46 @@
 
   <div class="head">
     <h1>Tokens · Style Q</h1>
-    <p>Names follow the extension's styles.css. Values are Q's.
-      <span class="key"><i class="tag chg"></i>extension value changes</span>
-      <span class="key"><i class="tag new"></i>new token</span>
-      <span class="key"><i class="tag same"></i>same as extension</span>
-    </p>
+    <p>Token names follow the pangu.js extension. web/public/tokens.css is the source of truth.</p>
   </div>
 
   <div class="sec">
     <h2>Color</h2>
     <div class="swatches">
-      <div class="sw"><div style="background: #ffffff;"></div><code><b><i class="tag same"></i>--color-surface</b><span>#ffffff · card, navbar</span></code></div>
-      <div class="sw"><div style="background: #fafafa;"></div><code><b><i class="tag chg"></i>--color-surface-secondary</b><span>#fafafa · was #f9fafb · page</span></code></div>
-      <div class="sw"><div style="background: #f3f4f6;"></div><code><b><i class="tag same"></i>--color-surface-tertiary</b><span>#f3f4f6 · toggle track off</span></code></div>
-      <div class="sw"><div style="background: #e5e5e7;"></div><code><b><i class="tag chg"></i>--color-border</b><span>#e5e5e7 · was #e5e7eb</span></code></div>
-      <div class="sw"><div style="background: #f5f5f7;"></div><code><b><i class="tag chg"></i>--color-border-light</b><span>#f5f5f7 · was #f3f4f6</span></code></div>
+      <div class="sw"><div style="background: #ffffff;"></div><code><b>--color-surface</b><span>#ffffff · card, navbar</span></code></div>
+      <div class="sw"><div style="background: #fafafa;"></div><code><b>--color-surface-secondary</b><span>#fafafa · page ground</span></code></div>
+      <div class="sw"><div style="background: #f3f4f6;"></div><code><b>--color-surface-tertiary</b><span>#f3f4f6 · toggle track off</span></code></div>
+      <div class="sw"><div style="background: #e5e5e7;"></div><code><b>--color-border</b><span>#e5e5e7 · card and control edges</span></code></div>
+      <div class="sw"><div style="background: #f5f5f7;"></div><code><b>--color-border-light</b><span>#f5f5f7 · pane header divider</span></code></div>
 
-      <div class="sw"><div style="background: #1d1d1f;"></div><code><b><i class="tag chg"></i>--color-text-primary</b><span>#1d1d1f · was #111827</span></code></div>
-      <div class="sw"><div style="background: #6e6e73;"></div><code><b><i class="tag chg"></i>--color-text-secondary</b><span>#6e6e73 · was #6b7280</span></code></div>
-      <div class="sw"><div style="background: #a1a1a6;"></div><code><b><i class="tag chg"></i>--color-text-tertiary</b><span>#a1a1a6 · was #9ca3af</span></code></div>
-      <div class="sw"><div style="background: #3b82f6;"></div><code><b><i class="tag same"></i>--color-primary</b><span>#3b82f6 · knob, hover, focus</span></code></div>
-      <div class="sw"><div style="background: #dbeafe;"></div><code><b><i class="tag same"></i>--color-primary-light</b><span>#dbeafe · toggle track on</span></code></div>
+      <div class="sw"><div style="background: #1d1d1f;"></div><code><b>--color-text-primary</b><span>#1d1d1f · headlines, body</span></code></div>
+      <div class="sw"><div style="background: #6e6e73;"></div><code><b>--color-text-secondary</b><span>#6e6e73 · labels, notes</span></code></div>
+      <div class="sw"><div style="background: #a1a1a6;"></div><code><b>--color-text-tertiary</b><span>#a1a1a6 · separators</span></code></div>
+      <div class="sw"><div style="background: #3b82f6;"></div><code><b>--color-primary</b><span>#3b82f6 · knob, hover, focus</span></code></div>
+      <div class="sw"><div style="background: #dbeafe;"></div><code><b>--color-primary-light</b><span>#dbeafe · toggle track on</span></code></div>
 
-      <div class="sw"><div style="background: #86efac;"></div><code><b><i class="tag new"></i>--color-diff-add</b><span>#86efac · added mark</span></code></div>
-      <div class="sw"><div style="background: #fca5a5;"></div><code><b><i class="tag new"></i>--color-diff-del</b><span>#fca5a5 · removed mark</span></code></div>
-      <div class="sw"><div style="background: #dcfce7;"></div><code><b><i class="tag new"></i>--color-diff-row-add</b><span>#dcfce7 · row, adds only</span></code></div>
-      <div class="sw"><div style="background: #fee2e2;"></div><code><b><i class="tag new"></i>--color-diff-row-del</b><span>#fee2e2 · row, removals only</span></code></div>
-      <div class="sw"><div style="background: #fef9c3;"></div><code><b><i class="tag new"></i>--color-diff-row-mix</b><span>#fef9c3 · row, both</span></code></div>
+      <div class="sw"><div style="background: #86efac;"></div><code><b>--color-diff-add</b><span>#86efac · added mark</span></code></div>
+      <div class="sw"><div style="background: #fca5a5;"></div><code><b>--color-diff-del</b><span>#fca5a5 · removed mark</span></code></div>
+      <div class="sw"><div style="background: #dcfce7;"></div><code><b>--color-diff-row-add</b><span>#dcfce7 · row, adds only</span></code></div>
+      <div class="sw"><div style="background: #fee2e2;"></div><code><b>--color-diff-row-del</b><span>#fee2e2 · row, removals only</span></code></div>
+      <div class="sw"><div style="background: #fef9c3;"></div><code><b>--color-diff-row-mix</b><span>#fef9c3 · row, both</span></code></div>
 
-      <div class="sw"><div style="background: #15803d;"></div><code><b><i class="tag chg"></i>--color-success</b><span>#15803d · was #10b981 · text</span></code></div>
-      <div class="sw"><div style="background: #dcfce7;"></div><code><b><i class="tag new"></i>--color-success-light</b><span>#dcfce7 · soft fill</span></code></div>
-      <div class="sw"><div style="background: #bbf7d0;"></div><code><b><i class="tag new"></i>--color-success-light-hover</b><span>#bbf7d0 · hover fill</span></code></div>
-      <div class="sw"><div style="background: #86efac;"></div><code><b><i class="tag new"></i>--color-success-border</b><span>#86efac · soft border</span></code></div>
-      <div class="sw"><div style="background: #4ade80;"></div><code><b><i class="tag new"></i>--color-success-border-hover</b><span>#4ade80 · hover border</span></code></div>
+      <div class="sw"><div style="background: #15803d;"></div><code><b>--color-success</b><span>#15803d · add, save, active text</span></code></div>
+      <div class="sw"><div style="background: #dcfce7;"></div><code><b>--color-success-light</b><span>#dcfce7 · soft fill</span></code></div>
+      <div class="sw"><div style="background: #bbf7d0;"></div><code><b>--color-success-light-hover</b><span>#bbf7d0 · hover fill</span></code></div>
+      <div class="sw"><div style="background: #86efac;"></div><code><b>--color-success-border</b><span>#86efac · soft border</span></code></div>
+      <div class="sw"><div style="background: #4ade80;"></div><code><b>--color-success-border-hover</b><span>#4ade80 · hover border</span></code></div>
 
-      <div class="sw"><div style="background: #b91c1c;"></div><code><b><i class="tag chg"></i>--color-danger</b><span>#b91c1c · was #ef4444 · text</span></code></div>
-      <div class="sw"><div style="background: #fee2e2;"></div><code><b><i class="tag new"></i>--color-danger-light</b><span>#fee2e2 · soft fill</span></code></div>
-      <div class="sw"><div style="background: #fecaca;"></div><code><b><i class="tag new"></i>--color-danger-light-hover</b><span>#fecaca · hover fill</span></code></div>
-      <div class="sw"><div style="background: #fecaca;"></div><code><b><i class="tag new"></i>--color-danger-border</b><span>#fecaca · soft border</span></code></div>
-      <div class="sw"><div style="background: #f87171;"></div><code><b><i class="tag new"></i>--color-danger-border-hover</b><span>#f87171 · hover border</span></code></div>
+      <div class="sw"><div style="background: #b91c1c;"></div><code><b>--color-danger</b><span>#b91c1c · destructive text</span></code></div>
+      <div class="sw"><div style="background: #fee2e2;"></div><code><b>--color-danger-light</b><span>#fee2e2 · soft fill</span></code></div>
+      <div class="sw"><div style="background: #fecaca;"></div><code><b>--color-danger-light-hover</b><span>#fecaca · hover fill</span></code></div>
+      <div class="sw"><div style="background: #fecaca;"></div><code><b>--color-danger-border</b><span>#fecaca · soft border</span></code></div>
+      <div class="sw"><div style="background: #f87171;"></div><code><b>--color-danger-border-hover</b><span>#f87171 · hover border</span></code></div>
 
-      <div class="sw"><div style="background: #ffffff;"></div><code><b><i class="tag same"></i>--color-text-on-primary</b><span>#ffffff · text on ink fills</span></code></div>
-      <div class="sw"><div style="background: #0369a1;"></div><code><b><i class="tag new"></i>--color-info</b><span>#0369a1 · notice text</span></code></div>
-      <div class="sw"><div style="background: #e0f2fe;"></div><code><b><i class="tag new"></i>--color-info-light</b><span>#e0f2fe · notice fill</span></code></div>
-      <div class="sw"><div style="background: #7dd3fc;"></div><code><b><i class="tag new"></i>--color-info-border</b><span>#7dd3fc · notice border</span></code></div>
+      <div class="sw"><div style="background: #ffffff;"></div><code><b>--color-text-on-primary</b><span>#ffffff · text on ink fills</span></code></div>
+      <div class="sw"><div style="background: #0369a1;"></div><code><b>--color-info</b><span>#0369a1 · notice text</span></code></div>
+      <div class="sw"><div style="background: #e0f2fe;"></div><code><b>--color-info-light</b><span>#e0f2fe · notice fill</span></code></div>
+      <div class="sw"><div style="background: #7dd3fc;"></div><code><b>--color-info-border</b><span>#7dd3fc · notice border</span></code></div>
     </div>
   </div>
 
@@ -164,7 +157,7 @@
         <div><code>16 / 400</code><span style="font-size: 16px; color: var(--color-text-secondary);">Footer, note under the card</span></div>
         <div><code>14 / 400</code><span style="font-size: 14px; color: var(--color-text-secondary);">Legend</span></div>
       </div>
-      <div class="stack"><code><b style="font-weight: 400; color: var(--color-text-primary);"><i class="tag chg" style="margin-right: 6px;"></i>--font-sans</b><br>-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, <em>"PingFang TC", "Noto Sans TC"</em>, "Noto Sans", sans-serif</code></div>
+      <div class="stack"><code><b style="font-weight: 400; color: var(--color-text-primary);">--font-sans</b><br>-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, <em>"PingFang TC", "Noto Sans TC"</em>, "Noto Sans", sans-serif</code></div>
     </div>
 
     <div class="sec">
@@ -214,15 +207,15 @@
   <div class="sec">
     <h2>Spacing</h2>
     <div class="space">
-      <div><i style="width: 4px;"></i><code><b><i class="tag same"></i>--spacing-1</b><span>4px</span><span>phone toolbar</span></code></div>
-      <div><i style="width: 8px;"></i><code><b><i class="tag same"></i>--spacing-2</b><span>8px</span><span>hero, logo</span></code></div>
-      <div><i style="width: 12px;"></i><code><b><i class="tag same"></i>--spacing-3</b><span>12px</span><span>toggle, button</span></code></div>
-      <div><i style="width: 16px;"></i><code><b><i class="tag same"></i>--spacing-4</b><span>16px</span><span>card padding</span></code></div>
-      <div><i style="width: 20px;"></i><code><b><i class="tag same"></i>--spacing-5</b><span>20px</span><span>phone footer</span></code></div>
-      <div><i style="width: 24px;"></i><code><b><i class="tag same"></i>--spacing-6</b><span>24px</span><span>nav, toolbar</span></code></div>
-      <div><i style="width: 32px;"></i><code><b><i class="tag same"></i>--spacing-8</b><span>32px</span><span>page gutter</span></code></div>
-      <div><i style="width: 40px;"></i><code><b><i class="tag new"></i>--spacing-10</b><span>40px</span><span>below the tool</span></code></div>
-      <div><i style="width: 48px;"></i><code><b><i class="tag new"></i>--spacing-12</b><span>48px</span><span>above the hero</span></code></div>
+      <div><i style="width: 4px;"></i><code><b>--spacing-1</b><span>4px</span><span>phone toolbar</span></code></div>
+      <div><i style="width: 8px;"></i><code><b>--spacing-2</b><span>8px</span><span>hero, logo</span></code></div>
+      <div><i style="width: 12px;"></i><code><b>--spacing-3</b><span>12px</span><span>toggle, button</span></code></div>
+      <div><i style="width: 16px;"></i><code><b>--spacing-4</b><span>16px</span><span>card padding</span></code></div>
+      <div><i style="width: 20px;"></i><code><b>--spacing-5</b><span>20px</span><span>phone footer</span></code></div>
+      <div><i style="width: 24px;"></i><code><b>--spacing-6</b><span>24px</span><span>nav, toolbar</span></code></div>
+      <div><i style="width: 32px;"></i><code><b>--spacing-8</b><span>32px</span><span>page gutter</span></code></div>
+      <div><i style="width: 40px;"></i><code><b>--spacing-10</b><span>40px</span><span>below the tool</span></code></div>
+      <div><i style="width: 48px;"></i><code><b>--spacing-12</b><span>48px</span><span>above the hero</span></code></div>
     </div>
   </div>
 
