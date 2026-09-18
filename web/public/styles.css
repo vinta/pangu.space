@@ -18,6 +18,15 @@ a:hover {
   color: var(--color-primary);
 }
 
+/* Links inside page content are blue; nav and brand links stay ink */
+main a {
+  color: var(--color-primary);
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
 textarea,
 select,
 button {
@@ -105,7 +114,7 @@ select:focus-visible,
   height: 32px;
   /* The right side reserves room for the native arrow */
   padding: 0 28px 0 var(--spacing-3);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -134,7 +143,6 @@ main .shell {
   font-size: var(--text-3xl);
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.02em;
   /* Chinese breaks only at the zero-width space in the title string, never mid-phrase */
   word-break: keep-all;
 }
@@ -175,7 +183,7 @@ main .shell {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: var(--spacing-2);
   cursor: pointer;
 }
 
@@ -188,7 +196,7 @@ main .shell {
 }
 
 .toggle-label {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 500;
 }
 
@@ -256,15 +264,15 @@ main .shell {
   height: 40px;
   padding: 0 var(--spacing-2) 0 var(--spacing-4);
   border-bottom: 1px solid var(--color-border-light);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 600;
   color: var(--color-text-secondary);
 }
 
 .btn {
-  height: 28px;
+  height: 32px;
   padding: 0 var(--spacing-3);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 500;
   color: var(--color-text-primary);
   background: var(--color-surface);
@@ -276,6 +284,35 @@ main .shell {
 .btn:hover {
   border-color: var(--color-primary);
   color: var(--color-primary);
+}
+
+/* The main action of a page. Measurements match the pangu.js extension's .btn-primary-black */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: auto;
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--text-base);
+  line-height: 1.25rem;
+  white-space: nowrap;
+  color: var(--color-text-on-primary);
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  border-radius: var(--radius);
+  transition: opacity var(--transition-fast);
+}
+
+.btn-primary:hover:not(:disabled) {
+  color: var(--color-text-on-primary);
+  border-color: var(--color-text-primary);
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* Both labels share one cell, so the button keeps the width of the longer one */
@@ -378,7 +415,7 @@ main .shell {
   display: flex;
   align-items: center;
   gap: var(--spacing-3);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
 }
 
@@ -394,15 +431,17 @@ main .shell {
 }
 
 .note {
-  margin: 0;
-  font-size: var(--text-sm);
+  /* Adds to the container's gap, for 24px above the note */
+  margin: var(--spacing-3) 0 0;
+  text-align: center;
+  font-size: var(--text-base);
   line-height: 1.5;
   color: var(--color-text-secondary);
 }
 
 .foot {
   border-top: 1px solid var(--color-border);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
 }
 
@@ -411,12 +450,17 @@ main .shell {
   gap: var(--spacing-2);
 }
 
+/* Footer links: ink with a light underline, blue on hover */
 .foot a {
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-tertiary);
+  text-decoration-color: color-mix(in srgb, var(--color-text-tertiary) 50%, var(--color-border));
 }
 
 .foot a:hover {
   color: var(--color-primary);
+  text-decoration-color: currentColor;
 }
 
 .foot i {
@@ -484,15 +528,10 @@ main .shell {
     flex-basis: 100%;
     width: 100%;
     height: 40px;
-    font-size: var(--text-base);
   }
 
   .toggle {
     min-height: 44px;
-  }
-
-  .toggle-label {
-    font-size: var(--text-base);
   }
 
   .panes {
@@ -536,8 +575,11 @@ main .shell {
   }
 }
 
+/* * alone does not match pseudo-elements, and the toggle knob is an ::after */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  ::before,
+  ::after {
     transition: none !important;
   }
 }

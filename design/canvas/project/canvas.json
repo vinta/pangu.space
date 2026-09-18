@@ -3,11 +3,11 @@
   "attachments": {},
   "boards": {
     "Tokens.dc.html": {
-      "h": 1450,
+      "h": 1840,
       "title": "Tokens · Style Q",
       "w": 1280,
       "x": 0,
-      "y": 0
+      "y": -390
     },
     "StyleP.dc.html": {
       "x": 1830,
@@ -44,7 +44,7 @@
       "y": 2050,
       "w": 1280,
       "h": 900,
-      "title": "Q · P + neutral ink (Apple) + hero -0.02em",
+      "title": "Q · P + neutral ink (Apple)",
       "is_interactive": true
     },
     "PhoneQ.dc.html": {
@@ -65,8 +65,8 @@
       "title": "pangu",
       "namespace": "pangu",
       "artifact": "https://claude.ai/artifact/758ABWKCNd8AQ5qxYRmqBm",
-      "version": "1789726374-52fc",
-      "copiedAt": "2026-09-18T10:16:10Z"
+      "version": "1789757575-bb56",
+      "copiedAt": "2026-09-18T18:53:11Z"
     }
   ],
   "launch": {
@@ -79,7 +79,7 @@
       "text": "Tokens · Style Q (current)",
       "w": 240,
       "x": 0,
-      "y": -300
+      "y": -690
     },
     "t4": {
       "kind": "title1",
@@ -100,8 +100,8 @@
       "color": "green",
       "w": 320,
       "x": 1360,
-      "y": 0,
-      "text": "Token names follow the extension's styles.css, values are Q's, so the extension migrates by editing values, not renaming. Orange = the extension's value changes (Tailwind gray to neutral ink). Green = new token. Left off on purpose: tokens Q never decided (purple secondary, status colors, larger shadows) and the dark set. web/public/tokens.css is the source of truth, and this board documents it."
+      "y": -390,
+      "text": "Token names follow the pangu.js extension's styles.css, so both products read the same variables. web/public/tokens.css is the source of truth, and this board documents it. Left off on purpose: tokens the design never decided (purple secondary, warning) and the dark set."
     },
     "t5": {
       "kind": "title1",
@@ -131,7 +131,7 @@
       "w": 320,
       "x": 3190,
       "y": 2050,
-      "text": "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing -0.02em, since the system stack renders SF on Apple devices and SF is already tight. Blue accent, diff colors, toggle unchanged."
+      "text": "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing started at -0.02em and was dropped later: negative tracking squeezes Chinese glyphs. Blue accent, diff colors, toggle unchanged."
     }
   },
   "order": [

@@ -35,8 +35,8 @@
   },
   "lastChange": {
     "by": "Vinta",
-    "at": "2026-09-18T10:12:38Z",
-    "via": "GitHub · vinta/pangu.space@36c0d0a",
-    "note": "First sync from the site's stylesheets: tokens, 7 static components, logo, cover"
+    "at": "2026-09-18T19:04:27Z",
+    "via": "GitHub · vinta/pangu.space@a6f0efa",
+    "note": "README rewritten as rules only, with a section on where values live"
   }
 }

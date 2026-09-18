@@ -19,6 +19,20 @@ const USAGE = {
   "color-text-primary": "Headlines, body and control text on color-surface and color-surface-secondary. 16.8:1.",
   "color-text-secondary": "Descriptions, pane labels, notes, footer text on color-surface (5.07:1) and color-surface-secondary (4.86:1).",
   "color-text-tertiary": "Separators and placeholder text only. 2.57:1 on color-surface, below the 4.5:1 floor, kept exact from the source. Never use it for text that must be read.",
+  "color-text-on-primary": "Text on color-text-primary fills, such as the main button. 16.8:1.",
+  "color-success": "Text for add, save and active status, on color-surface (5.02:1) and on color-success-light (4.57:1).",
+  "color-success-light": "Fill of a soft green button or an active status.",
+  "color-success-light-hover": "Hover fill of a soft green button.",
+  "color-success-border": "Border of a soft green button.",
+  "color-success-border-hover": "Hover border of a soft green button.",
+  "color-danger": "Text for destructive actions such as remove and restore defaults, on color-surface (6.47:1) and on color-danger-light (5.30:1).",
+  "color-danger-light": "Fill of a soft red button.",
+  "color-danger-light-hover": "Hover fill of a soft red button. Same value as color-danger-border, as in the source.",
+  "color-danger-border": "Border of a soft red button.",
+  "color-danger-border-hover": "Hover border of a soft red button.",
+  "color-info": "Text of a neutral notification, on color-info-light (5.17:1).",
+  "color-info-light": "Fill of a neutral notification.",
+  "color-info-border": "Border of a neutral notification.",
   "color-diff-add": "Highlight behind an added space in the diff.",
   "color-diff-del": "The Removed swatch in the legend. Removed spaces themselves are not drawn.",
   "color-diff-row-add": "Row tint for a line that only gained spaces.",
@@ -26,14 +40,15 @@ const USAGE = {
   "color-diff-row-mix": "Row tint for a line that both gained and lost spaces.",
   "shadow-sm": "Cards.",
   "shadow": "The toggle knob.",
-  "text-xs": "Legend. 12px.",
-  "text-sm": "Controls, pane labels, notes, footer. 14px.",
-  "text-base": "Body, pane text, nav links. 16px.",
+  "shadow-lg": "Overlays that float above the page, such as a notification. Never on a card.",
+
+  "text-sm": "The diff legend. 14px.",
+  "text-base": "Body, pane text and labels, nav links, every control, notes and the footer. 16px.",
   "text-2xl": "The headline under 640px. 24px.",
   "text-3xl": "The one headline size. 40px.",
   "spacing-1": "Wrapped toolbar rows on phones.",
-  "spacing-2": "Logo to name, headline to description, legend swatch to label.",
-  "spacing-3": "Inside controls: toggle to label, button and select padding. Toolbar padding.",
+  "spacing-2": "Logo to name, headline to description, toggle to its label, legend swatch to label.",
+  "spacing-3": "Button and select padding. Toolbar padding.",
   "spacing-4": "Card and pane padding. Page gutter under 640px.",
   "spacing-5": "Footer padding under 640px.",
   "spacing-6": "Between nav links, between toolbar controls.",
@@ -56,6 +71,15 @@ const handled = new Set([...Object.keys(USAGE), "font-sans", "transition-fast", 
 const missed = Object.keys(vars).filter((n) => !handled.has(n));
 if (missed.length) throw new Error(`tokens.css defines tokens this build does not place: ${missed.join(", ")}`);
 
+// Without an argument the stamp is kept, so a plain rebuild never rewrites it
+function previousRef() {
+  try {
+    return JSON.parse(readFileSync(new URL("tokens.json", out), "utf8")).meta.ref;
+  } catch {
+    return undefined;
+  }
+}
+
 const style = (name, fontSize, fontWeight, lineHeight, usage, extra = {}) => ({ name, fontSize, fontWeight, lineHeight, usage, ...extra });
 const tokens = {
   name: "pangu",
@@ -63,7 +87,7 @@ const tokens = {
   meta: {
     source: "github",
     repo: "vinta/pangu.space",
-    ref: process.argv[2] ?? "main",
+    ref: process.argv[2] ?? previousRef() ?? "main",
     paths: { tokens: ["web/public/tokens.css"], components: ["web/public/styles.css"], assets: ["web/public/favicon.svg"] },
     synced: new Date().toISOString().slice(0, 10),
   },
@@ -76,16 +100,16 @@ const tokens = {
         name: "Text",
         family: "sans",
         styles: [
-          style("headline", vars["text-3xl"], 600, 1.2, "The page headline. One per page.", { letterSpacing: "-0.02em", sample: "Paranoid Text Spacing" }),
-          style("headline-phone", vars["text-2xl"], 600, 1.2, "The headline under 640px.", { letterSpacing: "-0.02em", sample: "Paranoid Text Spacing" }),
+          style("headline", vars["text-3xl"], 600, 1.2, "The page headline. One per page.", { sample: "Paranoid Text Spacing" }),
+          style("headline-phone", vars["text-2xl"], 600, 1.2, "The headline under 640px.", { sample: "Paranoid Text Spacing" }),
           style("body", vars["text-base"], 400, 1.6, "The description under the headline, in color-text-secondary."),
           style("pane", vars["text-base"], 400, 1.8, "Text in the panes and diff rows. The tall line height keeps mixed Chinese and Latin lines even.", { sample: "當你凝視著 bug，bug 也凝視著你" }),
           style("brand", vars["text-base"], 700, 1.5, "The site name beside the logo.", { sample: "pangu.space" }),
           style("nav", vars["text-base"], 500, 1.5, "Nav links."),
-          style("label", vars["text-sm"], 600, 1.5, "Pane labels, in color-text-secondary."),
-          style("control", vars["text-sm"], 500, 1.5, "Toggle labels and buttons."),
-          style("small", vars["text-sm"], 400, 1.5, "Selects, notes, footer."),
-          style("legend", vars["text-xs"], 400, 1.5, "The diff legend."),
+          style("label", vars["text-base"], 600, 1.5, "Pane labels, in color-text-secondary."),
+          style("control", vars["text-base"], 500, 1.5, "Toggle labels, buttons and selects. Controls are never smaller than this."),
+
+          style("legend", vars["text-sm"], 400, 1.5, "The diff legend."),
         ],
       },
     ],
