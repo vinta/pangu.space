@@ -97,7 +97,7 @@ const tokens = {
           style("pane", vars["text-base"], 400, 1.8, "Text in the panes and diff rows. The tall line height keeps mixed Chinese and Latin lines even.", { sample: "當你凝視著 bug，bug 也凝視著你" }),
           style("brand", vars["text-base"], 700, 1.5, "The site name beside the logo.", { sample: "pangu.space" }),
           style("nav", vars["text-base"], 500, 1.5, "Nav links."),
-          style("label", vars["text-sm"], 600, 1.5, "Pane labels, in color-text-secondary."),
+          style("label", vars["text-base"], 600, 1.5, "Pane labels, in color-text-secondary."),
           style("control", vars["text-base"], 500, 1.5, "Toggle labels, buttons and selects. Controls are never smaller than this."),
           style("small", vars["text-sm"], 400, 1.5, "Notes and footer."),
 

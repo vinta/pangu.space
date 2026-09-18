@@ -9,7 +9,7 @@ const DIRS = {
     add: "#86efac", del: "#fca5a5", rowAdd: "#dcfce7", rowDel: "#fee2e2", rowMix: "#fef9c3",
     radius: "12px", radiusSm: "8px", radiusXs: "6px", bw: "1px", cardBorder: "1px solid #e5e5e7", cardShadow: "0 1px 2px rgb(0 0 0 / 0.05)",
     font: SANS, fontPane: SANS, paneSize: "16px", fontHero: SANS, heroSize: "40px", heroWeight: "600", heroSpacing: "0",
-    navBg: "#ffffff", paneHeadBg: "transparent", markRadius: "2px", labelSize: "14px",
+    navBg: "#ffffff", paneHeadBg: "transparent", markRadius: "2px", labelSize: "16px",
   }},
   StyleP: { name: "P · Picked: A + F hero/bg + D diff + popup toggle", vars: {
     bg: "#ffffff", mainBg: "#fafafa", surface: "#ffffff", surface2: "#f9fafb", border: "#e5e7eb", border2: "#f3f4f6",
