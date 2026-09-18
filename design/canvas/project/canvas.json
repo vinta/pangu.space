@@ -134,6 +134,21 @@
       "h": 1300,
       "title": "Phone · Q",
       "is_interactive": true
+    },
+    "DiffCue.dc.html": {
+      "x": 0,
+      "y": 11500,
+      "w": 1280,
+      "h": 1140,
+      "title": "Diff · second cue options"
+    },
+    "Motion.dc.html": {
+      "x": 1360,
+      "y": 11500,
+      "w": 1280,
+      "h": 680,
+      "title": "Motion · try it",
+      "is_interactive": true
     }
   },
   "createdOnFiles": {
@@ -233,6 +248,21 @@
       "x": 1360,
       "y": 10300,
       "text": "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing -0.02em, since the system stack renders SF on Apple devices and SF is already tight. Blue accent, diff colors, toggle unchanged."
+    },
+    "t5": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Round 3 · States to decide",
+      "w": 240,
+      "x": 0,
+      "y": 11200
+    },
+    "n10": {
+      "color": "blue",
+      "w": 320,
+      "x": 2720,
+      "y": 11500,
+      "text": "Motion needs Play: press Play on the board, then click and hover. The same two pages also open as plain HTML from design/preview in the repo."
     }
   },
   "order": [
@@ -252,7 +282,9 @@
     "StyleC.dc.html",
     "StyleD.dc.html",
     "StyleQ.dc.html",
-    "PhoneQ.dc.html"
+    "PhoneQ.dc.html",
+    "DiffCue.dc.html",
+    "Motion.dc.html"
   ],
   "pages": [],
   "title": "pangu.space"

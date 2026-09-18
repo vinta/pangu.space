@@ -118,6 +118,21 @@
       "h": 900,
       "title": "D · Bold",
       "is_interactive": true
+    },
+    "DiffCue.dc.html": {
+      "x": 0,
+      "y": 11500,
+      "w": 1280,
+      "h": 1140,
+      "title": "Diff · second cue options"
+    },
+    "Motion.dc.html": {
+      "x": 1360,
+      "y": 11500,
+      "w": 1280,
+      "h": 680,
+      "title": "Motion · try it",
+      "is_interactive": true
     }
   },
   "createdOnFiles": {
@@ -210,6 +225,21 @@
       "x": 1360,
       "y": -590,
       "text": "Token names follow the extension's styles.css, values are Q's, so the extension migrates by editing values, not renaming. Orange = the extension's value changes (Tailwind gray to neutral ink). Green = new token, diff only. Left off on purpose: tokens Q never decided (purple secondary, status colors, spacing and text scales, transitions) and the dark set."
+    },
+    "t5": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Round 3 · States to decide",
+      "w": 240,
+      "x": 0,
+      "y": 11200
+    },
+    "n10": {
+      "color": "blue",
+      "w": 320,
+      "x": 2720,
+      "y": 11500,
+      "text": "Motion needs Play: press Play on the board, then click and hover. The same two pages also open as plain HTML from design/preview in the repo."
     }
   },
   "order": [
@@ -227,7 +257,9 @@
     "StyleA.dc.html",
     "StyleB.dc.html",
     "StyleC.dc.html",
-    "StyleD.dc.html"
+    "StyleD.dc.html",
+    "DiffCue.dc.html",
+    "Motion.dc.html"
   ],
   "pages": [],
   "title": "pangu.space"
