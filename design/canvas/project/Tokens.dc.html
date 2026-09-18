@@ -32,10 +32,12 @@
       --radius: 8px;
       --radius-lg: 12px;
       --radius-full: 9999px;
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
     body { margin: 0; font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
     code { font-family: var(--font-mono); font-size: 11.5px; line-height: 1.45; }
-    .board { width: 1280px; height: 1350px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 28px; background: var(--color-surface); }
+    .board { width: 1280px; height: 1430px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 28px; background: var(--color-surface); }
     .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
     .head h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
     .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
@@ -213,12 +215,14 @@
     <li>Control heights are sizes, not spacing</li>
     <li>Focus ring 2px primary, 2px offset, outline not shadow, :focus-visible only</li>
     <li>Copied announces through a hidden status line. On failure the label stays Copy</li>
+    <li>Motion: toggle slides at --transition 200ms. Hover and Copied fade at --transition-fast 150ms. Off under reduced motion</li>
+    <li>Diff marks stay color only. A second cue was reviewed and declined</li>
     <li>Text sizes 12, 14, 16. One headline size, 40, replaces the extension's 32. Revisit when applied there</li>
   </ul>
 
 </div>
 </x-dc>
-<script data-dc-script data-props='{"$preview":{"width":1280,"height":1350}}'>
+<script data-dc-script data-props='{"$preview":{"width":1280,"height":1430}}'>
 class Component extends DCLogic {
   renderVals() { return {}; }
 }
