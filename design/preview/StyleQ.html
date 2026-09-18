@@ -53,6 +53,7 @@
     }
     body { margin: 0; font-family: var(--font); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
     a { color: var(--text); text-decoration: none; } a:hover { color: var(--accent); }
+    main a { color: var(--accent); } main a:hover { text-decoration: underline; }
     textarea, select, button { font: inherit; color: inherit; }
     textarea:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
     .page { min-height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); }
@@ -100,7 +101,7 @@
     .legend i { width: 12px; height: 12px; border-radius: var(--markRadius); }
     .note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--text2); }
     .foot { border-top: var(--bw) solid var(--border); font-size: 14px; color: var(--text2); }
-    .foot nav { display: flex; gap: 8px; } .foot a { color: var(--text2); } .foot a:hover { color: var(--accent); } .foot i { color: var(--text3); font-style: normal; }
+    .foot nav { display: flex; gap: 8px; } .foot a { color: var(--text); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--text3) 50%, var(--border)); } .foot a:hover { color: var(--accent); text-decoration-color: currentColor; } .foot i { color: var(--text3); font-style: normal; }
     .hscroll::-webkit-scrollbar { height: 8px; }
     .hscroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
     a, .btn { transition: color var(--transitionFast), border-color var(--transitionFast); }

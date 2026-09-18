@@ -32,6 +32,14 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - Diff colors mean one thing each. `color-diff-add` sits behind an added space. A row is tinted `color-diff-row-add`, `color-diff-row-del` or `color-diff-row-mix` by what changed in it. A removed space is not drawn at all: the row tint is its only sign, and the row reads exactly as the output.
 
+## Links
+
+- Nav and brand links are ink, `color-text-primary`, and turn `color-primary` on hover. No underline.
+
+- Links inside page content are `color-primary` at rest and gain an underline on hover.
+
+- Footer links are ink with a light underline, a 50/50 mix of `color-text-tertiary` and `color-border`, which works out to #c3c3c6. On hover the text and the underline turn the same `color-primary`.
+
 ## Type
 
 - System fonts only, no web fonts. `font-sans` lists PingFang TC and Noto Sans TC so Chinese renders in a matching face.

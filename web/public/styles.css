@@ -18,6 +18,15 @@ a:hover {
   color: var(--color-primary);
 }
 
+/* Links inside page content are blue; nav and brand links stay ink */
+main a {
+  color: var(--color-primary);
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
 textarea,
 select,
 button {
@@ -439,12 +448,17 @@ main .shell {
   gap: var(--spacing-2);
 }
 
+/* Footer links: ink with a light underline, blue on hover */
 .foot a {
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-text-tertiary);
+  text-decoration-color: color-mix(in srgb, var(--color-text-tertiary) 50%, var(--color-border));
 }
 
 .foot a:hover {
   color: var(--color-primary);
+  text-decoration-color: currentColor;
 }
 
 .foot i {
