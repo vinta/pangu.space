@@ -17,7 +17,6 @@ const ZH_TW = {
   added: "新增空格",
   removed: "移除空格",
   note: "除非你啟用空格之神 AI，否則沒有任何資料會被上傳到雲端。",
-  made_by: "作者",
   status_copied: "已複製到剪貼簿",
   status_copy_failed: "複製失敗，請選取文字後手動複製",
 };
