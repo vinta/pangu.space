@@ -78,7 +78,7 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - Keyboard focus is a 2px `color-primary` outline with a 2px offset, shown on `:focus-visible` only. Use an outline, never a box shadow, so it survives forced colors. Inside a card the ring is inset, because the card clips overflow.
 
-- The toggle slides over 200ms. Hover color and the Copied label fade over 150ms. Both switch off under `prefers-reduced-motion`.
+- The toggle slides over 200ms. Hover color and the Copied label fade over 150ms. Both switch off under `prefers-reduced-motion`. The rule must name `::before` and `::after` too, since `*` does not match pseudo-elements and the toggle knob is one.
 
 - A disabled toggle keeps full opacity: grey track, white knob, `color-text-secondary` label, `not-allowed` cursor.
 

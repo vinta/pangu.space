@@ -578,8 +578,11 @@ main .shell {
   }
 }
 
+/* * alone does not match pseudo-elements, and the toggle knob is an ::after */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  ::before,
+  ::after {
     transition: none !important;
   }
 }

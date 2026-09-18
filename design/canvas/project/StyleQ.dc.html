@@ -107,7 +107,7 @@
     .hscroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
     a, .btn { transition: color var(--transitionFast), border-color var(--transitionFast); }
     .toggle-switch, .toggle-switch::after { transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition); }
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+    @media (prefers-reduced-motion: reduce) { *, ::before, ::after { transition: none !important; } }
   </style>
 </helmet>
 <div class="page">
