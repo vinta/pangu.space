@@ -42,8 +42,8 @@ const USAGE = {
   "shadow": "The toggle knob.",
   "shadow-lg": "Overlays that float above the page, such as a notification. Never on a card.",
 
-  "text-sm": "Pane labels, notes, footer. 14px.",
-  "text-base": "Body, pane text, nav links, and every control. 16px.",
+  "text-sm": "The diff legend. 14px.",
+  "text-base": "Body, pane text and labels, nav links, every control, notes and the footer. 16px.",
   "text-2xl": "The headline under 640px. 24px.",
   "text-3xl": "The one headline size. 40px.",
   "spacing-1": "Wrapped toolbar rows on phones.",
@@ -99,7 +99,6 @@ const tokens = {
           style("nav", vars["text-base"], 500, 1.5, "Nav links."),
           style("label", vars["text-base"], 600, 1.5, "Pane labels, in color-text-secondary."),
           style("control", vars["text-base"], 500, 1.5, "Toggle labels, buttons and selects. Controls are never smaller than this."),
-          style("small", vars["text-sm"], 400, 1.5, "Notes and footer."),
 
           style("legend", vars["text-sm"], 400, 1.5, "The diff legend."),
         ],

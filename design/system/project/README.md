@@ -44,7 +44,7 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - System fonts only, no web fonts. `font-sans` lists PingFang TC and Noto Sans TC so Chinese renders in a matching face. Roboto covers ChromeOS and Android, and Arial is the Linux fallback. Latin faces come before the Chinese ones, or Latin text would render in Noto Sans.
 
-- Three text sizes do all the work: `text-xs`, `text-sm`, `text-base`. Every control, meaning toggle labels, buttons and selects, is `text-base`. 14px reads too small on a control. One headline size, `text-3xl`, dropping to `text-2xl` under 640px.
+- Two text sizes do all the work: `text-sm` for the diff legend, `text-base` for everything else you read or use. Every control, meaning toggle labels, buttons and selects, is `text-base`. 14px reads too small on a control. One headline size, `text-3xl`, dropping to `text-2xl` under 640px.
 
 - Use the `headline` style once per page, weight 600. Titles take no letter-spacing: negative tracking squeezes Chinese glyphs.
 
