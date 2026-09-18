@@ -436,7 +436,9 @@ main .shell {
 }
 
 .note {
-  margin: 0;
+  /* Adds to the container's gap, for 24px above the note */
+  margin: var(--spacing-3) 0 0;
+  text-align: center;
   font-size: var(--text-base);
   line-height: 1.5;
   color: var(--color-text-secondary);
