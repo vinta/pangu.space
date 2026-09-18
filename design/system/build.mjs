@@ -71,6 +71,15 @@ const handled = new Set([...Object.keys(USAGE), "font-sans", "transition-fast", 
 const missed = Object.keys(vars).filter((n) => !handled.has(n));
 if (missed.length) throw new Error(`tokens.css defines tokens this build does not place: ${missed.join(", ")}`);
 
+// Without an argument the stamp is kept, so a plain rebuild never rewrites it
+function previousRef() {
+  try {
+    return JSON.parse(readFileSync(new URL("tokens.json", out), "utf8")).meta.ref;
+  } catch {
+    return undefined;
+  }
+}
+
 const style = (name, fontSize, fontWeight, lineHeight, usage, extra = {}) => ({ name, fontSize, fontWeight, lineHeight, usage, ...extra });
 const tokens = {
   name: "pangu",
@@ -78,7 +87,7 @@ const tokens = {
   meta: {
     source: "github",
     repo: "vinta/pangu.space",
-    ref: process.argv[2] ?? "main",
+    ref: process.argv[2] ?? previousRef() ?? "main",
     paths: { tokens: ["web/public/tokens.css"], components: ["web/public/styles.css"], assets: ["web/public/favicon.svg"] },
     synced: new Date().toISOString().slice(0, 10),
   },
