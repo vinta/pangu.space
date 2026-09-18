@@ -12,7 +12,7 @@ Opinionated paranoid text spacing: automatically inserts whitespace between CJK 
 
 Try it at [pangu.space](https://pangu.space): paste text on the left, get the spaced text on the right, with every added or removed space highlighted.
 
-## Endpoints
+## HTTP API
 
 - `https://api.pangu.space/text`
 
