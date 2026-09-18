@@ -118,7 +118,7 @@ select:focus-visible,
 .select {
   height: 32px;
   /* The right side reserves room for the native arrow */
-  padding: 0 28px 0 var(--spacing-3);
+  padding: 0 var(--spacing-6) 0 var(--spacing-3);
   font-size: var(--text-base);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -154,8 +154,8 @@ main .shell {
 
 .hero p {
   margin: 0;
-  font-size: var(--text-base);
-  line-height: 1.6;
+  font-size: var(--text-lg);
+  line-height: 1.5;
   color: var(--color-text-secondary);
   text-wrap: pretty;
 }
@@ -227,7 +227,7 @@ main .shell {
   left: 2px;
   width: 20px;
   height: 20px;
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow);
   transition: background-color var(--transition), transform var(--transition);
@@ -291,7 +291,7 @@ main .shell {
   color: var(--color-primary);
 }
 
-/* The main action of a page. Measurements match the pangu.js extension's .btn-primary-black */
+/* The main action of a page. Measurements match the pangu.js extension's .btn-primary */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -505,7 +505,7 @@ main .shell {
   }
 
   .links .select {
-    padding: 0 24px 0 var(--spacing-2);
+    padding: 0 var(--spacing-6) 0 var(--spacing-2);
   }
 
   /* The footer keeps the GitHub link, and the Chinese language name needs the room */

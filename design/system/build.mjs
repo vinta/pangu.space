@@ -43,7 +43,9 @@ const USAGE = {
   "shadow-lg": "Overlays that float above the page, such as a notification. Never on a card.",
 
   "text-sm": "The diff legend. 14px.",
-  "text-base": "Body, pane text and labels, nav links, every control, notes and the footer. 16px.",
+  "text-base": "Pane text and labels, nav links, every control, notes and the footer. 16px.",
+  "text-lg": "The description under the page headline. 18px.",
+  "text-xl": "Section titles. 22px.",
   "text-2xl": "The headline under 640px. 24px.",
   "text-3xl": "The one headline size. 40px.",
   "spacing-1": "Wrapped toolbar rows on phones.",
@@ -67,7 +69,7 @@ const entry = (name) => {
   return { name, value: vars[name], usage: USAGE[name] };
 };
 const family = (prefix) => Object.keys(vars).filter((n) => n === prefix || n.startsWith(prefix + "-")).map(entry);
-const handled = new Set([...Object.keys(USAGE), "font-sans", "transition-fast", "transition"]);
+const handled = new Set([...Object.keys(USAGE), "font-sans", "font-mono", "transition-fast", "transition"]);
 const missed = Object.keys(vars).filter((n) => !handled.has(n));
 if (missed.length) throw new Error(`tokens.css defines tokens this build does not place: ${missed.join(", ")}`);
 
@@ -94,7 +96,7 @@ const tokens = {
   color: { themes: [{ id: "light", name: "Light" }], tokens: family("color") },
   type: {
     fonts: [],
-    families: { sans: vars["font-sans"] },
+    families: { sans: vars["font-sans"], mono: vars["font-mono"] },
     groups: [
       {
         name: "Text",
@@ -102,7 +104,11 @@ const tokens = {
         styles: [
           style("headline", vars["text-3xl"], 600, 1.2, "The page headline. One per page.", { sample: "Paranoid Text Spacing" }),
           style("headline-phone", vars["text-2xl"], 600, 1.2, "The headline under 640px.", { sample: "Paranoid Text Spacing" }),
-          style("body", vars["text-base"], 400, 1.6, "The description under the headline, in color-text-secondary."),
+          style("section-title", vars["text-xl"], 600, 1.25, "Titles of page sections.", { sample: "Blacklist" }),
+
+          style("subtitle", vars["text-lg"], 400, 1.5, "The description under the headline, in color-text-secondary."),
+
+          style("body", vars["text-base"], 400, 1.5, "Notes and the footer, in color-text-secondary."),
           style("pane", vars["text-base"], 400, 1.8, "Text in the panes and diff rows. The tall line height keeps mixed Chinese and Latin lines even.", { sample: "當你凝視著 bug，bug 也凝視著你" }),
           style("brand", vars["text-base"], 700, 1.5, "The site name beside the logo.", { sample: "pangu.space" }),
           style("nav", vars["text-base"], 500, 1.5, "Nav links."),
@@ -111,6 +117,12 @@ const tokens = {
 
           style("legend", vars["text-sm"], 400, 1.5, "The diff legend."),
         ],
+      },
+
+      {
+        name: "Code",
+        family: "mono",
+        styles: [style("mono", vars["text-base"], 400, 1.5, "URLs, code and patterns the reader must read character by character.", { sample: "https://pangu.space/*" })],
       },
     ],
   },

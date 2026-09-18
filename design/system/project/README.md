@@ -54,9 +54,13 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 - System fonts only, no web fonts. `font-sans` names Chinese faces so Chinese renders in a matching face, and it lists the Latin faces first, or Latin text would render in a Chinese font's Latin glyphs.
 
-- Two text sizes do all the work: `text-sm` for the diff legend, `text-base` for everything else you read or use. A control, meaning a toggle label, a button or a select, is never smaller than `text-base`.
+- `font-mono` is for URLs, code and patterns the reader must read character by character. Nothing else is monospaced.
+
+- Reading text comes in two sizes: `text-sm` for the diff legend, `text-base` for everything else you read or use. A control, meaning a toggle label, a button or a select, is never smaller than `text-base`.
 
 - One headline size, `text-3xl`, dropping to `text-2xl` on phones. Use the `headline` style once per page.
+
+- Two levels sit under the headline: `text-xl` for section titles, `text-lg` for the description under the headline. A title is never set at `text-base`.
 
 - Titles take no letter-spacing. Negative tracking squeezes Chinese glyphs.
 
@@ -102,7 +106,7 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 - The two transition values have no token family in this format. They are declared at the top of `components/bundle.css` as `--transition-fast` and `--transition`.
 
-- The soft green and red buttons have tokens but no component here, since the site has no such button yet. In the pangu.js extension they are page-specific rules. Its active status dot stays a raw value there, because it is a single mark on one page.
+- The soft green and red buttons have tokens but no component here, since the site has no such button yet. In the pangu.js extension they are page-specific rules.
 
 - Components are static renditions of the site's CSS classes. There is no script bundle, so mount them as markup with those classes.
 

@@ -24,12 +24,12 @@
     .brand { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700; }
     .brand svg { width: 26px; height: 26px; fill: var(--text); flex-shrink: 0; }
     .links { display: flex; align-items: center; gap: 24px; font-size: 16px; font-weight: 500; }
-    .select { height: 32px; padding: 0 28px 0 12px; font-size: 16px; background: var(--surface); border: var(--bw) solid var(--border); border-radius: var(--radiusSm); }
+    .select { height: 32px; padding: 0 24px 0 12px; font-size: 16px; background: var(--surface); border: var(--bw) solid var(--border); border-radius: var(--radiusSm); }
     main { flex-grow: 1; }
     main .shell { padding: var(--heroTop) 32px 40px; display: flex; flex-direction: column; gap: 32px; }
     .hero { display: flex; flex-direction: column; gap: 8px; }
     .hero h1 { margin: 0; font-family: var(--fontHero); font-size: var(--heroSize); font-weight: var(--heroWeight); line-height: 1.2; letter-spacing: var(--heroSpacing); }
-    .hero p { margin: 0; font-size: 16px; line-height: 1.6; letter-spacing: var(--bodySpacing); color: var(--text2); text-wrap: pretty; }
+    .hero p { margin: 0; font-size: 18px; line-height: 1.5; letter-spacing: var(--bodySpacing); color: var(--text2); text-wrap: pretty; }
     .tool { display: flex; flex-direction: column; gap: 12px; }
     .card { background: var(--surface); border: var(--cardBorder); border-radius: var(--radius); box-shadow: var(--cardShadow); display: flex; flex-direction: column; overflow: hidden; }
     .toolbar { display: flex; align-items: center; gap: 24px; padding: 12px 16px; border-bottom: var(--bw) solid var(--border); }
@@ -40,7 +40,7 @@
     .toggle.off .toggle-label { color: var(--text2); }
     .toggle-input { position: absolute; opacity: 0; width: 0; height: 0; }
     .toggle-switch { position: relative; width: 44px; height: 24px; background: var(--trackOff); border-radius: 9999px; flex-shrink: 0; box-shadow: inset 0 0 0 var(--bw) var(--border); }
-    .toggle-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: #ffffff; border-radius: 9999px; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
+    .toggle-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: var(--surface); border-radius: 9999px; box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
     .toggle-input:checked + .toggle-switch { background: var(--track); box-shadow: none; }
     .toggle-input:checked + .toggle-switch::after { background: var(--knob); transform: translateX(20px); }
     .toggle-input:disabled + .toggle-switch { background: var(--trackOff); box-shadow: none; }
