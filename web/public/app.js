@@ -1,9 +1,9 @@
-import pangu from "./vendor/pangu.js";
 import { diffChars } from "./vendor/diff/character.js";
+import pangu from "./vendor/pangu.js";
 
 const ZH_TW = {
   title: "為什麼你們就是不能加個空格呢？",
-  description: "自動在中文和英文、數字、符號之間插入空白。",
+  description: "自動在中文和英文、數字、符號之間插入空白",
   language: "語言",
   library: "函式庫",
   ai_spacing: "空格之神 AI",
@@ -13,8 +13,8 @@ const ZH_TW = {
   placeholder: "在這裡貼上或輸入文字",
   copy: "複製",
   copied: "已複製",
-  added: "新增",
-  removed: "移除",
+  added: "新增空格",
+  removed: "移除空格",
   note: "除非你啟用空格之神 AI，否則沒有任何資料會被上傳到雲端。",
   made_by: "作者",
   status_copied: "已複製到剪貼簿",
