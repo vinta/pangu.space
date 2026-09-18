@@ -139,10 +139,30 @@ function render() {
   diff.replaceChildren(...spacedText.split("\n").map((line, i) => renderRow(before[i], line)));
 }
 
+function spacedPane() {
+  return showDiff.checked ? diff : spaced;
+}
+
+// Panes grow with their content, so only horizontal scroll needs syncing
+// Skips the scroll event its own write fires, or a narrower pane would clamp the other one back
+let syncedPane = null;
+function syncScrollLeft(scrolled, follower) {
+  if (scrolled === syncedPane) {
+    syncedPane = null;
+    return;
+  }
+  const scrollLeft = follower.scrollLeft;
+  follower.scrollLeft = scrolled.scrollLeft;
+  if (follower.scrollLeft !== scrollLeft) {
+    syncedPane = follower;
+  }
+}
+
 function applyShowDiff() {
   diff.hidden = !showDiff.checked;
   strip.hidden = !showDiff.checked;
   spaced.hidden = showDiff.checked;
+  syncScrollLeft(source, spacedPane());
 }
 
 let renderTimer;
@@ -150,6 +170,11 @@ source.addEventListener("input", () => {
   clearTimeout(renderTimer);
   renderTimer = setTimeout(render, 150);
 });
+
+source.addEventListener("scroll", () => syncScrollLeft(source, spacedPane()));
+for (const pane of [diff, spaced]) {
+  pane.addEventListener("scroll", () => syncScrollLeft(pane, source));
+}
 
 showDiff.addEventListener("change", () => {
   save("showDiff", showDiff.checked);
