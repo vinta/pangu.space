@@ -437,7 +437,7 @@ main .shell {
 
 .note {
   margin: 0;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   line-height: 1.5;
   color: var(--color-text-secondary);
 }
