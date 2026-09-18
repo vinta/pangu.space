@@ -291,7 +291,7 @@ main .shell {
   color: var(--color-primary);
 }
 
-/* The main action of a page. Measurements match the pangu.js extension's .btn-primary-black */
+/* The main action of a page. Measurements match the pangu.js extension's .btn-primary */
 .btn-primary {
   display: inline-flex;
   align-items: center;
