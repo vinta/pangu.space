@@ -90,7 +90,7 @@ const DIRS = {
   }},
 };
 
-const BASE = { labelFont: "inherit", labelSize: "13px", labelSpacing: "0", paneSpacing: "0", bodySpacing: "0", heroTop: "48px" };
+const BASE = { labelFont: "inherit", labelSize: "13px", labelSpacing: "0", paneSpacing: "0", bodySpacing: "0", heroTop: "48px", transitionFast: "150ms cubic-bezier(0.4, 0, 0.2, 1)", transition: "200ms cubic-bezier(0.4, 0, 0.2, 1)" };
 for (const d of Object.values(DIRS)) { d.vars = { ...BASE, ...d.vars }; d.vars.trackOff ??= d.vars.border2; d.vars.mainBg ??= d.vars.bg; }
 const tpl = readFileSync("template.html", "utf8");
 const PHONE = readFileSync("phone.css", "utf8");

@@ -63,6 +63,9 @@
     .foot nav { display: flex; gap: 8px; } .foot a { color: var(--text2); } .foot a:hover { color: var(--accent); } .foot i { color: var(--text3); font-style: normal; }
     .hscroll::-webkit-scrollbar { height: 8px; }
     .hscroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    a, .btn { transition: color var(--transitionFast), border-color var(--transitionFast); }
+    .toggle-switch, .toggle-switch::after { transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition); }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @@EXTRA@@  </style>
 </helmet>
 <div class="page">
