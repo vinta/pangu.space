@@ -56,9 +56,11 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 - `font-mono` is for URLs, code and patterns the reader must read character by character. Nothing else is monospaced.
 
-- Two text sizes do all the work: `text-sm` for the diff legend, `text-base` for everything else you read or use. A control, meaning a toggle label, a button or a select, is never smaller than `text-base`.
+- Reading text comes in two sizes: `text-sm` for the diff legend, `text-base` for everything else you read or use. A control, meaning a toggle label, a button or a select, is never smaller than `text-base`.
 
 - One headline size, `text-3xl`, dropping to `text-2xl` on phones. Use the `headline` style once per page.
+
+- Two levels sit under the headline: `text-xl` for section titles, `text-lg` for the subtitle under the headline. A title is never set at `text-base`.
 
 - Titles take no letter-spacing. Negative tracking squeezes Chinese glyphs.
 
