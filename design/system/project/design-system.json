@@ -35,8 +35,8 @@
   },
   "lastChange": {
     "by": "Vinta",
-    "at": "2026-09-18T18:30:12Z",
-    "via": "GitHub · vinta/pangu.space@62a18d4",
-    "note": "Eight decisions from the extension: no title tracking, 16px controls, 8px toggle gap, link styles, card spacing rule, shadow-lg, Roboto and Arial, reduced-motion fix"
+    "at": "2026-09-18T18:52:43Z",
+    "via": "GitHub · vinta/pangu.space@4fcd4a5",
+    "note": "Supporting text raised to match the extension: note, footer and pane labels 16px, legend 14px, the 12px step retired"
   }
 }
