@@ -140,14 +140,14 @@
       "y": 11500,
       "w": 1280,
       "h": 1140,
-      "title": "Diff · second cue options"
+      "title": "Diff · second cue options (decided: keep A)"
     },
     "Motion.dc.html": {
       "x": 1360,
       "y": 11500,
       "w": 1280,
       "h": 680,
-      "title": "Motion · try it",
+      "title": "Motion · try it (decided: toggle 200ms, fades 150ms)",
       "is_interactive": true
     }
   },
