@@ -58,6 +58,8 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - One shell sets the width: 1280px at most, fluid below, with a `spacing-8` gutter. Nothing inside it sets its own max width.
 
+- A card shows the same space above its first line and below its last. When a card ends in text, trim the leading under that last line with `text-box: trim-end text`. Apply it to the specific last text element, never to every last child: a strip or a control row already has even padding. Browsers without `text-box` just show a little more space.
+
 - Under 640px the panes stack, the gutter drops to `spacing-4`, and touch targets grow to at least 44px.
 
 - Radii step with size: `radius-sm` buttons, `radius` selects, `radius-lg` cards, `radius-full` toggles.
