@@ -26,6 +26,7 @@
       --color-diff-row-mix: #fef9c3;
       --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
       --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Noto Sans", sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, Menlo, monospace;
       --radius-sm: 6px;
@@ -64,8 +65,9 @@
     .row.add { background: var(--color-diff-row-add); } .row.del { background: var(--color-diff-row-del); } .row.mix { background: var(--color-diff-row-mix); }
     .a { background: var(--color-diff-add); border-radius: 2px; } .d { background: var(--color-diff-del); border-radius: 2px; }
     .parts { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-    .toggle { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
+    .toggle { display: inline-flex; align-items: center; gap: 12px; }
     .toggle.off { color: var(--color-text-secondary); }
+    .toggle { font-size: 14px; font-weight: 500; }
     .toggle i { position: relative; width: 44px; height: 24px; border-radius: var(--radius-full); background: var(--color-surface-tertiary); box-shadow: inset 0 0 0 1px var(--color-border); }
     .toggle i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: var(--radius-full); background: #ffffff; box-shadow: var(--shadow); }
     .toggle.on i { background: var(--color-primary-light); box-shadow: none; }
@@ -224,21 +226,37 @@
 
   <ul class="rules">
     <li>Shell max-width 1280, fluid below</li>
+
     <li>Phone layout under 640</li>
+
     <li>Toggle 44×24, touch targets ≥44 on phone</li>
+
     <li>System fonts only, no web fonts</li>
+
     <li>Casing in markup, never text-transform</li>
+
     <li>No inner max-width, the shell sets width</li>
+
     <li>Light only, dark set not designed yet</li>
+
     <li>Every gap, padding, margin is a spacing step</li>
+
     <li>Control heights are sizes, not spacing</li>
+
     <li>Focus ring 2px primary, 2px offset, outline not shadow, :focus-visible only</li>
+
     <li>Copied announces through a hidden status line. On failure the label stays Copy</li>
+
     <li>Motion: toggle slides at --transition 200ms. Hover and Copied fade at --transition-fast 150ms. Off under reduced motion</li>
+
     <li>Diff marks stay color only. A second cue was reviewed and declined</li>
+
     <li>Green is add, save, active. Red is destructive. Both as soft buttons, always with a word. Info blue is for neutral notices</li>
+
     <li>A page's main action is the filled ink button, 46 tall. One per view</li>
+
     <li>A removed space is not drawn. The red or yellow row tint is its only sign</li>
+
     <li>Text sizes 12, 14, 16. One headline size, 40, replaces the extension's 32. Revisit when applied there. Under 640 the headline is --text-2xl, 24</li>
   </ul>
 
