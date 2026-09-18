@@ -35,8 +35,8 @@
   },
   "lastChange": {
     "by": "Vinta",
-    "at": "2026-09-18T19:04:27Z",
-    "via": "GitHub · vinta/pangu.space@a6f0efa",
-    "note": "README rewritten as rules only, with a section on where values live"
+    "at": "2026-09-18T20:49:14Z",
+    "via": "GitHub · vinta/pangu.space@e4fb18f",
+    "note": "Shared tokens gain font-mono, text-lg and text-xl. The description under the headline is 18px. Select padding and the toggle knob read tokens"
   }
 }
