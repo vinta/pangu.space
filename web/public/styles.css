@@ -278,6 +278,35 @@ main .shell {
   color: var(--color-primary);
 }
 
+/* The main action of a page. Measurements match the pangu.js extension's .btn-primary-black */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: auto;
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--text-base);
+  line-height: 1.25rem;
+  white-space: nowrap;
+  color: var(--color-text-on-primary);
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  border-radius: var(--radius);
+  transition: opacity var(--transition-fast);
+}
+
+.btn-primary:hover:not(:disabled) {
+  color: var(--color-text-on-primary);
+  border-color: var(--color-text-primary);
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Both labels share one cell, so the button keeps the width of the longer one */
 .btn-copy {
   display: inline-grid;

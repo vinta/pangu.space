@@ -35,8 +35,8 @@
   },
   "lastChange": {
     "by": "Vinta",
-    "at": "2026-09-18T10:12:38Z",
-    "via": "GitHub · vinta/pangu.space@36c0d0a",
-    "note": "First sync from the site's stylesheets: tokens, 7 static components, logo, cover"
+    "at": "2026-09-18T18:16:58Z",
+    "via": "GitHub · vinta/pangu.space@1e7ce64",
+    "note": "Added the info color set for neutral notices"
   }
 }

@@ -12,6 +12,23 @@
   --color-text-primary: #1d1d1f;
   --color-text-secondary: #6e6e73;
   --color-text-tertiary: #a1a1a6;
+  --color-text-on-primary: #ffffff;
+
+  --color-success: #15803d;
+  --color-success-light: #dcfce7;
+  --color-success-light-hover: #bbf7d0;
+  --color-success-border: #86efac;
+  --color-success-border-hover: #4ade80;
+
+  --color-danger: #b91c1c;
+  --color-danger-light: #fee2e2;
+  --color-danger-light-hover: #fecaca;
+  --color-danger-border: #fecaca;
+  --color-danger-border-hover: #f87171;
+
+  --color-info: #0369a1;
+  --color-info-light: #e0f2fe;
+  --color-info-border: #7dd3fc;
 
   --color-diff-add: #86efac;
   --color-diff-del: #fca5a5;

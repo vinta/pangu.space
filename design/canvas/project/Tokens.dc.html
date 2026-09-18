@@ -37,7 +37,7 @@
     }
     body { margin: 0; font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
     code { font-family: var(--font-mono); font-size: 11.5px; line-height: 1.45; }
-    .board { width: 1280px; height: 1450px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 28px; background: var(--color-surface); }
+    .board { width: 1280px; height: 1820px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 28px; background: var(--color-surface); }
     .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
     .head h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
     .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
@@ -82,6 +82,7 @@
     .btn.stack span { grid-area: 1 / 1; }
     .btn.stack .ghost { visibility: hidden; }
     .parts small { font-size: 12px; color: var(--color-text-secondary); }
+    .btn.primary { height: auto; padding: 12px 24px; font-size: 16px; line-height: 20px; color: #ffffff; background: var(--color-text-primary); border-color: var(--color-text-primary); border-radius: var(--radius); }
     .radii { display: flex; align-items: flex-end; gap: 16px; }
     .radii div { display: flex; flex-direction: column; gap: 6px; }
     .radii i { display: block; width: 56px; height: 36px; background: var(--color-surface-secondary); border: 1px solid var(--color-border); }
@@ -125,6 +126,23 @@
       <div class="sw"><div style="background: #dcfce7;"></div><code><b><i class="tag new"></i>--color-diff-row-add</b><span>#dcfce7 · row, adds only</span></code></div>
       <div class="sw"><div style="background: #fee2e2;"></div><code><b><i class="tag new"></i>--color-diff-row-del</b><span>#fee2e2 · row, removals only</span></code></div>
       <div class="sw"><div style="background: #fef9c3;"></div><code><b><i class="tag new"></i>--color-diff-row-mix</b><span>#fef9c3 · row, both</span></code></div>
+
+      <div class="sw"><div style="background: #15803d;"></div><code><b><i class="tag chg"></i>--color-success</b><span>#15803d · was #10b981 · text</span></code></div>
+      <div class="sw"><div style="background: #dcfce7;"></div><code><b><i class="tag new"></i>--color-success-light</b><span>#dcfce7 · soft fill</span></code></div>
+      <div class="sw"><div style="background: #bbf7d0;"></div><code><b><i class="tag new"></i>--color-success-light-hover</b><span>#bbf7d0 · hover fill</span></code></div>
+      <div class="sw"><div style="background: #86efac;"></div><code><b><i class="tag new"></i>--color-success-border</b><span>#86efac · soft border</span></code></div>
+      <div class="sw"><div style="background: #4ade80;"></div><code><b><i class="tag new"></i>--color-success-border-hover</b><span>#4ade80 · hover border</span></code></div>
+
+      <div class="sw"><div style="background: #b91c1c;"></div><code><b><i class="tag chg"></i>--color-danger</b><span>#b91c1c · was #ef4444 · text</span></code></div>
+      <div class="sw"><div style="background: #fee2e2;"></div><code><b><i class="tag new"></i>--color-danger-light</b><span>#fee2e2 · soft fill</span></code></div>
+      <div class="sw"><div style="background: #fecaca;"></div><code><b><i class="tag new"></i>--color-danger-light-hover</b><span>#fecaca · hover fill</span></code></div>
+      <div class="sw"><div style="background: #fecaca;"></div><code><b><i class="tag new"></i>--color-danger-border</b><span>#fecaca · soft border</span></code></div>
+      <div class="sw"><div style="background: #f87171;"></div><code><b><i class="tag new"></i>--color-danger-border-hover</b><span>#f87171 · hover border</span></code></div>
+
+      <div class="sw"><div style="background: #ffffff;"></div><code><b><i class="tag same"></i>--color-text-on-primary</b><span>#ffffff · text on ink fills</span></code></div>
+      <div class="sw"><div style="background: #0369a1;"></div><code><b><i class="tag new"></i>--color-info</b><span>#0369a1 · notice text</span></code></div>
+      <div class="sw"><div style="background: #e0f2fe;"></div><code><b><i class="tag new"></i>--color-info-light</b><span>#e0f2fe · notice fill</span></code></div>
+      <div class="sw"><div style="background: #7dd3fc;"></div><code><b><i class="tag new"></i>--color-info-border</b><span>#7dd3fc · notice border</span></code></div>
     </div>
   </div>
 
@@ -160,6 +178,7 @@
         <span class="toggle"><i></i>Off</span>
         <span class="toggle off"><i></i>Disabled</span>
         <button type="button" class="btn">Copy</button>
+        <button type="button" class="btn primary">Apply</button>
       </div>
       <h2>Focus, keyboard only</h2>
       <div class="parts">
@@ -217,13 +236,15 @@
     <li>Copied announces through a hidden status line. On failure the label stays Copy</li>
     <li>Motion: toggle slides at --transition 200ms. Hover and Copied fade at --transition-fast 150ms. Off under reduced motion</li>
     <li>Diff marks stay color only. A second cue was reviewed and declined</li>
+    <li>Green is add, save, active. Red is destructive. Both as soft buttons, always with a word. Info blue is for neutral notices</li>
+    <li>A page's main action is the filled ink button, 46 tall. One per view</li>
     <li>A removed space is not drawn. The red or yellow row tint is its only sign</li>
     <li>Text sizes 12, 14, 16. One headline size, 40, replaces the extension's 32. Revisit when applied there. Under 640 the headline is --text-2xl, 24</li>
   </ul>
 
 </div>
 </x-dc>
-<script data-dc-script data-props='{"$preview":{"width":1280,"height":1450}}'>
+<script data-dc-script data-props='{"$preview":{"width":1280,"height":1820}}'>
 class Component extends DCLogic {
   renderVals() { return {}; }
 }
