@@ -3,10 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev"
+    "deploy": "node scripts/vendor.mjs && wrangler deploy",
+    "dev": "node scripts/vendor.mjs && wrangler dev",
+    "vendor": "node scripts/vendor.mjs"
   },
   "devDependencies": {
     "wrangler": "4.131.1"
+  },
+  "dependencies": {
+    "diff": "9.0.0",
+    "pangu": "10.1.1"
   }
 }
