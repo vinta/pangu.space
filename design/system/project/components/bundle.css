@@ -444,7 +444,7 @@ main .shell {
 
 .foot {
   border-top: 1px solid var(--color-border);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
 }
 
