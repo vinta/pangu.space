@@ -44,7 +44,15 @@
     "at": "2026-09-17T14:30:00Z",
     "v": 1
   },
-  "designSystems": [],
+  "designSystems": [
+    {
+      "title": "pangu",
+      "namespace": "pangu",
+      "artifact": "https://claude.ai/artifact/758ABWKCNd8AQ5qxYRmqBm",
+      "version": "1789726374-52fc",
+      "copiedAt": "2026-09-18T10:16:10Z"
+    }
+  ],
   "launch": {
     "view": "canvas"
   },
