@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Removed space options</title>
+
+</head>
+<body>
+
+
+  <style>
+    :root {
+      --color-primary: #3b82f6; --color-primary-light: #dbeafe;
+      --color-surface: #ffffff; --color-surface-secondary: #fafafa; --color-surface-tertiary: #f3f4f6;
+      --color-border: #e5e5e7; --color-border-light: #f5f5f7;
+      --color-text-primary: #1d1d1f; --color-text-secondary: #6e6e73; --color-text-tertiary: #a1a1a6;
+      --color-diff-add: #86efac; --color-diff-del: #fca5a5;
+      --color-diff-row-add: #dcfce7; --color-diff-row-del: #fee2e2; --color-diff-row-mix: #fef9c3;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Noto Sans", sans-serif;
+      --radius-sm: 6px; --radius: 8px; --radius-lg: 12px; --radius-full: 9999px;
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body { margin: 0; font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
+    .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+    .head h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+    .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
+    h2 { margin: 0; font-size: 14px; font-weight: 600; }
+    .desc { margin: 0; font-size: 14px; line-height: 1.5; color: var(--color-text-secondary); }
+    .board { width: 1600px; height: 930px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 24px; background: var(--color-surface); }
+    .cols, .opt { display: grid; grid-template-columns: 260px 380px minmax(0, 1fr); gap: 24px; }
+    .cols { font-size: 14px; font-weight: 600; color: var(--color-text-secondary); }
+    .opt { align-items: start; }
+    .info { display: flex; flex-direction: column; gap: 8px; }
+    .sample { padding: 12px 0; font-size: 16px; line-height: 1.8; border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; }
+    .sample.big { font-size: 32px; }
+    .row { padding: 0 16px; white-space: pre; }
+    .row.add { background: var(--color-diff-row-add); } .row.del { background: var(--color-diff-row-del); } .row.mix { background: var(--color-diff-row-mix); }
+    .a { background: var(--color-diff-add); border-radius: 2px; } .d { background: var(--color-diff-del); border-radius: 2px; }
+    .tint .d { display: none; }
+    .bar .d { display: inline-block; width: 0; height: 1.1em; margin: 0 -1px; vertical-align: text-bottom; background: none; border-radius: 0; border-left: 2px solid #ef4444; }
+    .big.bar .d { margin: 0 -2px; border-left-width: 4px; }
+  </style>
+
+<div class="board">
+  <div class="head">
+    <h1>Diff · how to mark a removed space</h1>
+    <p>Real pangu output. It only removes spaces inside brackets and straight quotes.</p>
+  </div>
+  <div class="cols"><span></span><span>Actual size</span><span>Zoomed 2×</span></div>
+
+  <div class="opt">
+    <div class="info"><h2>A · Now</h2><p class="desc">The removed space is drawn with a red fill. It takes up width, so the line reads as if the space were still there.</p></div>
+    <div class="sample now">
+        <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+        <div class="row del">請看 (<span class="d"> </span>附件<span class="d"> </span>) 的說明</div>
+        <div class="row mix">盤古<span class="a"> </span>(<span class="d"> </span>Pangu<span class="d"> </span>)<span class="a"> </span>開天闢地</div>
+        <div class="row">用 pangu.js 就對了</div>
+    </div>
+    <div class="sample big now">
+        <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+        <div class="row del">請看 (<span class="d"> </span>附件<span class="d"> </span>) 的說明</div>
+        <div class="row mix">盤古<span class="a"> </span>(<span class="d"> </span>Pangu<span class="d"> </span>)<span class="a"> </span>開天闢地</div>
+        <div class="row">用 pangu.js 就對了</div>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="info"><h2>B · Row tint only</h2><p class="desc">The removed space is not drawn. The red row, or yellow when the row also has additions, is the only sign. You cannot see where in the line it was.</p></div>
+    <div class="sample tint">
+        <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+        <div class="row del">請看 (<span class="d"></span>附件<span class="d"></span>) 的說明</div>
+        <div class="row mix">盤古<span class="a"> </span>(<span class="d"></span>Pangu<span class="d"></span>)<span class="a"> </span>開天闢地</div>
+        <div class="row">用 pangu.js 就對了</div>
+    </div>
+    <div class="sample big tint">
+        <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+        <div class="row del">請看 (<span class="d"></span>附件<span class="d"></span>) 的說明</div>
+        <div class="row mix">盤古<span class="a"> </span>(<span class="d"></span>Pangu<span class="d"></span>)<span class="a"> </span>開天闢地</div>
+        <div class="row">用 pangu.js 就對了</div>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="info"><h2>C · Thin red bar</h2><p class="desc">The removed space takes no width, so the text reads exactly as the output. A 2px bar marks where it was. The bar uses the extension's --color-danger, since the pale red is invisible at this width.</p></div>
+    <div class="sample bar">
+        <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+        <div class="row del">請看 (<span class="d"></span>附件<span class="d"></span>) 的說明</div>
+        <div class="row mix">盤古<span class="a"> </span>(<span class="d"></span>Pangu<span class="d"></span>)<span class="a"> </span>開天闢地</div>
+        <div class="row">用 pangu.js 就對了</div>
+    </div>
+    <div class="sample big bar">
+        <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+        <div class="row del">請看 (<span class="d"></span>附件<span class="d"></span>) 的說明</div>
+        <div class="row mix">盤古<span class="a"> </span>(<span class="d"></span>Pangu<span class="d"></span>)<span class="a"> </span>開天闢地</div>
+        <div class="row">用 pangu.js 就對了</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

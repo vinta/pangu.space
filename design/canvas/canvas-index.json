@@ -31,6 +31,13 @@
       "h": 680,
       "title": "Motion · try it (decided: toggle 200ms, fades 150ms)",
       "is_interactive": true
+    },
+    "DiffRemoved.dc.html": {
+      "x": 0,
+      "y": 5690,
+      "w": 1600,
+      "h": 930,
+      "title": "Diff · removed space options (decided: B, row tint only)"
     }
   },
   "createdOnFiles": {
@@ -86,13 +93,22 @@
       "x": 2720,
       "y": 3950,
       "text": "Motion needs Play: press Play on the board, then click and hover. The same two pages also open as plain HTML from design/preview in the repo."
+    },
+    "t6": {
+      "kind": "title1",
+      "maxW": 1600,
+      "text": "Round 4 · Removed spaces",
+      "w": 240,
+      "x": 0,
+      "y": 5390
     }
   },
   "order": [
     "Tokens.dc.html",
     "StyleP.dc.html",
     "DiffCue.dc.html",
-    "Motion.dc.html"
+    "Motion.dc.html",
+    "DiffRemoved.dc.html"
   ],
   "pages": [],
   "title": "pangu.space"
