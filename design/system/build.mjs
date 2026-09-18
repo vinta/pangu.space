@@ -40,6 +40,7 @@ const USAGE = {
   "color-diff-row-mix": "Row tint for a line that both gained and lost spaces.",
   "shadow-sm": "Cards.",
   "shadow": "The toggle knob.",
+  "shadow-lg": "Overlays that float above the page, such as a notification. Never on a card.",
   "text-xs": "Legend. 12px.",
   "text-sm": "Pane labels, notes, footer. 14px.",
   "text-base": "Body, pane text, nav links, and every control. 16px.",

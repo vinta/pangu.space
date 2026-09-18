@@ -64,7 +64,7 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - Radii step with size: `radius-sm` buttons, `radius` selects, `radius-lg` cards, `radius-full` toggles.
 
-- Depth is a hairline `color-border` plus `shadow-sm`. No heavier shadow exists.
+- Depth is a hairline `color-border` plus `shadow-sm` for cards. Overlays that float above the page, such as a notification, use `shadow-lg`. Nothing sits between the two.
 
 ## Buttons
 
