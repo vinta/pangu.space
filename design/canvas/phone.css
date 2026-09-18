@@ -8,7 +8,7 @@
     .hero { gap: 8px; }
     .hero h1 { font-size: 24px; }
     .toolbar { flex-wrap: wrap; gap: 4px 24px; padding: 8px 16px; }
-    .toolbar .select { flex-basis: 100%; width: 100%; height: 40px; margin: 2px 0; padding: 0 28px 0 12px; }
+    .toolbar .select { flex-basis: 100%; width: 100%; height: 40px; margin: 2px 0; padding: 0 24px 0 12px; }
     .toggle { min-height: 44px; }
     .panes { grid-template-columns: minmax(0, 1fr); min-height: 0; }
     .pane.left { border-right: 0; border-bottom: var(--bw) solid var(--border); }

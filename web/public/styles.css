@@ -113,7 +113,7 @@ select:focus-visible,
 .select {
   height: 32px;
   /* The right side reserves room for the native arrow */
-  padding: 0 28px 0 var(--spacing-3);
+  padding: 0 var(--spacing-6) 0 var(--spacing-3);
   font-size: var(--text-base);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -500,7 +500,7 @@ main .shell {
   }
 
   .links .select {
-    padding: 0 24px 0 var(--spacing-2);
+    padding: 0 var(--spacing-6) 0 var(--spacing-2);
   }
 
   /* The footer keeps the GitHub link, and the Chinese language name needs the room */
