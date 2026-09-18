@@ -67,7 +67,7 @@ const entry = (name) => {
   return { name, value: vars[name], usage: USAGE[name] };
 };
 const family = (prefix) => Object.keys(vars).filter((n) => n === prefix || n.startsWith(prefix + "-")).map(entry);
-const handled = new Set([...Object.keys(USAGE), "font-sans", "transition-fast", "transition"]);
+const handled = new Set([...Object.keys(USAGE), "font-sans", "font-mono", "transition-fast", "transition"]);
 const missed = Object.keys(vars).filter((n) => !handled.has(n));
 if (missed.length) throw new Error(`tokens.css defines tokens this build does not place: ${missed.join(", ")}`);
 
@@ -94,7 +94,7 @@ const tokens = {
   color: { themes: [{ id: "light", name: "Light" }], tokens: family("color") },
   type: {
     fonts: [],
-    families: { sans: vars["font-sans"] },
+    families: { sans: vars["font-sans"], mono: vars["font-mono"] },
     groups: [
       {
         name: "Text",
@@ -111,6 +111,12 @@ const tokens = {
 
           style("legend", vars["text-sm"], 400, 1.5, "The diff legend."),
         ],
+      },
+
+      {
+        name: "Code",
+        family: "mono",
+        styles: [style("mono", vars["text-base"], 400, 1.5, "URLs, code and patterns the reader must read character by character.", { sample: "https://pangu.space/*" })],
       },
     ],
   },

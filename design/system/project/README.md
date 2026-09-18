@@ -54,6 +54,8 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 - System fonts only, no web fonts. `font-sans` names Chinese faces so Chinese renders in a matching face, and it lists the Latin faces first, or Latin text would render in a Chinese font's Latin glyphs.
 
+- `font-mono` is for URLs, code and patterns the reader must read character by character. Nothing else is monospaced.
+
 - Two text sizes do all the work: `text-sm` for the diff legend, `text-base` for everything else you read or use. A control, meaning a toggle label, a button or a select, is never smaller than `text-base`.
 
 - One headline size, `text-3xl`, dropping to `text-2xl` on phones. Use the `headline` style once per page.
