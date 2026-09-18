@@ -36,7 +36,7 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - System fonts only, no web fonts. `font-sans` lists PingFang TC and Noto Sans TC so Chinese renders in a matching face.
 
-- Three text sizes do all the work: `text-xs`, `text-sm`, `text-base`. One headline size, `text-3xl`, dropping to `text-2xl` under 640px.
+- Three text sizes do all the work: `text-xs`, `text-sm`, `text-base`. Every control, meaning toggle labels, buttons and selects, is `text-base`. 14px reads too small on a control. One headline size, `text-3xl`, dropping to `text-2xl` under 640px.
 
 - Use the `headline` style once per page, weight 600. Titles take no letter-spacing: negative tracking squeezes Chinese glyphs.
 
@@ -46,7 +46,7 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 ## Layout and spacing
 
-- Every gap, padding and margin is a spacing token. Control heights are sizes, not spacing: 32px select, 28px button, 40px pane header, 56px navbar.
+- Every gap, padding and margin is a spacing token. Control heights are sizes, not spacing: 32px select, 32px tool button, 40px pane header, 56px navbar.
 
 - One shell sets the width: 1280px at most, fluid below, with a `spacing-8` gutter. Nothing inside it sets its own max width.
 
@@ -60,7 +60,7 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - A page's main action is a filled `color-text-primary` button with `color-text-on-primary` text, 46px tall, `radius`. Use one per view. Hover drops it to 90% opacity.
 
-- Tool actions inside a card, like Copy, use the small outlined button: 28px, `radius-sm`, `color-border`.
+- Tool actions inside a card, like Copy, use the small outlined button: 32px, `radius-sm`, `color-border`.
 
 - Inline row actions that add, save or remove use the soft green and red buttons above. A filled dark green reads too heavy.
 

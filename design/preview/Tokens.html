@@ -67,18 +67,18 @@
     .parts { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
     .toggle { display: inline-flex; align-items: center; gap: 12px; }
     .toggle.off { color: var(--color-text-secondary); }
-    .toggle { font-size: 14px; font-weight: 500; }
+    .toggle { font-size: 16px; font-weight: 500; }
     .toggle i { position: relative; width: 44px; height: 24px; border-radius: var(--radius-full); background: var(--color-surface-tertiary); box-shadow: inset 0 0 0 1px var(--color-border); }
     .toggle i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: var(--radius-full); background: #ffffff; box-shadow: var(--shadow); }
     .toggle.on i { background: var(--color-primary-light); box-shadow: none; }
     .toggle.on i::after { background: var(--color-primary); transform: translateX(20px); }
     .toggle.off i { box-shadow: none; }
-    .btn { height: 28px; padding: 0 12px; font: inherit; font-size: 14px; font-weight: 500; color: var(--color-text-primary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+    .btn { height: 32px; padding: 0 12px; font: inherit; font-size: 16px; font-weight: 500; color: var(--color-text-primary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
     .ring { outline: 2px solid var(--color-primary); outline-offset: 2px; }
     .ring-in { outline: 2px solid var(--color-primary); outline-offset: -2px; }
     .toggle i.ring { outline-offset: 2px; }
     .link { font-size: 16px; font-weight: 500; border-radius: 2px; }
-    .sel { display: inline-flex; align-items: center; height: 32px; padding: 0 28px 0 12px; font-size: 14px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); }
+    .sel { display: inline-flex; align-items: center; height: 32px; padding: 0 28px 0 12px; font-size: 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); }
     .ta { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; font-size: 16px; color: var(--color-text-secondary); border-radius: 2px; }
     .btn.stack { display: inline-grid; align-items: center; justify-items: center; }
     .btn.stack span { grid-area: 1 / 1; }
@@ -159,8 +159,8 @@
         <div><code>16 / 700</code><span style="font-size: 16px; font-weight: 700;">pangu.space</span></div>
         <div><code>16 / 500</code><span style="font-size: 16px; font-weight: 500;">Nav links</span></div>
         <div><code>14 / 600</code><span style="font-size: 14px; font-weight: 600; color: var(--color-text-secondary);">Pane labels</span></div>
-        <div><code>14 / 500</code><span style="font-size: 14px; font-weight: 500;">Toggle labels, Copy button</span></div>
-        <div><code>14 / 400</code><span style="font-size: 14px; color: var(--color-text-secondary);">Select, footer, note under the card</span></div>
+        <div><code>16 / 500</code><span style="font-size: 16px; font-weight: 500;">Toggle labels, buttons, selects at 400</span></div>
+        <div><code>14 / 400</code><span style="font-size: 14px; color: var(--color-text-secondary);">Footer, note under the card</span></div>
         <div><code>12 / 400</code><span style="font-size: 12px; color: var(--color-text-secondary);">Legend</span></div>
       </div>
       <div class="stack"><code><b style="font-weight: 400; color: var(--color-text-primary);"><i class="tag chg" style="margin-right: 6px;"></i>--font-sans</b><br>-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", <em>"PingFang TC", "Noto Sans TC"</em>, "Noto Sans", sans-serif</code></div>

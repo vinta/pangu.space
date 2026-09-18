@@ -105,7 +105,7 @@ select:focus-visible,
   height: 32px;
   /* The right side reserves room for the native arrow */
   padding: 0 28px 0 var(--spacing-3);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
@@ -187,7 +187,7 @@ main .shell {
 }
 
 .toggle-label {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 500;
 }
 
@@ -261,9 +261,9 @@ main .shell {
 }
 
 .btn {
-  height: 28px;
+  height: 32px;
   padding: 0 var(--spacing-3);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 500;
   color: var(--color-text-primary);
   background: var(--color-surface);
@@ -512,15 +512,10 @@ main .shell {
     flex-basis: 100%;
     width: 100%;
     height: 40px;
-    font-size: var(--text-base);
   }
 
   .toggle {
     min-height: 44px;
-  }
-
-  .toggle-label {
-    font-size: var(--text-base);
   }
 
   .panes {
