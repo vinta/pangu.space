@@ -1,4 +1,14 @@
-pangu is a small family of tools that put a space between Chinese, Japanese, Korean text and Latin letters, digits and symbols: the pangu.space site, the pangu.js browser extensions, and whatever comes next. This system is the look they share. It was built from the pangu.space site's stylesheets, and token names follow the pangu.js extension so both read the same variables.
+pangu is a small family of tools that put a space between Chinese, Japanese, Korean text and Latin letters, digits and symbols: the pangu.space site, the pangu.js browser extensions, and whatever comes next. This system is the look they share. Token names follow the pangu.js extension, so both read the same variables.
+
+## Where things live
+
+This page holds the rules: what to use, when, and what never to do. It states no measurements, so go to the source for a value.
+
+- Token values are in `tokens.json`. Every token has a usage note, and the notes give contrast ratios where they matter.
+
+- A component's sizes, states and markup are in `components/<Name>/README.md`, and its CSS is in `components/bundle.css`.
+
+- In the repository, `web/public/tokens.css` and `web/public/styles.css` are the source of truth. `design/system/build.mjs` generates `tokens.json` and `components/bundle.css` from them, so never edit those two by hand.
 
 ## Content
 
@@ -18,15 +28,15 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 - Ink is neutral, never blue-grey: `color-text-primary` for headlines, body and controls, `color-text-secondary` for descriptions, labels, notes and footers.
 
-- `color-text-tertiary` is for separators and placeholders only. It is 2.57:1 on `color-surface`, below the reading floor, so never set real text in it.
+- `color-text-tertiary` is for separators and placeholders only. It sits below the reading floor, so never set real text in it.
 
 - The page ground is `color-surface-secondary`. Cards, the navbar and controls sit on `color-surface`, edged with `color-border`.
 
-- `color-primary` is the accent: the toggle knob, focus rings, hover on nav links and buttons, and link text inside page content. As text it is 3.68:1 on `color-surface`, below the 4.5:1 floor. That miss is known and accepted: a darker blue was tried and rejected as too heavy, so keep this value and do not add a second link blue.
+- `color-primary` is the accent: the toggle knob, focus rings, hover on nav links and buttons, and link text inside page content. As small text it misses the contrast floor. That miss is known and accepted: a darker blue was tried and rejected as too heavy, so keep this value and do not add a second link blue.
 
-- Green and red carry meaning, never decoration. Green is add, save and active status. Red is destructive: remove, restore defaults. Their text colors, `color-success` and `color-danger`, pass 4.5:1 on white and on their own soft fills.
+- Green and red carry meaning, never decoration. Green is add, save and active status. Red is destructive: remove, restore defaults. Their text colors, `color-success` and `color-danger`, are chosen to pass as text on white and on their own soft fills.
 
-- Blue-grey `color-info` is for neutral notices: `color-info` text on a `color-info-light` fill with a `color-info-border` edge. A notice comes in three kinds, info, success and danger, and all three read tokens.
+- `color-info` is for neutral notices: `color-info` text on a `color-info-light` fill with a `color-info-border` edge. A notice comes in three kinds, info, success and danger, and all three read tokens.
 
 - A green or red button is soft: a `color-success-light` or `color-danger-light` fill, the matching text color, and a `color-success-border` or `color-danger-border` edge. Hover swaps in the `-hover` pair. Always give it a word, never color alone.
 
@@ -34,33 +44,35 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 ## Links
 
-- Nav and brand links are ink, `color-text-primary`, and turn `color-primary` on hover. No underline.
+- Nav and brand links are ink and turn `color-primary` on hover. No underline.
 
 - Links inside page content are `color-primary` at rest and gain an underline on hover.
 
-- Footer links are ink with a light underline, a 50/50 mix of `color-text-tertiary` and `color-border`, which works out to #c3c3c6. On hover the text and the underline turn the same `color-primary`.
+- Footer links are ink with a light underline, mixed from `color-text-tertiary` and `color-border`. On hover the text and the underline turn the same `color-primary`.
 
 ## Type
 
-- System fonts only, no web fonts. `font-sans` lists PingFang TC and Noto Sans TC so Chinese renders in a matching face. Roboto covers ChromeOS and Android, and Arial is the Linux fallback. Latin faces come before the Chinese ones, or Latin text would render in Noto Sans.
+- System fonts only, no web fonts. `font-sans` names Chinese faces so Chinese renders in a matching face, and it lists the Latin faces first, or Latin text would render in a Chinese font's Latin glyphs.
 
-- Two text sizes do all the work: `text-sm` for the diff legend, `text-base` for everything else you read or use. Every control, meaning toggle labels, buttons and selects, is `text-base`. 14px reads too small on a control. One headline size, `text-3xl`, dropping to `text-2xl` under 640px.
+- Two text sizes do all the work: `text-sm` for the diff legend, `text-base` for everything else you read or use. A control, meaning a toggle label, a button or a select, is never smaller than `text-base`.
 
-- Use the `headline` style once per page, weight 600. Titles take no letter-spacing: negative tracking squeezes Chinese glyphs.
+- One headline size, `text-3xl`, dropping to `text-2xl` on phones. Use the `headline` style once per page.
 
-- Pane and diff text uses the `pane` style. Its 1.8 line height keeps mixed Chinese and Latin lines even, and the two panes must stay line for line.
+- Titles take no letter-spacing. Negative tracking squeezes Chinese glyphs.
+
+- Pane and diff text uses the `pane` style. Its tall line height keeps mixed Chinese and Latin lines even, and the two panes must stay line for line.
 
 - A Chinese headline never breaks between characters. Set `word-break: keep-all` and mark the one allowed break with a zero-width space in the string.
 
 ## Layout and spacing
 
-- Every gap, padding and margin is a spacing token. Control heights are sizes, not spacing: 32px select, 32px tool button, 40px pane header, 56px navbar.
+- Every gap, padding and margin is a spacing token. Control heights are sizes, not spacing, and they live with each component.
 
-- One shell sets the width: 1280px at most, fluid below, with a `spacing-8` gutter. Nothing inside it sets its own max width.
+- One shell sets the page width and is fluid below its maximum. Nothing inside it sets its own max width.
 
 - A card shows the same space above its first line and below its last. When a card ends in text, trim the leading under that last line with `text-box: trim-end text`. Apply it to the specific last text element, never to every last child: a strip or a control row already has even padding. Browsers without `text-box` just show a little more space.
 
-- Under 640px the panes stack, the gutter drops to `spacing-4`, and touch targets grow to at least 44px.
+- Under 640px the panes stack, the gutter narrows, and touch targets grow to at least 44px.
 
 - Radii step with size: `radius-sm` buttons, `radius` selects, `radius-lg` cards, `radius-full` toggles.
 
@@ -68,17 +80,17 @@ pangu is a small family of tools that put a space between Chinese, Japanese, Kor
 
 ## Buttons
 
-- A page's main action is a filled `color-text-primary` button with `color-text-on-primary` text, 46px tall, `radius`. Use one per view. Hover drops it to 90% opacity.
+- A page's main action is the filled ink button: `color-text-primary` fill, `color-text-on-primary` text. Use one per view.
 
-- Tool actions inside a card, like Copy, use the small outlined button: 32px, `radius-sm`, `color-border`.
+- Tool actions inside a card, like Copy, use the small outlined button.
 
-- Inline row actions that add, save or remove use the soft green and red buttons above. A filled dark green reads too heavy.
+- Inline row actions that add, save or remove use the soft green and red buttons. A filled dark green reads too heavy.
 
 ## States and motion
 
-- Keyboard focus is a 2px `color-primary` outline with a 2px offset, shown on `:focus-visible` only. Use an outline, never a box shadow, so it survives forced colors. Inside a card the ring is inset, because the card clips overflow.
+- Keyboard focus is a `color-primary` outline with an offset, shown on `:focus-visible` only. Use an outline, never a box shadow, so it survives forced colors. Inside a card the ring is inset, because the card clips overflow.
 
-- The toggle slides over 200ms. Hover color and the Copied label fade over 150ms. Both switch off under `prefers-reduced-motion`. The rule must name `::before` and `::after` too, since `*` does not match pseudo-elements and the toggle knob is one.
+- The toggle slides at `--transition`. Hover color and the Copied label fade at `--transition-fast`. Both switch off under `prefers-reduced-motion`. That rule must name `::before` and `::after` too, since `*` does not match pseudo-elements and the toggle knob is one.
 
 - A disabled toggle keeps full opacity: grey track, white knob, `color-text-secondary` label, `not-allowed` cursor.
 
