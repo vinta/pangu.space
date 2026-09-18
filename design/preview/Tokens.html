@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+</head>
+<body>
+
+
+  <style>
+    :root {
+      --color-primary: #3b82f6;
+      --color-primary-light: #dbeafe;
+      --color-surface: #ffffff;
+      --color-surface-secondary: #fafafa;
+      --color-surface-tertiary: #f3f4f6;
+      --color-border: #e5e5e7;
+      --color-border-light: #f5f5f7;
+      --color-text-primary: #1d1d1f;
+      --color-text-secondary: #6e6e73;
+      --color-text-tertiary: #a1a1a6;
+      --color-diff-add: #86efac;
+      --color-diff-del: #fca5a5;
+      --color-diff-row-add: #dcfce7;
+      --color-diff-row-del: #fee2e2;
+      --color-diff-row-mix: #fef9c3;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Noto Sans", sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, Menlo, monospace;
+      --radius-sm: 6px;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+    }
+    body { margin: 0; font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
+    code { font-family: var(--font-mono); font-size: 11.5px; line-height: 1.45; }
+    .board { width: 1280px; height: 1100px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 28px; background: var(--color-surface); }
+    .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+    .head h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+    .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
+    .key { display: inline-flex; align-items: center; gap: 6px; margin-left: 14px; }
+    h2 { margin: 0; font-size: 14px; font-weight: 600; color: var(--color-text-secondary); }
+    .sec { display: flex; flex-direction: column; gap: 14px; }
+    .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+    .swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px 16px; }
+    .sw { display: flex; flex-direction: column; gap: 6px; }
+    .sw div { height: 44px; border-radius: var(--radius); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08); }
+    .sw code { display: flex; flex-direction: column; }
+    .sw code span { color: var(--color-text-secondary); }
+    .tag { display: inline-block; width: 7px; height: 7px; border-radius: var(--radius-full); flex-shrink: 0; }
+    .tag.chg { background: #f59e0b; } .tag.new { background: #10b981; } .tag.same { background: var(--color-border); }
+    .sw b { font-weight: 400; display: inline-flex; align-items: center; gap: 6px; }
+    .type { display: flex; flex-direction: column; gap: 8px; }
+    .type div { display: flex; align-items: baseline; gap: 16px; }
+    .type code { width: 128px; flex-shrink: 0; color: var(--color-text-secondary); }
+    .stack { padding: 10px 12px; background: var(--color-surface-secondary); border: 1px solid var(--color-border); border-radius: var(--radius); }
+    .stack code { color: var(--color-text-secondary); }
+    .stack code em { font-style: normal; color: var(--color-text-primary); background: var(--color-diff-row-add); }
+    .diff { padding: 12px 0; font-size: 16px; line-height: 1.8; border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; }
+    .row { padding: 0 16px; white-space: pre; }
+    .row.add { background: var(--color-diff-row-add); } .row.del { background: var(--color-diff-row-del); } .row.mix { background: var(--color-diff-row-mix); }
+    .a { background: var(--color-diff-add); border-radius: 2px; } .d { background: var(--color-diff-del); border-radius: 2px; }
+    .parts { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .toggle { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
+    .toggle.off { color: var(--color-text-secondary); }
+    .toggle i { position: relative; width: 44px; height: 24px; border-radius: var(--radius-full); background: var(--color-surface-tertiary); box-shadow: inset 0 0 0 1px var(--color-border); }
+    .toggle i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: var(--radius-full); background: #ffffff; box-shadow: var(--shadow); }
+    .toggle.on i { background: var(--color-primary-light); box-shadow: none; }
+    .toggle.on i::after { background: var(--color-primary); transform: translateX(20px); }
+    .toggle.off i { box-shadow: none; }
+    .btn { height: 28px; padding: 0 12px; font: inherit; font-size: 14px; font-weight: 500; color: var(--color-text-primary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+    .radii { display: flex; align-items: flex-end; gap: 16px; }
+    .radii div { display: flex; flex-direction: column; gap: 6px; }
+    .radii i { display: block; width: 56px; height: 36px; background: var(--color-surface-secondary); border: 1px solid var(--color-border); }
+    .space { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 16px; align-items: end; }
+    .space div { display: flex; flex-direction: column; gap: 6px; }
+    .space div > i { display: block; height: 20px; background: var(--color-primary-light); border-radius: 2px; }
+    .space b { font-weight: 400; display: inline-flex; align-items: center; gap: 6px; }
+    .space code { display: flex; flex-direction: column; }
+    .space span { color: var(--color-text-secondary); }
+    .rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 24px; margin: 0; padding: 16px 0 0; list-style: none; border-top: 1px solid var(--color-border); font-size: 14px; color: var(--color-text-secondary); }
+  </style>
+
+<div class="board">
+
+  <div class="head">
+    <h1>Tokens · Style Q</h1>
+    <p>Names follow the extension's styles.css. Values are Q's.
+      <span class="key"><i class="tag chg"></i>extension value changes</span>
+      <span class="key"><i class="tag new"></i>new token</span>
+      <span class="key"><i class="tag same"></i>same as extension</span>
+    </p>
+  </div>
+
+  <div class="sec">
+    <h2>Color</h2>
+    <div class="swatches">
+      <div class="sw"><div style="background: #ffffff;"></div><code><b><i class="tag same"></i>--color-surface</b><span>#ffffff · card, navbar</span></code></div>
+      <div class="sw"><div style="background: #fafafa;"></div><code><b><i class="tag chg"></i>--color-surface-secondary</b><span>#fafafa · was #f9fafb · page</span></code></div>
+      <div class="sw"><div style="background: #f3f4f6;"></div><code><b><i class="tag same"></i>--color-surface-tertiary</b><span>#f3f4f6 · toggle track off</span></code></div>
+      <div class="sw"><div style="background: #e5e5e7;"></div><code><b><i class="tag chg"></i>--color-border</b><span>#e5e5e7 · was #e5e7eb</span></code></div>
+      <div class="sw"><div style="background: #f5f5f7;"></div><code><b><i class="tag chg"></i>--color-border-light</b><span>#f5f5f7 · was #f3f4f6</span></code></div>
+
+      <div class="sw"><div style="background: #1d1d1f;"></div><code><b><i class="tag chg"></i>--color-text-primary</b><span>#1d1d1f · was #111827</span></code></div>
+      <div class="sw"><div style="background: #6e6e73;"></div><code><b><i class="tag chg"></i>--color-text-secondary</b><span>#6e6e73 · was #6b7280</span></code></div>
+      <div class="sw"><div style="background: #a1a1a6;"></div><code><b><i class="tag chg"></i>--color-text-tertiary</b><span>#a1a1a6 · was #9ca3af</span></code></div>
+      <div class="sw"><div style="background: #3b82f6;"></div><code><b><i class="tag same"></i>--color-primary</b><span>#3b82f6 · knob, hover, focus</span></code></div>
+      <div class="sw"><div style="background: #dbeafe;"></div><code><b><i class="tag same"></i>--color-primary-light</b><span>#dbeafe · toggle track on</span></code></div>
+
+      <div class="sw"><div style="background: #86efac;"></div><code><b><i class="tag new"></i>--color-diff-add</b><span>#86efac · added mark</span></code></div>
+      <div class="sw"><div style="background: #fca5a5;"></div><code><b><i class="tag new"></i>--color-diff-del</b><span>#fca5a5 · removed mark</span></code></div>
+      <div class="sw"><div style="background: #dcfce7;"></div><code><b><i class="tag new"></i>--color-diff-row-add</b><span>#dcfce7 · row, adds only</span></code></div>
+      <div class="sw"><div style="background: #fee2e2;"></div><code><b><i class="tag new"></i>--color-diff-row-del</b><span>#fee2e2 · row, removals only</span></code></div>
+      <div class="sw"><div style="background: #fef9c3;"></div><code><b><i class="tag new"></i>--color-diff-row-mix</b><span>#fef9c3 · row, both</span></code></div>
+    </div>
+  </div>
+
+  <div class="cols">
+
+    <div class="sec">
+      <h2>Type</h2>
+      <div class="type">
+        <div><code>40 / 600 / -0.02em</code><span style="font-size: 40px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2;">Paranoid Text Spacing</span></div>
+        <div><code>16 / 400 / 1.6</code><span style="font-size: 16px; color: var(--color-text-secondary);">Description, secondary text</span></div>
+        <div><code>16 / 400 / 1.8</code><span style="font-size: 16px; line-height: 1.8;">當你凝視著 bug，bug 也凝視著你</span></div>
+        <div><code>16 / 700</code><span style="font-size: 16px; font-weight: 700;">pangu.space</span></div>
+        <div><code>16 / 500</code><span style="font-size: 16px; font-weight: 500;">Nav links</span></div>
+        <div><code>14 / 600</code><span style="font-size: 14px; font-weight: 600; color: var(--color-text-secondary);">Pane labels</span></div>
+        <div><code>14 / 500</code><span style="font-size: 14px; font-weight: 500;">Toggle labels, Copy button</span></div>
+        <div><code>14 / 400</code><span style="font-size: 14px; color: var(--color-text-secondary);">Select, footer, note under the card</span></div>
+        <div><code>12 / 400</code><span style="font-size: 12px; color: var(--color-text-secondary);">Legend</span></div>
+      </div>
+      <div class="stack"><code><b style="font-weight: 400; color: var(--color-text-primary);"><i class="tag chg" style="margin-right: 6px;"></i>--font-sans</b><br>-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", <em>"PingFang TC", "Noto Sans TC"</em>, "Noto Sans", sans-serif</code></div>
+    </div>
+
+    <div class="sec">
+      <h2>Diff rows</h2>
+      <div class="diff">
+        <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+        <div class="row del">台北今天 -<span class="d"> </span>3 度</div>
+        <div class="row mix">女朋友今天的氣溫是 -<span class="d"> </span>273.15<span class="a"> </span>度</div>
+        <div class="row">用 pangu.js 就對了</div>
+      </div>
+      <h2>Controls</h2>
+      <div class="parts">
+        <span class="toggle on"><i></i>On</span>
+        <span class="toggle"><i></i>Off</span>
+        <span class="toggle off"><i></i>Disabled</span>
+        <button type="button" class="btn">Copy</button>
+      </div>
+      <h2>Radius and shadow</h2>
+      <div class="radii">
+        <div><i style="border-radius: 6px;"></i><code>--radius-sm 6</code></div>
+        <div><i style="border-radius: 8px;"></i><code>--radius 8</code></div>
+        <div><i style="border-radius: 12px;"></i><code>--radius-lg 12</code></div>
+        <div><i style="border-radius: 12px; box-shadow: var(--shadow-sm);"></i><code>--shadow-sm card</code></div>
+        <div><i style="border-radius: 9999px; width: 36px; border: 0; background: #ffffff; box-shadow: var(--shadow);"></i><code>--shadow knob</code></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec">
+    <h2>Spacing</h2>
+    <div class="space">
+      <div><i style="width: 4px;"></i><code><b><i class="tag same"></i>--spacing-1</b><span>4px</span><span>phone toolbar</span></code></div>
+      <div><i style="width: 8px;"></i><code><b><i class="tag same"></i>--spacing-2</b><span>8px</span><span>hero, logo</span></code></div>
+      <div><i style="width: 12px;"></i><code><b><i class="tag same"></i>--spacing-3</b><span>12px</span><span>toggle, button</span></code></div>
+      <div><i style="width: 16px;"></i><code><b><i class="tag same"></i>--spacing-4</b><span>16px</span><span>card padding</span></code></div>
+      <div><i style="width: 20px;"></i><code><b><i class="tag same"></i>--spacing-5</b><span>20px</span><span>phone footer</span></code></div>
+      <div><i style="width: 24px;"></i><code><b><i class="tag same"></i>--spacing-6</b><span>24px</span><span>nav, toolbar</span></code></div>
+      <div><i style="width: 32px;"></i><code><b><i class="tag same"></i>--spacing-8</b><span>32px</span><span>page gutter</span></code></div>
+      <div><i style="width: 40px;"></i><code><b><i class="tag new"></i>--spacing-10</b><span>40px</span><span>below the tool</span></code></div>
+      <div><i style="width: 48px;"></i><code><b><i class="tag new"></i>--spacing-12</b><span>48px</span><span>above the hero</span></code></div>
+    </div>
+  </div>
+
+  <ul class="rules">
+    <li>Shell max-width 1280, fluid below</li>
+    <li>Phone layout under 640</li>
+    <li>Toggle 44×24, touch targets ≥44 on phone</li>
+    <li>System fonts only, no web fonts</li>
+    <li>Casing in markup, never text-transform</li>
+    <li>No inner max-width, the shell sets width</li>
+    <li>Light only, dark set not designed yet</li>
+    <li>Every gap, padding, margin is a spacing step</li>
+    <li>Control heights are sizes, not spacing</li>
+    <li>Text sizes 12, 14, 16. One headline size, 40, replaces the extension's 32. Revisit when applied there</li>
+  </ul>
+
+</div>
+
+</body>
+</html>

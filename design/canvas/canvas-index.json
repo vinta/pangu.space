@@ -1,0 +1,234 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "AiOn.dc.html": {
+      "h": 900,
+      "title": "Desktop · AI Spacing on · processing",
+      "w": 1280,
+      "x": 1360,
+      "y": 1160
+    },
+    "Main.dc.html": {
+      "h": 900,
+      "title": "Desktop · regex mode",
+      "w": 1280,
+      "x": 0,
+      "y": 1160,
+      "is_interactive": true
+    },
+    "Phone.dc.html": {
+      "h": 1300,
+      "title": "Phone · regex mode",
+      "w": 390,
+      "x": 0,
+      "y": 3480
+    },
+    "Tokens.dc.html": {
+      "h": 1190,
+      "title": "Tokens · Style Q",
+      "w": 1280,
+      "x": 0,
+      "y": -430
+    },
+    "MainOff.dc.html": {
+      "x": 0,
+      "y": 2180,
+      "w": 1280,
+      "h": 900,
+      "title": "Side-by-side · Show diff off",
+      "is_interactive": true
+    },
+    "MainBg.dc.html": {
+      "x": 1360,
+      "y": 2180,
+      "w": 1280,
+      "h": 900,
+      "title": "Desktop · full-line rows (picked)",
+      "is_interactive": true
+    },
+    "StyleP.dc.html": {
+      "x": 0,
+      "y": 9280,
+      "w": 1280,
+      "h": 900,
+      "title": "P · Picked: A + F hero/bg + D diff + popup toggle",
+      "is_interactive": true
+    },
+    "StyleE.dc.html": {
+      "x": 0,
+      "y": 7240,
+      "w": 1280,
+      "h": 900,
+      "title": "E · Soft mint (Diffchecker)",
+      "is_interactive": true
+    },
+    "StyleF.dc.html": {
+      "x": 1360,
+      "y": 7240,
+      "w": 1280,
+      "h": 900,
+      "title": "F · Monochrome, mono labels (Vercel/Geist)",
+      "is_interactive": true
+    },
+    "StyleG.dc.html": {
+      "x": 0,
+      "y": 8260,
+      "w": 1280,
+      "h": 900,
+      "title": "G · Warm paper, humanist (justfont)",
+      "is_interactive": true
+    },
+    "StyleH.dc.html": {
+      "x": 1360,
+      "y": 8260,
+      "w": 1280,
+      "h": 900,
+      "title": "H · Sharp, one loud accent (Bun)",
+      "is_interactive": true
+    },
+    "StyleA.dc.html": {
+      "x": 0,
+      "y": 5200,
+      "w": 1280,
+      "h": 900,
+      "title": "A · Extension",
+      "is_interactive": true
+    },
+    "StyleB.dc.html": {
+      "x": 1360,
+      "y": 5200,
+      "w": 1280,
+      "h": 900,
+      "title": "B · Editor",
+      "is_interactive": true
+    },
+    "StyleC.dc.html": {
+      "x": 0,
+      "y": 6220,
+      "w": 1280,
+      "h": 900,
+      "title": "C · Paper",
+      "is_interactive": true
+    },
+    "StyleD.dc.html": {
+      "x": 1360,
+      "y": 6220,
+      "w": 1280,
+      "h": 900,
+      "title": "D · Bold",
+      "is_interactive": true
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-17T14:30:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "n1": {
+      "color": "blue",
+      "text": "Apply button only appears when AI Spacing is on: that is the network call. Regex mode runs on debounce, no button.",
+      "w": 320,
+      "x": 2720,
+      "y": 1160
+    },
+    "t0": {
+      "kind": "title1",
+      "maxW": 1280,
+      "text": "Tokens · Style Q (current)",
+      "w": 240,
+      "x": 0,
+      "y": -730
+    },
+    "t1": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Round 1 · One direction, two states",
+      "w": 240,
+      "x": 0,
+      "y": 860
+    },
+    "t2": {
+      "kind": "title1",
+      "maxW": 390,
+      "text": "Phone",
+      "w": 240,
+      "x": 0,
+      "y": 3180
+    },
+    "n4": {
+      "color": "blue",
+      "w": 320,
+      "x": 2720,
+      "y": 2180,
+      "text": "Off = plain output box, selectable, no marks, no legend. Right pane becomes a textarea."
+    },
+    "t3": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Round 2 · Style directions, same layout",
+      "w": 240,
+      "x": 0,
+      "y": 4900
+    },
+    "n5": {
+      "color": "blue",
+      "w": 320,
+      "x": 2720,
+      "y": 5200,
+      "text": "Same markup on all four, only tokens differ. A = the extension as is. B = GitHub-ish diff, monospace panes. C = warm paper, serif title, teal, no card border. D = black 2px borders, hard shadow, big title. No web fonts on any: system stacks only."
+    },
+    "n6": {
+      "color": "green",
+      "w": 320,
+      "x": 2720,
+      "y": 7240,
+      "text": "E–H come from live sites, values read from their CSS. E = diffchecker.com (page #f7f9f8, mint #e0f8f3/#a2e5d7, coral #feebe7/#febdb0, shadow not border). F = vercel.com / shadcn (#fafafa, hairline ring, no color accent, mono labels, tight hero). G = justfont.com (#fcfcfc, ink #342c2c, green #66ac35, tracked lighter CJK type, 1.85 line-height). H = bun.com (warm neutral, #24211d, pink #ff1f8f, 3px corners, mono labels)."
+    },
+    "t4": {
+      "kind": "title1",
+      "maxW": 1280,
+      "text": "Round 2 · Picked mix",
+      "w": 240,
+      "x": 0,
+      "y": 8980
+    },
+    "n7": {
+      "color": "blue",
+      "w": 320,
+      "x": 1360,
+      "y": 9280,
+      "text": "A as base. Hero from F (40px, 600, -0.04em). Main background #fafafa from F, navbar stays white. Diff colors from D (#86efac / #fca5a5 marks, #dcfce7 / #fee2e2 / #fef9c3 rows). Disabled toggle as the extension popup: track #f3f4f6, white knob, label #6b7280, no fade. Shell max-width 1280px, fluid below."
+    },
+    "n9": {
+      "color": "green",
+      "w": 320,
+      "x": 1360,
+      "y": -430,
+      "text": "Token names follow the extension's styles.css, values are Q's, so the extension migrates by editing values, not renaming. Orange = the extension's value changes (Tailwind gray to neutral ink). Green = new token, diff only. Left off on purpose: tokens Q never decided (purple secondary, status colors, spacing and text scales, transitions) and the dark set."
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Tokens.dc.html",
+    "AiOn.dc.html",
+    "Phone.dc.html",
+    "MainOff.dc.html",
+    "MainBg.dc.html",
+    "StyleP.dc.html",
+    "StyleE.dc.html",
+    "StyleF.dc.html",
+    "StyleG.dc.html",
+    "StyleH.dc.html",
+    "StyleA.dc.html",
+    "StyleB.dc.html",
+    "StyleC.dc.html",
+    "StyleD.dc.html"
+  ],
+  "pages": [],
+  "title": "pangu.space"
+}

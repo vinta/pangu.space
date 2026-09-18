@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Noto Sans", sans-serif; color: #111827; background: #f9fafb; -webkit-font-smoothing: antialiased; }
+    a { color: #111827; text-decoration: none; } a:hover { color: #3b82f6; }
+    textarea { font: inherit; color: inherit; }
+    textarea:focus { outline: 2px solid #3b82f6; outline-offset: -2px; }
+    .toggle-input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .toggle-switch { position: relative; width: 44px; height: 24px; background: #e5e7eb; border-radius: 9999px; flex-shrink: 0; }
+    .toggle-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: #ffffff; border-radius: 9999px; box-shadow: 0 1px 3px rgb(0 0 0 / 0.15); }
+    .toggle-input:checked + .toggle-switch { background: #dbeafe; }
+    .toggle-input:checked + .toggle-switch::after { background: #3b82f6; transform: translateX(20px); }
+    .toggle-input:disabled + .toggle-switch { background: #f3f4f6; }
+    .toggle-input:disabled + .toggle-switch::after { background: #f9fafb; box-shadow: 0 0 0 1px #e5e7eb; }
+    select { font: inherit; color: inherit; }
+    .hscroll::-webkit-scrollbar { height: 8px; }
+    .hscroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+  </style>
+</helmet>
+<div style="width: 390px; height: 1300px; box-sizing: border-box; display: flex; flex-direction: column; background: #f9fafb;">
+
+  <header style="background: #ffffff; border-bottom: 1px solid #e5e7eb;">
+    <div style="padding: 0 16px; height: 52px; display: flex; align-items: center; justify-content: space-between;">
+      <a href="#top" style="display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700;">
+        <svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true" style="fill: #111827; flex-shrink: 0;"><path d="M31.999,59.971c-0.356,1.319-0.558,2.823-0.558,4.421c0,2.959,0.69,5.6,1.771,7.338c2.34,1.392,4.307,4.215,5.565,7.881c2.568-2.233,7.076-2.299,8.312-2.299h2.938h2.939c1.235,0,5.742,0.065,8.312,2.299c1.258-3.666,3.225-6.489,5.564-7.881c1.08-1.738,1.771-4.379,1.771-7.338c0-1.598-0.201-3.102-0.56-4.421l-0.008-0.027c-0.326-1.338-0.523-2.808-0.523-4.453c0-1.507,0.155-2.929,0.427-4.186c0.094-0.408,0.149-0.822,0.149-1.262c0-2.861-2.157-5.181-4.818-5.181c-1.38,0-2.617,0.625-3.51,1.634l-0.124,0.146c-2.258,2.642-5.694,4.328-9.547,4.328h-0.075h-0.076c-3.851,0-7.288-1.687-9.547-4.328l-0.123-0.146c-0.892-1.009-2.13-1.634-3.511-1.634c-2.66,0-4.817,2.319-4.817,5.181c0,0.36,0.037,0.703,0.103,1.038c0.306,1.311,0.479,2.812,0.479,4.409c0,1.646-0.197,3.115-0.523,4.453L31.999,59.971z M50.027,81.697l-0.146-0.001c0,0-1.831,0.005-5.327,0.245c-3.493,0.24-2.991,4.707-2.493,6.682c0.383,1.511,1.678,3.045,3.059,3.316c2.802,0.37,3.848-0.984,3.848-2.599c0-1.058,0.135-1.687-1.684-2.665c-0.687-0.358-1.132-0.938-1.089-1.834c1.177,0.196,2.463,0.304,3.808,0.304h0.024h0.024c1.346,0,2.631-0.107,3.809-0.304c0.044,0.896-0.402,1.476-1.09,1.834c-1.817,0.979-1.682,1.607-1.682,2.665c0,1.614,1.045,2.969,3.847,2.599c1.381-0.271,2.677-1.806,3.058-3.316c0.499-1.975,1.002-6.441-2.493-6.682c-3.494-0.24-5.327-0.245-5.327-0.245L50.027,81.697z M27.806,57.569c-1.035,1.629-1.456,3.95-0.994,6.438c0.603,3.244,2.537,5.877,4.816,6.918L27.806,57.569z M68.478,70.754c2.126-1.14,3.898-3.667,4.468-6.746c0.433-2.32,0.095-4.496-0.793-6.1L68.478,70.754z M3.068,38.634C3.068,17.527,24.08,0.417,50,0.417c25.919,0,46.931,17.11,46.931,38.217c0,16.064-12.171,29.812-29.411,35.467l-0.75,2.62c-1.64,6.162-2.461,11.838-3.714,14.512c-1.032,4.364-6.436,8.069-12.889,8.069l-0.14-0.001l-0.139,0.001c-6.455,0-11.856-3.705-12.89-8.069c-1.252-2.674-2.073-8.35-3.713-14.512l-0.744-2.6C15.268,68.48,3.068,54.718,3.068,38.634z M37.108,63.135c0.499-0.494,1.988-1.79,4.125-2.088c2.394-0.333,3.649,1.688,3.873,2.088H37.108z M35.153,59.545c1.141-1.392,3.199-2.401,5.605-2.57c1.942-0.136,3.735,0.303,5.052,1.119l1.409,3.586c-1.683-1.59-4.551-2.709-7.667-2.803C37.894,58.826,36.388,59.076,35.153,59.545z M64.604,59.545c-1.234-0.469-2.739-0.719-4.398-0.668c-3.116,0.094-5.984,1.213-7.668,2.803l1.409-3.586c1.316-0.816,3.11-1.255,5.053-1.119C61.405,57.144,63.464,58.153,64.604,59.545z M62.649,63.135h-7.997c0.222-0.4,1.479-2.421,3.872-2.088C60.662,61.345,62.15,62.641,62.649,63.135z"></path></svg>
+        <span>pangu.space</span>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 14px; font-size: 15px; font-weight: 500;">
+        <a href="#api">API</a>
+        <a href="https://github.com/vinta/pangu.space">GitHub</a>
+        <select aria-label="Language" style="height: 32px; padding: 0 24px 0 8px; font-size: 14px; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px;">
+          <option>English</option>
+          <option>繁體中文</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main style="flex-grow: 1;">
+    <div style="padding: 32px 16px 32px; display: flex; flex-direction: column; gap: 24px;">
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; text-wrap: balance;">Opinionated Paranoid Text Spacing</h1>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #6b7280; text-wrap: pretty;">Automatically inserts whitespace between CJK (Chinese, Japanese, Korean) and ANS (alphabetical letters, numerical digits and symbols).</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+      <section style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 1px 2px rgb(0 0 0 / 0.05); display: flex; flex-direction: column;">
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; padding: 8px 16px; border-bottom: 1px solid #e5e7eb;">
+          <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; flex-basis: 100%;">
+            <select aria-label="Library" style="width: 100%; height: 40px; padding: 0 28px 0 12px; font-size: 15px; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px;">
+              <option>pangu.js</option>
+            </select>
+          </label>
+          <label style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; cursor: not-allowed; position: relative;">
+            <input type="checkbox" class="toggle-input" disabled="{{ true }}">
+            <span class="toggle-switch"></span>
+            <span style="font-size: 15px; font-weight: 500; color: #9ca3af;">AI Spacing</span>
+          </label>
+          <label style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; position: relative; margin-left: auto;">
+            <input type="checkbox" class="toggle-input" checked="{{ true }}">
+            <span class="toggle-switch"></span>
+            <span style="font-size: 15px; font-weight: 500; color: #111827;">Show diff</span>
+          </label>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: flex; flex-direction: column; border-bottom: 1px solid #e5e7eb;">
+            <div style="display: flex; align-items: center; justify-content: space-between; height: 40px; padding: 0 16px; border-bottom: 1px solid #f3f4f6;">
+              <label for="source-m" style="font-size: 13px; font-weight: 600; color: #6b7280;">Original</label>
+            </div>
+            <textarea id="source-m" rows="8" wrap="off" class="hscroll" style="margin: 0; padding: 16px; font-size: 16px; line-height: 1.8; border: 0; background: transparent; resize: none; white-space: pre; overflow-x: auto;" value="{{source}}" onChange="{{setSource}}"></textarea>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; justify-content: space-between; height: 44px; padding: 0 8px 0 16px; border-bottom: 1px solid #f3f4f6;">
+              <span style="font-size: 13px; font-weight: 600; color: #6b7280;">Spaced</span>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <button type="button" style="height: 36px; padding: 0 12px; font: inherit; font-size: 14px; font-weight: 500; color: #111827; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 6px; cursor: pointer;">Copy</button>
+              </div>
+            </div>
+            <div class="hscroll" style="padding: 16px; font-size: 16px; line-height: 1.8; white-space: pre; overflow-x: auto;">當你凝視著<span style="background: #bbf7d0; border-radius: 2px;"> </span>bug，bug<span style="background: #bbf7d0; border-radius: 2px;"> </span>也凝視著你
+所以,<span style="background: #bbf7d0; border-radius: 2px;"> </span>請問<span style="background: #bbf7d0; border-radius: 2px;"> </span>Jackey<span style="background: #bbf7d0; border-radius: 2px;"> </span>的鼻子有幾個?<span style="background: #bbf7d0; border-radius: 2px;"> </span>3.14<span style="background: #bbf7d0; border-radius: 2px;"> </span>個!
+用 pangu.js 就對了
+請在<span style="background: #bbf7d0; border-radius: 2px;"> </span>2026<span style="background: #bbf7d0; border-radius: 2px;"> </span>年<span style="background: #bbf7d0; border-radius: 2px;"> </span>9<span style="background: #bbf7d0; border-radius: 2px;"> </span>月<span style="background: #bbf7d0; border-radius: 2px;"> </span>17<span style="background: #bbf7d0; border-radius: 2px;"> </span>日前完成
+時間:<span style="background: #bbf7d0; border-radius: 2px;"> </span>3<span style="background: #bbf7d0; border-radius: 2px;"> </span>點
+女朋友今天的氣溫是 -<span style="background: #fecaca; border-radius: 2px;"> </span>273.15<span style="background: #bbf7d0; border-radius: 2px;"> </span>度
+台北今天 -<span style="background: #fecaca; border-radius: 2px;"> </span>3 度
+漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在<span style="background: #bbf7d0; border-radius: 2px;"> </span>34<span style="background: #bbf7d0; border-radius: 2px;"> </span>歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。</div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 12px 16px; border-top: 1px solid #e5e7eb; background: #f9fafb; border-radius: 0 0 12px 12px;">
+          <div style="display: flex; align-items: center; gap: 14px; font-size: 12px; color: #6b7280;">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 12px; background: #bbf7d0; border-radius: 2px;"></span>Added</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 12px; background: #fecaca; border-radius: 2px;"></span>Removed</span>
+          </div>
+        </div>
+      </section>
+      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6b7280;">Nothing is sent to the cloud, unless you enable AI Spacing.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #e5e7eb;">
+    <div style="padding: 20px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; font-size: 14px; color: #6b7280;">
+      <span>pangu.space</span>
+      <nav style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-left: auto;">
+        <a href="https://vinta.ws/" style="color: #6b7280;">Made by Vinta</a>
+        <span aria-hidden="true" style="color: #9ca3af;">/</span>
+        <a href="https://github.com/vinta/pangu.space" style="color: #6b7280;">GitHub</a>
+        <span aria-hidden="true" style="color: #9ca3af;">/</span>
+        <a href="https://x.com/vinta" style="color: #6b7280;">X (Twitter)</a>
+      </nav>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":390,"height":1300}}'>
+const SAMPLE_IN = "當你凝視著bug，bug也凝視著你\n所以,請問Jackey的鼻子有幾個?3.14個!\n用 pangu.js 就對了\n請在2026年9月17日前完成\n時間:3點\n女朋友今天的氣溫是 - 273.15度\n台北今天 - 3 度\n漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在34歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。";
+const SAMPLE_OUT = "當你凝視著 bug，bug 也凝視著你\n所以, 請問 Jackey 的鼻子有幾個? 3.14 個!\n用 pangu.js 就對了\n請在 2026 年 9 月 17 日前完成\n時間: 3 點\n女朋友今天的氣溫是 -273.15 度\n台北今天 -3 度\n漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在 34 歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。";
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { source: null };
+  }
+  renderVals() {
+    return {
+      source: this.state.source ?? SAMPLE_IN,
+      spaced: SAMPLE_OUT,
+      setSource: (e) => this.setState({ source: e.target.value }),
+    };
+  }
+}
+</script>
+</body>
+</html>
