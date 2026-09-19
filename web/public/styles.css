@@ -467,7 +467,19 @@ main .shell {
   background: var(--color-surface-secondary);
 }
 
+.strip-status {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-info);
+}
+
+.strip-status.danger {
+  color: var(--color-danger);
+}
+
 .legend {
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: var(--spacing-3);
@@ -615,6 +627,13 @@ main .shell {
 
   .strip {
     justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-1) var(--spacing-6);
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .legend {
+    margin-left: 0;
   }
 
   .foot .shell {

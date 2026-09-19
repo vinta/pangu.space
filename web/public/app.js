@@ -155,6 +155,12 @@ function renderSpaced(text) {
   diff.replaceChildren(...spacedText.split("\n").map((line, i) => renderRow(before[i], line)));
 }
 
+// Stays in the DOM like the progress status. The quota is expected and fixes itself, so only a failure reads as danger
+function showAiStatus(key) {
+  aiStatus.textContent = key ? messages[key] : "";
+  aiStatus.classList.toggle("danger", key === "status_ai_failed");
+}
+
 let aiTimer;
 let aiController;
 let aiProgressTimer;
@@ -173,8 +179,8 @@ function requestAiSpacing() {
   clearTimeout(aiTimer);
   aiController?.abort();
   showAiProgress(null);
-  aiStatus.hidden = true;
   if (!aiSpacing.checked) {
+    showAiStatus(null);
     return;
   }
   // Longer than the render debounce, since every request can cost model calls
@@ -192,21 +198,22 @@ function requestAiSpacing() {
       if (response.ok) {
         const { text, candidates } = await response.json();
         renderSpaced(text);
+        // An error stays up until an answer lands, so typing does not make it blink
+        showAiStatus(null);
         // No candidates means the model was never asked
         showAiProgress(candidates.length > 0 ? "status_ai_done" : null);
         aiProgressTimer = setTimeout(() => showAiProgress(null), 1500);
         return;
       }
-      aiStatus.textContent = response.status === 429 ? messages.status_ai_quota : messages.status_ai_failed;
+      showAiStatus(response.status === 429 ? "status_ai_quota" : "status_ai_failed");
     } catch (error) {
       // The newer request already owns the status
       if (error.name === "AbortError") {
         return;
       }
-      aiStatus.textContent = messages.status_ai_failed;
+      showAiStatus("status_ai_failed");
     }
     showAiProgress(null);
-    aiStatus.hidden = false;
   }, 800);
 }
 
