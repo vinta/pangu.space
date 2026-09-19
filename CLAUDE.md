@@ -2,10 +2,10 @@
 
 ## Design
 
-- `web/public/tokens.css` is the source of truth for design tokens. Names follow the pangu.js extension's `styles.css` so the extension migrates by editing values. The Tokens board on the canvas documents it; change the file first, then the board
-- Design sources live in `./design/` and are committed: `design/canvas/` holds the board template, generators, and `project/`, a mirror of the published canvas artifact; `design/preview/` holds standalone HTML renders. Publish boards with root `design/canvas` so paths stay `project/<Name>.dc.html`
-- The pangu Design System artifact is https://claude.ai/artifact/758ABWKCNd8AQ5qxYRmqBm and its sources live in `design/system/`. `node build.mjs` there generates `project/tokens.json` and `project/components/bundle.css` from `web/public/`, so never edit those two by hand. Publish with root `design/system`, and send `project/design-system.json` last. The design canvas holds a copy under `project/ds/pangu/`; re-copy it after the system changes
-- After a token change, run `node design/system/check-drift.mjs`. It fails when the pangu.js extension's `styles.css` (sibling checkout `../pangu.js`) lacks a shared token or holds a different value
+- `web/public/tokens.css` is the source of truth for design tokens. The Tokens board on the canvas documents it; change the file first, then the board
+- `design/canvas/project/` mirrors the published canvas artifact. Publish boards with root `design/canvas` so paths stay `project/<Name>.dc.html`
+- The pangu Design System artifact's sources live in `design/system/`. `node build.mjs` there generates `project/tokens.json` and `project/components/bundle.css` from `web/public/`, so never edit those two by hand. Publish with root `design/system`, and send `project/design-system.json` last. Then copy `project/tokens.json` to `design/canvas/project/ds/pangu/tokens.json`
+- After a token change, run `node design/system/check-drift.mjs`. It fails when the pangu.js extension's `styles.css` (sibling checkout `pangu.js`) lacks a shared token or holds a different value
 
 ## Gotchas
 
