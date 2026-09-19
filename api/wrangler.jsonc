@@ -6,6 +6,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
   "routes": [{ "pattern": "api.pangu.space", "custom_domain": true }],
+  "ai": { "binding": "AI", "remote": true },
   "observability": {
     "enabled": true,
     "logs": { "enabled": true },
