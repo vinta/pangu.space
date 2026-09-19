@@ -54,6 +54,20 @@
       "h": 1300,
       "title": "Phone · Q",
       "is_interactive": true
+    },
+    "AiProcessing.dc.html": {
+      "x": 0,
+      "y": 7220,
+      "w": 1600,
+      "h": 1360,
+      "title": "AI Spacing · processing status options (decided: E, words + hairline)"
+    },
+    "AiErrors.dc.html": {
+      "x": 1680,
+      "y": 7220,
+      "w": 1600,
+      "h": 2920,
+      "title": "AI Spacing · API error options (decided: A4, fixed bottom strip)"
     }
   },
   "createdOnFiles": {
@@ -132,6 +146,14 @@
       "x": 3190,
       "y": 2050,
       "text": "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing started at -0.02em and was dropped later: negative tracking squeezes Chinese glyphs. Blue accent, diff colors, toggle unchanged."
+    },
+    "t7": {
+      "kind": "title1",
+      "maxW": 3280,
+      "text": "Round 5 · AI Spacing status",
+      "w": 240,
+      "x": 0,
+      "y": 6920
     }
   },
   "order": [
@@ -141,7 +163,9 @@
     "Motion.dc.html",
     "DiffRemoved.dc.html",
     "StyleQ.dc.html",
-    "PhoneQ.dc.html"
+    "PhoneQ.dc.html",
+    "AiProcessing.dc.html",
+    "AiErrors.dc.html"
   ],
   "pages": [],
   "title": "pangu.space"

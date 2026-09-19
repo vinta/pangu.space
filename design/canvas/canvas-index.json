@@ -38,6 +38,20 @@
       "w": 1600,
       "h": 930,
       "title": "Diff · removed space options (decided: B, row tint only)"
+    },
+    "AiProcessing.dc.html": {
+      "x": 0,
+      "y": 7220,
+      "w": 1600,
+      "h": 1360,
+      "title": "AI Spacing · processing status options (decided: E, words + hairline)"
+    },
+    "AiErrors.dc.html": {
+      "x": 1680,
+      "y": 7220,
+      "w": 1600,
+      "h": 2920,
+      "title": "AI Spacing · API error options (decided: A4, fixed bottom strip)"
     }
   },
   "createdOnFiles": {
@@ -109,6 +123,14 @@
       "w": 240,
       "x": 0,
       "y": 5390
+    },
+    "t7": {
+      "kind": "title1",
+      "maxW": 3280,
+      "text": "Round 5 · AI Spacing status",
+      "w": 240,
+      "x": 0,
+      "y": 6920
     }
   },
   "order": [
@@ -116,7 +138,9 @@
     "StyleP.dc.html",
     "DiffCue.dc.html",
     "Motion.dc.html",
-    "DiffRemoved.dc.html"
+    "DiffRemoved.dc.html",
+    "AiProcessing.dc.html",
+    "AiErrors.dc.html"
   ],
   "pages": [],
   "title": "pangu.space"

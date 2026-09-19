@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI Spacing processing options</title>
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    :root {
+      --color-primary: #3b82f6; --color-primary-light: #dbeafe;
+      --color-surface: #ffffff; --color-surface-secondary: #fafafa; --color-surface-tertiary: #f3f4f6;
+      --color-border: #e5e5e7; --color-border-light: #f5f5f7;
+      --color-text-primary: #1d1d1f; --color-text-secondary: #6e6e73; --color-text-tertiary: #a1a1a6;
+      --color-danger: #b91c1c; --color-danger-light: #fee2e2; --color-danger-border: #fecaca;
+      --color-info: #0369a1; --color-info-light: #e0f2fe; --color-info-border: #7dd3fc;
+      --color-success: #15803d;
+      --color-diff-add: #86efac; --color-diff-row-add: #dcfce7;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang TC", "Noto Sans TC", "Noto Sans", sans-serif;
+      --radius-sm: 6px; --radius: 8px; --radius-lg: 12px; --radius-full: 9999px;
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body { margin: 0; font-family: var(--font-sans); color: var(--color-text-primary); background: var(--color-surface); -webkit-font-smoothing: antialiased; }
+    .head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+    .head h1 { margin: 0; font-size: 22px; font-weight: 600; }
+    .head p { margin: 0; font-size: 14px; color: var(--color-text-secondary); }
+    h2 { margin: 0; font-size: 14px; font-weight: 600; }
+    .desc { margin: 0; font-size: 14px; line-height: 1.5; color: var(--color-text-secondary); }
+    .board { width: 1600px; box-sizing: border-box; padding: 40px 48px; display: flex; flex-direction: column; gap: 24px; background: var(--color-surface-secondary); }
+    .cols, .opt { display: grid; grid-template-columns: 260px repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .cols { font-size: 14px; font-weight: 600; color: var(--color-text-secondary); }
+    .opt { align-items: start; }
+    .info { display: flex; flex-direction: column; gap: 8px; }
+    .under { display: flex; flex-direction: column; }
+
+    /* The site's own rules, from web/public/styles.css */
+    .card { position: relative; display: flex; flex-direction: column; overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+    .toolbar { display: flex; align-items: center; gap: 24px; padding: 12px 16px; border-bottom: 1px solid var(--color-border); }
+    .select { display: inline-flex; align-items: center; height: 32px; box-sizing: border-box; padding: 0 28px 0 12px; font-size: 16px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); position: relative; }
+    .select::after { content: ""; position: absolute; right: 10px; top: 11px; width: 6px; height: 6px; border-right: 1.5px solid var(--color-text-secondary); border-bottom: 1.5px solid var(--color-text-secondary); transform: rotate(45deg); }
+    .toggle { display: inline-flex; align-items: center; gap: 8px; }
+    .toggle.end { margin-left: auto; }
+    .toggle-label { font-size: 16px; font-weight: 500; white-space: nowrap; }
+    .toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; background: var(--color-primary-light); border-radius: var(--radius-full); }
+    .toggle-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: var(--color-primary); border-radius: var(--radius-full); box-shadow: var(--shadow); transform: translateX(20px); }
+    .toggle.off .toggle-switch { background: var(--color-surface-tertiary); box-shadow: inset 0 0 0 1px var(--color-border); }
+    .toggle.off .toggle-switch::after { background: var(--color-surface); transform: none; }
+    .panes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pane { display: flex; flex-direction: column; position: relative; }
+    .pane.left { border-right: 1px solid var(--color-border); }
+    .pane-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 40px; padding: 0 8px 0 16px; border-bottom: 1px solid var(--color-border-light); font-size: 16px; font-weight: 600; color: var(--color-text-secondary); }
+    .btn { display: inline-flex; align-items: center; height: 32px; box-sizing: border-box; padding: 0 12px; font-size: 16px; font-weight: 500; color: var(--color-text-primary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+    .diff { display: flex; flex-direction: column; padding: 16px 0; font-size: 16px; line-height: 1.8; overflow: hidden; }
+    .row { padding: 0 16px; white-space: pre; }
+    .row.add { background: var(--color-diff-row-add); }
+    .a { background: var(--color-diff-add); border-radius: 2px; }
+    .note { margin: 12px 0 0; text-align: center; font-size: 16px; line-height: 1.5; color: var(--color-text-secondary); }
+
+    .status { margin-left: auto; font-size: 16px; font-weight: 400; color: var(--color-text-secondary); white-space: nowrap; }
+    .status.dots::after { content: "…"; animation: blink 1.2s steps(2, jump-none) infinite; }
+    .status.done { color: var(--color-success); }
+    .tag { margin-left: 4px; font-size: 16px; font-weight: 400; color: var(--color-text-secondary); }
+    .bar { position: absolute; left: 0; right: 0; top: 40px; height: 2px; overflow: hidden; background: var(--color-primary-light); }
+    .bar::after { content: ""; position: absolute; top: 0; bottom: 0; width: 40%; background: var(--color-primary); animation: slide 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+    .dim { opacity: 0.45; }
+    @keyframes blink { from { opacity: 1; } to { opacity: 0.2; } }
+    @keyframes slide { from { left: -40%; } to { left: 100%; } }
+    @media (prefers-reduced-motion: reduce) { .status.dots::after, .bar::after { animation: none; } .bar::after { left: 0; width: 100%; opacity: 0.5; } }
+  </style>
+</helmet>
+<div class="board" style="width: 1600px; height: 1360px;">
+  <div class="head">
+    <h1>AI Spacing · while the model is thinking</h1>
+    <p>The rules' spacing is on screen at once. The model's answer lands 1 to 5 seconds later. Nothing shows for the first 300ms.</p>
+  </div>
+  <div class="cols"><span></span><span>Waiting</span><span>Answer landed</span></div>
+
+  <div class="opt">
+    <div class="info"><h2>A · Words in the pane head</h2><p class="desc">Status sits beside the text it is about, in the slot between the label and Copy. Turns into a green confirmation for 1.5s, then goes away. Works with motion off, and a screen reader reads the same words.</p></div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="status dots">Asking AI</span><span class="btn">Copy</span></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-<span class="a"> </span>273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="status done">AI spaced</span><span class="btn">Copy</span></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2<span class="a"> </span>+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="info"><h2>B · Words beside the toggle</h2><p class="desc">Status sits beside the control that caused it. Far from the text that is about to change, and on a phone the toolbar wraps.</p></div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span><span class="tag">· asking…</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="btn">Copy</span></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-<span class="a"> </span>273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="btn">Copy</span></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2<span class="a"> </span>+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="info"><h2>C · Hairline under the pane head</h2><p class="desc">A 2px bar in the accent sweeps across the Spaced pane. No words to translate. With motion off it is a still line, and it needs hidden text for screen readers anyway.</p></div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="btn">Copy</span></div>
+            <div class="bar"></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-<span class="a"> </span>273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="btn">Copy</span></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2<span class="a"> </span>+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="info"><h2>D · Dim the text until it lands</h2><p class="desc">The whole pane says it is not final. But the rules already got most lines right, and dimmed text fails the contrast floor while you read it.</p></div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="btn">Copy</span></div>
+            <div class="diff dim">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-<span class="a"> </span>273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="btn">Copy</span></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2<span class="a"> </span>+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="opt">
+    <div class="info"><h2>E · A + C together</h2><p class="desc">The bar draws the eye, the words say what is happening and confirm the swap.</p></div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="status dots">Asking AI</span><span class="btn">Copy</span></div>
+            <div class="bar"></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-<span class="a"> </span>273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="under">
+      <div class="card">
+        <div class="toolbar">
+          <span class="select">pangu.js</span>
+          <span class="toggle "><span class="toggle-switch"></span><span class="toggle-label">AI Spacing</span></span>
+          <span class="toggle end "><span class="toggle-switch"></span><span class="toggle-label">Show diff</span></span>
+        </div>
+        <div class="panes">
+          <div class="pane left">
+            <div class="pane-head"><span>Original</span></div>
+            <div class="diff">
+            <div class="row">女朋友今天的氣溫是-273.15度</div>
+            <div class="row">煮過頭2+資料片超棒</div>
+            <div class="row">當你凝視著bug，bug也凝視著你</div>
+            </div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span>Spaced</span><span class="status done">AI spaced</span><span class="btn">Copy</span></div>
+            <div class="diff ">
+            <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-273.15<span class="a"> </span>度</div>
+            <div class="row add">煮過頭<span class="a"> </span>2<span class="a"> </span>+<span class="a"> </span>資料片超棒</div>
+            <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1360}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
