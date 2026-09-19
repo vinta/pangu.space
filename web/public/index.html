@@ -69,10 +69,12 @@
               <div class="pane">
                 <div class="pane-head">
                   <span id="spaced-label" data-i18n="spaced">Spaced</span>
+                  <span id="ai-progress" class="pane-status" role="status"></span>
                   <button id="copy" type="button" class="btn btn-copy">
                     <span class="when-idle" data-i18n="copy">Copy</span>
                     <span class="when-copied" aria-hidden="true" data-i18n="copied">Copied</span>
                   </button>
+                  <div id="ai-bar" class="pane-bar" hidden></div>
                 </div>
                 <div id="diff" class="diff hscroll" role="group" aria-labelledby="spaced-label"></div>
                 <textarea id="spaced" class="text hscroll" wrap="off" readonly aria-labelledby="spaced-label" hidden></textarea>

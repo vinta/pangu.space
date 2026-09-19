@@ -19,6 +19,8 @@ const ZH_TW = {
   note: "除非你啟用空格之神 AI，否則沒有任何資料會被上傳到雲端。啟用之後，文字會送到 Cloudflare Workers AI，也可能留在紀錄裡。",
   status_copied: "已複製到剪貼簿",
   status_copy_failed: "複製失敗，請選取文字後手動複製",
+  status_ai_asking: "正在請示空格之神",
+  status_ai_done: "空格之神處理好了",
   status_ai_quota: "空格之神 AI 今天的免費額度用完了，UTC 00:00 重置。先顯示一般的結果",
   status_ai_failed: "空格之神 AI 暫時無法使用，先顯示一般的結果",
 };
@@ -27,6 +29,8 @@ const ZH_TW = {
 const EN = {
   status_copied: "Copied to clipboard",
   status_copy_failed: "Copy failed. Select the text and copy it manually",
+  status_ai_asking: "Asking AI",
+  status_ai_done: "AI spaced",
   status_ai_quota: "AI Spacing is out of free quota until 00:00 UTC. Showing the regular spacing",
   status_ai_failed: "AI Spacing is unavailable right now. Showing the regular spacing",
 };
@@ -41,6 +45,8 @@ const spaced = document.getElementById("spaced");
 const legend = document.getElementById("legend");
 const aiSpacing = document.getElementById("ai-spacing");
 const aiStatus = document.getElementById("ai-status");
+const aiProgress = document.getElementById("ai-progress");
+const aiBar = document.getElementById("ai-bar");
 const showDiff = document.getElementById("show-diff");
 const copy = document.getElementById("copy");
 const status = document.getElementById("status");
@@ -151,11 +157,22 @@ function renderSpaced(text) {
 
 let aiTimer;
 let aiController;
+let aiProgressTimer;
+
+// The element stays in the DOM and only its text changes, or screen readers miss the announcement
+function showAiProgress(key) {
+  clearTimeout(aiProgressTimer);
+  aiProgress.textContent = key ? messages[key] : "";
+  aiProgress.classList.toggle("asking", key === "status_ai_asking");
+  aiProgress.classList.toggle("done", key === "status_ai_done");
+  aiBar.hidden = key !== "status_ai_asking";
+}
 
 // The rules' spacing stays on screen until the model answers, and for good when it fails
 function requestAiSpacing() {
   clearTimeout(aiTimer);
   aiController?.abort();
+  showAiProgress(null);
   aiStatus.hidden = true;
   if (!aiSpacing.checked) {
     return;
@@ -163,6 +180,8 @@ function requestAiSpacing() {
   // Longer than the render debounce, since every request can cost model calls
   aiTimer = setTimeout(async () => {
     aiController = new AbortController();
+    // A fast answer shows nothing, so the status never flickers
+    aiProgressTimer = setTimeout(() => showAiProgress("status_ai_asking"), 300);
     try {
       const response = await fetch(AI_SPACING_URL, {
         method: "POST",
@@ -171,16 +190,22 @@ function requestAiSpacing() {
         signal: aiController.signal,
       });
       if (response.ok) {
-        renderSpaced((await response.json()).text);
+        const { text, candidates } = await response.json();
+        renderSpaced(text);
+        // No candidates means the model was never asked
+        showAiProgress(candidates.length > 0 ? "status_ai_done" : null);
+        aiProgressTimer = setTimeout(() => showAiProgress(null), 1500);
         return;
       }
       aiStatus.textContent = response.status === 429 ? messages.status_ai_quota : messages.status_ai_failed;
     } catch (error) {
+      // The newer request already owns the status
       if (error.name === "AbortError") {
         return;
       }
       aiStatus.textContent = messages.status_ai_failed;
     }
+    showAiProgress(null);
     aiStatus.hidden = false;
   }, 800);
 }

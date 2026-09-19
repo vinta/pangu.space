@@ -258,15 +258,68 @@ main .shell {
 }
 
 .pane-head {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--spacing-3);
   height: 40px;
   padding: 0 var(--spacing-2) 0 var(--spacing-4);
   border-bottom: 1px solid var(--color-border-light);
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--color-text-secondary);
+}
+
+.pane-status {
+  margin-left: auto;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.pane-status.asking::after {
+  content: "…";
+  animation: blink 1.2s steps(2, jump-none) infinite;
+}
+
+.pane-status.done {
+  color: var(--color-success);
+}
+
+/* Sits on the pane head's bottom border, so it takes no room */
+.pane-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  background: var(--color-primary-light);
+}
+
+.pane-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  background: var(--color-primary);
+  animation: sweep 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes blink {
+  to {
+    opacity: 0.2;
+  }
+}
+
+@keyframes sweep {
+  from {
+    left: -40%;
+  }
+  to {
+    left: 100%;
+  }
 }
 
 .btn {
@@ -584,5 +637,13 @@ main .shell {
   ::before,
   ::after {
     transition: none !important;
+    animation: none !important;
+  }
+
+  /* A still line stands in for the sweep */
+  .pane-bar::after {
+    left: 0;
+    width: 100%;
+    opacity: 0.5;
   }
 }
