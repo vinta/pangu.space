@@ -45,7 +45,7 @@
                 <option>pangu.js</option>
               </select>
               <label class="toggle">
-                <input type="checkbox" class="toggle-input sr-only" disabled />
+                <input id="ai-spacing" type="checkbox" class="toggle-input sr-only" />
                 <span class="toggle-switch"></span>
                 <span class="toggle-label" data-i18n="ai_spacing">AI Spacing</span>
               </label>
@@ -86,7 +86,8 @@
               </div>
             </div>
           </section>
-          <p class="note" data-i18n="note">Nothing leaves your machine, unless you enable AI Spacing.</p>
+          <p class="note" data-i18n="note">Nothing leaves your machine, unless you enable AI Spacing. Then your text goes to Cloudflare Workers AI and may be kept in logs.</p>
+          <p id="ai-status" class="note" role="status" hidden></p>
           <p id="status" class="sr-only" role="status"></p>
         </div>
       </div>

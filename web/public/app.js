@@ -16,16 +16,22 @@ const ZH_TW = {
   copied: "已複製",
   added: "新增空格",
   removed: "移除空格",
-  note: "除非你啟用空格之神 AI，否則沒有任何資料會被上傳到雲端。",
+  note: "除非你啟用空格之神 AI，否則沒有任何資料會被上傳到雲端。啟用之後，文字會送到 Cloudflare Workers AI，也可能留在紀錄裡。",
   status_copied: "已複製到剪貼簿",
   status_copy_failed: "複製失敗，請選取文字後手動複製",
+  status_ai_quota: "空格之神 AI 今天的免費額度用完了，UTC 00:00 重置。先顯示一般的結果",
+  status_ai_failed: "空格之神 AI 暫時無法使用，先顯示一般的結果",
 };
 
-// English lives in the markup; only the two status lines have no element of their own
+// English lives in the markup; only the status lines have no element of their own
 const EN = {
   status_copied: "Copied to clipboard",
   status_copy_failed: "Copy failed. Select the text and copy it manually",
+  status_ai_quota: "AI Spacing is out of free quota until 00:00 UTC. Showing the regular spacing",
+  status_ai_failed: "AI Spacing is unavailable right now. Showing the regular spacing",
 };
+
+const AI_SPACING_URL = `${location.hostname === "localhost" ? "http://localhost:8787" : "https://api.pangu.space"}/text?feature=ai-spacing`;
 
 const I18N_ATTRS = ["aria-label", "placeholder"];
 
@@ -33,6 +39,8 @@ const source = document.getElementById("source");
 const diff = document.getElementById("diff");
 const spaced = document.getElementById("spaced");
 const strip = document.getElementById("strip");
+const aiSpacing = document.getElementById("ai-spacing");
+const aiStatus = document.getElementById("ai-status");
 const showDiff = document.getElementById("show-diff");
 const copy = document.getElementById("copy");
 const status = document.getElementById("status");
@@ -133,12 +141,53 @@ function renderRow(before, after) {
   return row;
 }
 
-function render() {
-  spacedText = pangu.spaceText(source.value);
+function renderSpaced(text) {
+  spacedText = text;
   spaced.value = spacedText;
-  // spaceText never adds or removes a line break, so lines pair up by index
+  // Spacing never adds or removes a line break, so lines pair up by index
   const before = source.value.split("\n");
   diff.replaceChildren(...spacedText.split("\n").map((line, i) => renderRow(before[i], line)));
+}
+
+let aiTimer;
+let aiController;
+
+// The rules' spacing stays on screen until the model answers, and for good when it fails
+function requestAiSpacing() {
+  clearTimeout(aiTimer);
+  aiController?.abort();
+  aiStatus.hidden = true;
+  if (!aiSpacing.checked) {
+    return;
+  }
+  // Longer than the render debounce, since every request can cost model calls
+  aiTimer = setTimeout(async () => {
+    aiController = new AbortController();
+    try {
+      const response = await fetch(AI_SPACING_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: source.value }),
+        signal: aiController.signal,
+      });
+      if (response.ok) {
+        renderSpaced((await response.json()).text);
+        return;
+      }
+      aiStatus.textContent = response.status === 429 ? messages.status_ai_quota : messages.status_ai_failed;
+    } catch (error) {
+      if (error.name === "AbortError") {
+        return;
+      }
+      aiStatus.textContent = messages.status_ai_failed;
+    }
+    aiStatus.hidden = false;
+  }, 800);
+}
+
+function render() {
+  renderSpaced(pangu.spaceText(source.value));
+  requestAiSpacing();
 }
 
 function spacedPane() {
@@ -178,6 +227,11 @@ for (const pane of [diff, spaced]) {
   pane.addEventListener("scroll", () => syncScrollLeft(pane, source));
 }
 
+aiSpacing.addEventListener("change", () => {
+  save("aiSpacing", aiSpacing.checked);
+  render();
+});
+
 showDiff.addEventListener("change", () => {
   save("showDiff", showDiff.checked);
   applyShowDiff();
@@ -207,6 +261,7 @@ copy.addEventListener("click", async () => {
 
 collectEnglish();
 applyLanguage(load("lang") ?? (navigator.languages.some((code) => code.toLowerCase().startsWith("zh")) ? "zh-TW" : "en"));
+aiSpacing.checked = load("aiSpacing") === "true";
 showDiff.checked = load("showDiff") !== "false";
 applyShowDiff();
 render();
