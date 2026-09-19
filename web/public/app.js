@@ -38,7 +38,7 @@ const I18N_ATTRS = ["aria-label", "placeholder"];
 const source = document.getElementById("source");
 const diff = document.getElementById("diff");
 const spaced = document.getElementById("spaced");
-const strip = document.getElementById("strip");
+const legend = document.getElementById("legend");
 const aiSpacing = document.getElementById("ai-spacing");
 const aiStatus = document.getElementById("ai-status");
 const showDiff = document.getElementById("show-diff");
@@ -211,7 +211,8 @@ function syncScrollLeft(scrolled, follower) {
 
 function applyShowDiff() {
   diff.hidden = !showDiff.checked;
-  strip.hidden = !showDiff.checked;
+  // Only the legend hides. The strip keeps its row, so nothing under the card jumps
+  legend.hidden = !showDiff.checked;
   spaced.hidden = showDiff.checked;
   syncScrollLeft(source, spacedPane());
 }
