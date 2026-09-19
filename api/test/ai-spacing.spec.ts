@@ -1,5 +1,6 @@
 import pangu from "pangu";
 import { describe, expect, it } from "vitest";
+import { applyAiSpacing } from "../src/ai-spacing/apply-ai-spacing";
 import { applyTextEdits } from "../src/ai-spacing/shapes/base";
 import { digitPlus } from "../src/ai-spacing/shapes/digit-plus";
 import { hyphenDigit } from "../src/ai-spacing/shapes/hyphen-digit";
@@ -29,5 +30,25 @@ describe("vendored ambiguous shapes", () => {
     const settled = pangu.spaceText(unspaced);
     const [candidateMatch] = hyphenDigit.find(unspaced, settled);
     expect(hyphenDigit.edits({ ...candidateMatch!, settled }, null)).toEqual([]);
+  });
+});
+
+describe("applyAiSpacing", () => {
+  const unspaced = "今天-5度，買2+資料片";
+
+  it("applies each shape's label on top of the rules", async () => {
+    const result = await applyAiSpacing(unspaced, async (promptSpec) => (promptSpec.kind === "hyphen-digit" ? "signed-number" : "conjunction"));
+    expect(result).toEqual({
+      text: "今天 -5 度，買 2 + 資料片",
+      candidates: [
+        { kind: "hyphen-digit", sentence: unspaced, at: 2, label: "signed-number" },
+        { kind: "digit-plus", sentence: unspaced, at: 8, label: "conjunction" },
+      ],
+    });
+  });
+
+  it("keeps the rules' spacing on null labels", async () => {
+    const { text } = await applyAiSpacing(unspaced, async () => null);
+    expect(text).toBe(pangu.spaceText(unspaced));
   });
 });

@@ -1,6 +1,6 @@
-import { exports } from "cloudflare:workers";
+import { env, exports } from "cloudflare:workers";
 import pangu from "pangu";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 const TEXT_URL = "https://api.pangu.space/text";
 
@@ -64,5 +64,49 @@ describe("/text", () => {
     const response = await exports.default.fetch("https://api.pangu.space/");
     expect(response.status).toBe(404);
     expect(await response.json()).toEqual({ error: { code: "not_found", message: "not found" } });
+  });
+});
+
+describe("feature=ai-spacing", () => {
+  const AI_TEXT_URL = `${TEXT_URL}?feature=ai-spacing&text=${encodeURIComponent("今天-5度")}`;
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("applies the model's label", async () => {
+    const run = vi.spyOn(env.AI, "run").mockResolvedValue({ choices: [{ message: { content: "signed-number" } }] });
+    const response = await exports.default.fetch(AI_TEXT_URL);
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      text: "今天 -5 度",
+      lib: "pangu-js",
+      version: pangu.version,
+      model: "@cf/google/gemma-4-26b-a4b-it",
+      promptVersions: { "hyphen-digit": "v29-zh", "digit-plus": "v18-en-real-examples" },
+      candidates: [{ kind: "hyphen-digit", sentence: "今天-5度", at: 2, label: "signed-number" }],
+    });
+    expect(run).toHaveBeenCalledTimes(1);
+  });
+
+  it("falls back to the rules when the model fails", async () => {
+    vi.spyOn(env.AI, "run").mockRejectedValue(new Error("3040: Capacity temporarily exceeded, please try again"));
+    const response = await exports.default.fetch(AI_TEXT_URL);
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ text: "今天 - 5 度", candidates: [{ label: null }] });
+  });
+
+  it("answers 429 when the daily quota is used up", async () => {
+    vi.spyOn(env.AI, "run").mockRejectedValue(new Error("3036: You have used up your daily free allocation of 10,000 neurons"));
+    const response = await exports.default.fetch(AI_TEXT_URL);
+    expect(response.status).toBe(429);
+    expect(Number(response.headers.get("Retry-After"))).toBeGreaterThan(0);
+    expect(await response.json()).toMatchObject({ error: { code: "ai_quota_exceeded" } });
+  });
+
+  it("rejects an unknown feature", async () => {
+    const response = await exports.default.fetch(`${TEXT_URL}?feature=nope&text=a`);
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ error: { code: "unknown_feature", message: "unknown feature: nope" } });
   });
 });
