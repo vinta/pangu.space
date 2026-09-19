@@ -32,12 +32,35 @@ $ curl https://api.pangu.space/text --header "Content-Type: application/json" --
 {"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.1.1"}
 ```
 
+### AI Spacing
+
+Regex rules can't tell a minus sign from a separator, so add `feature=ai-spacing` to the query string and an LLM decides. Works with both GET and POST.
+
+```bash
+$ curl --get "https://api.pangu.space/text?feature=ai-spacing" --data-urlencode "text=女朋友今天的氣溫是-273.15度"
+{
+  "text": "女朋友今天的氣溫是 -273.15 度",
+  "lib": "pangu-js",
+  "version": "10.1.1",
+  "model": "@cf/google/gemma-4-26b-a4b-it",
+  "promptVersions": { "hyphen-digit": "v29-zh", "digit-plus": "v18-en-real-examples" },
+  "candidates": [{ "kind": "hyphen-digit", "sentence": "女朋友今天的氣溫是-273.15度", "at": 9, "label": "signed-number" }]
+}
+```
+
+- `candidates`: every symbol the model was asked about. `at` is the symbol's index in `sentence`
+- `label`: the model's answer. `null` means the model failed, and that symbol keeps the regex spacing
+
+Your text goes to Cloudflare Workers AI and may be kept in logs. It runs on the free tier, so it stops working when the daily quota runs out.
+
 ### Errors
 
 Errors come with a `code` you can check:
 
 - `missing_text` (400): no `text` in the query string, or no string `text` in the JSON body
 - `invalid_json` (400): the POST body is not valid JSON
+- `unknown_feature` (400): any `feature` other than `ai-spacing`
+- `ai_quota_exceeded` (429): the daily AI quota is used up. It resets at 00:00 UTC, and `Retry-After` tells you how many seconds are left
 - `method_not_allowed` (405): any method other than GET, POST, and OPTIONS
 - `not_found` (404): any path other than `/text`
 
