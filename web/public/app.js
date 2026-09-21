@@ -21,18 +21,18 @@ const ZH_TW = {
   status_copy_failed: "複製失敗，請選取文字後手動複製",
   status_ai_asking: "正在請示空格之神",
   status_ai_done: "空格之神處理好了",
-  status_ai_quota: "空格之神 AI 今天的免費額度用完了，UTC 00:00 重置。先顯示一般的結果",
-  status_ai_failed: "空格之神 AI 暫時無法使用，先顯示一般的結果",
+  status_ai_quota: "空格之神 AI 今天的免費額度用完了，UTC 00:00 重置",
+  status_ai_failed: "空格之神 AI 暫時無法使用",
 };
 
 // English lives in the markup; only the status lines have no element of their own
 const EN = {
   status_copied: "Copied to clipboard",
   status_copy_failed: "Copy failed. Select the text and copy it manually",
-  status_ai_asking: "Asking AI",
+  status_ai_asking: "Thinking",
   status_ai_done: "AI spaced",
-  status_ai_quota: "AI Spacing is out of free quota until 00:00 UTC. Showing the regular spacing",
-  status_ai_failed: "AI Spacing is unavailable right now. Showing the regular spacing",
+  status_ai_quota: "AI Spacing is out of free quota until 00:00 UTC",
+  status_ai_failed: "AI Spacing is unavailable right now",
 };
 
 const AI_SPACING_URL = `${location.hostname === "localhost" ? "http://localhost:8787" : "https://api.pangu.space"}/text?feature=ai-spacing`;
