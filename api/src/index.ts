@@ -1,5 +1,5 @@
 import pangu from "pangu";
-import { applyAiSpacing, PROMPT_VERSIONS } from "./ai-spacing/apply-ai-spacing";
+import { applyAiSpacing, MAX_CANDIDATES, PROMPT_VERSIONS, TooManyCandidatesError } from "./ai-spacing/apply-ai-spacing";
 import { AiQuotaExceededError, classifyOneCandidate, MODEL } from "./ai-spacing/classify";
 
 const CORS_HEADERS = { "Access-Control-Allow-Origin": "*" };
@@ -18,6 +18,10 @@ async function aiSpacedResponse(unspaced: string, ai: Ai) {
     const { text, candidates } = await applyAiSpacing(unspaced, (promptSpec, candidate) => classifyOneCandidate(ai, promptSpec, candidate));
     return Response.json({ text, lib: "pangu-js", version: pangu.version, model: MODEL, promptVersions: PROMPT_VERSIONS, candidates }, { headers: CORS_HEADERS });
   } catch (error) {
+    // Retrying the same text never succeeds, so this is not a 429
+    if (error instanceof TooManyCandidatesError) {
+      return errorResponse(413, "too_many_candidates", `the text has ${error.candidateCount} ambiguous spots, at most ${MAX_CANDIDATES} can be classified per request`);
+    }
     if (error instanceof AiQuotaExceededError) {
       // The Workers AI free allocation resets at 00:00 UTC
       const now = new Date();

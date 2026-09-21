@@ -1,6 +1,6 @@
 import pangu from "pangu";
-import { describe, expect, it } from "vitest";
-import { applyAiSpacing } from "../src/ai-spacing/apply-ai-spacing";
+import { describe, expect, it, vi } from "vitest";
+import { applyAiSpacing, MAX_CANDIDATES, TooManyCandidatesError } from "../src/ai-spacing/apply-ai-spacing";
 import { applyTextEdits } from "../src/ai-spacing/shapes/base";
 import { digitPlus } from "../src/ai-spacing/shapes/digit-plus";
 import { hyphenDigit } from "../src/ai-spacing/shapes/hyphen-digit";
@@ -50,5 +50,17 @@ describe("applyAiSpacing", () => {
   it("keeps the rules' spacing on null labels", async () => {
     const { text } = await applyAiSpacing(unspaced, async () => null);
     expect(text).toBe(pangu.spaceText(unspaced));
+  });
+
+  it("classifies a text sitting on the candidate cap", async () => {
+    const classifyOneCandidate = vi.fn(async () => null);
+    await applyAiSpacing("今天-5度，".repeat(MAX_CANDIDATES), classifyOneCandidate);
+    expect(classifyOneCandidate).toHaveBeenCalledTimes(MAX_CANDIDATES);
+  });
+
+  it("classifies nothing past the candidate cap", async () => {
+    const classifyOneCandidate = vi.fn(async () => null);
+    await expect(applyAiSpacing("今天-5度，".repeat(MAX_CANDIDATES + 1), classifyOneCandidate)).rejects.toThrow(TooManyCandidatesError);
+    expect(classifyOneCandidate).not.toHaveBeenCalled();
   });
 });

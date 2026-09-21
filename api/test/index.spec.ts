@@ -104,6 +104,14 @@ describe("feature=ai-spacing", () => {
     expect(await response.json()).toMatchObject({ error: { code: "ai_quota_exceeded" } });
   });
 
+  it("rejects a text past the candidate cap", async () => {
+    const run = vi.spyOn(env.AI, "run");
+    const response = await exports.default.fetch(`${TEXT_URL}?feature=ai-spacing&text=${encodeURIComponent("今天-5度，".repeat(21))}`);
+    expect(response.status).toBe(413);
+    expect(await response.json()).toEqual({ error: { code: "too_many_candidates", message: "the text has 21 ambiguous spots, at most 20 can be classified per request" } });
+    expect(run).not.toHaveBeenCalled();
+  });
+
   it("rejects an unknown feature", async () => {
     const response = await exports.default.fetch(`${TEXT_URL}?feature=nope&text=a`);
     expect(response.status).toBe(400);
