@@ -80,6 +80,18 @@ function collectEnglish() {
   }
 }
 
+// zh-CN and zh-Hant both land on zh-TW, the only Chinese the site has
+function resolveLang(code) {
+  const primary = code.toLowerCase().split("-")[0];
+  if (primary === "en") {
+    return "en";
+  }
+  if (primary === "zh") {
+    return "zh-TW";
+  }
+  return null;
+}
+
 function applyLanguage(code) {
   messages = code === "zh-TW" ? ZH_TW : EN;
   document.documentElement.lang = code;
@@ -272,6 +284,10 @@ showDiff.addEventListener("change", () => {
 lang.addEventListener("change", () => {
   save("lang", lang.value);
   applyLanguage(lang.value);
+  const url = new URL(location.href);
+  url.searchParams.set("lang", lang.value);
+  // Replaces, so switching language costs no back button press
+  history.replaceState(history.state, "", url);
 });
 
 let copiedTimer;
@@ -292,7 +308,8 @@ copy.addEventListener("click", async () => {
 });
 
 collectEnglish();
-applyLanguage(load("lang") ?? (navigator.languages.some((code) => code.toLowerCase().startsWith("zh")) ? "zh-TW" : "en"));
+// ?lang= wins for this page view only, so a shared link never overwrites the reader's saved choice
+applyLanguage(resolveLang(new URLSearchParams(location.search).get("lang") ?? "") ?? load("lang") ?? navigator.languages.map(resolveLang).find(Boolean) ?? "en");
 aiSpacing.checked = load("aiSpacing") === "true";
 showDiff.checked = load("showDiff") !== "false";
 applyShowDiff();
