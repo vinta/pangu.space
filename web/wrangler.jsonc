@@ -4,7 +4,6 @@
   "compatibility_date": "2026-09-11",
   "workers_dev": false,
   "routes": [{ "pattern": "pangu.space", "custom_domain": true }],
-  // The API dev server holds the default inspector port 9229
   "dev": { "port": 5566, "inspector_port": 9230 },
   "assets": {
     "directory": "./public",
