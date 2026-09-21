@@ -6,6 +6,7 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
+    "logs": "wrangler tail --format pretty",
     "test": "vitest",
     "cf-typegen": "wrangler types"
   },
