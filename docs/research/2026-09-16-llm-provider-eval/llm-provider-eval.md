@@ -1,6 +1,6 @@
 # LLM provider eval
 
-Runs of `eval.mjs` on 2026-09-16, asking which gateway to integrate with and which model classifies better. The gateway question has an answer. The model question turned out to be two questions, and the useful one was never about size.
+Runs of `eval.mjs` on 2026-09-16, asking which gateway to integrate with and which model classifies better. The gateway question has an answer. The model question turned out to be two questions, and the useful one was never about size. A later run on 2026-09-21 added `qwen3.8-27b`, the one model in the catalog newer than Gemma 4.
 
 ## What was run
 
@@ -42,6 +42,8 @@ Three OpenRouter free models did answer a probe: `nvidia/nemotron-3.5-lightning:
 | llama-3.2-3b | on | 37/53 | 6/7 | 0/16 | 422 |
 | llama-3.2-1b | on | 17/53 | 6/7 | 15/16 | 582 |
 
+`qwen3.8-27b` ran five days later and is not in this table. See below.
+
 Read `signed-number` before the totals. It is the 16 cases where the hyphen is a real minus sign, and the only class where the model changes the output: `signed-number` removes a space, every other label leaves core's spacing alone. A model that never picks it is a model that does nothing. llama-3.2-1b's 15/16 there is an artifact of answering `signed-number` for nearly everything, which is why it takes 2/37 on the other class.
 
 ## The corpus is saturated at the top and discriminates at the bottom
@@ -64,7 +66,25 @@ Turning thinking off on Gemma 4 loses exactly one hyphen-digit case (`real-devel
 
 More thinking is not better. glm-4.7-flash with thinking on spends 33,823 completion tokens across 53 cases, roughly 640 tokens per three-word answer, takes 26.5 seconds per call, throws two errors, and still only reaches 49/53.
 
-`chat_template_kwargs.enable_thinking` is not portable. It is documented on Gemma 4 and works there. On `qwen3-30b-a3b` it does not disable thinking, it breaks the response: `content` comes back `null` and a stub lands in `reasoning`, which scores 0/60 with no error raised. Check `content` is non-empty after changing models.
+`chat_template_kwargs.enable_thinking` is not portable. It is documented on Gemma 4 and works there, and on `qwen3.8-27b` as well, 5 completion tokens per answer. On `qwen3-30b-a3b` it does not disable thinking, it breaks the response: `content` comes back `null` and a stub lands in `reasoning`, which scores 0/60 with no error raised. Check `content` is non-empty after changing models.
+
+## Qwen 3.8 scores 60/60 and is still the wrong pick
+
+Run on 2026-09-21. `@cf/qwen/qwen3.8-27b` with thinking off takes all 60 cases, including `real-development-10`, the one case Gemma 4 misses. Then the latency tail rules it out.
+
+| | qwen3.8-27b off | gemma-4-26b-a4b off |
+| --- | --- | --- |
+| score | 60/60 | 59/60 |
+| p50 | 992ms | 683ms |
+| p95 | 37815ms | 1467ms |
+| max | 58225ms | 3300ms |
+| neurons per pass | 769 | 178 |
+
+Read the p95, not the average. The 6155ms average is five slow calls out of 53, one of them 58 seconds. The longest answer in the whole run is 5 completion tokens, so nothing is thinking. That points at queueing or cold capacity on a model Cloudflare added on 2026-08-17. Gemma 4's worst case on the same corpus is 3300ms.
+
+One 58-second call kills a request that fans out to N candidates, so Gemma 4 stays. Cost says the same thing: 769 neurons per pass is about 13 passes a day, against Gemma 4's 56.
+
+Worth a rerun at another hour. If the tail drops near the p50, the extra case makes it the better model.
 
 ## Cost
 

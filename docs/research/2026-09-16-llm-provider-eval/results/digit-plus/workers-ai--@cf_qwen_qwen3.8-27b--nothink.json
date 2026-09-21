@@ -1,0 +1,142 @@
+{
+  "provider": "workers-ai",
+  "model": "@cf/qwen/qwen3.8-27b",
+  "experiment": "digit-plus",
+  "thinking": false,
+  "promptVersion": "v18-en-real-examples",
+  "timestamp": "2026-09-21T05:08:06.692Z",
+  "passed": 7,
+  "total": 7,
+  "errors": 0,
+  "avgMs": 3572,
+  "tokens": {
+    "prompt_tokens": 2015,
+    "completion_tokens": 21
+  },
+  "classes": {
+    "conjunction": "1/1",
+    "lower-bound": "6/6",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "tw-conj-diablo-1",
+      "expected": "conjunction",
+      "answer": "conjunction",
+      "raw": "conjunction",
+      "error": null,
+      "ms": 1265,
+      "usage": {
+        "prompt_tokens": 285,
+        "completion_tokens": 3,
+        "total_tokens": 288,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 12.531817436218262
+      }
+    },
+    {
+      "id": "tw-lb-02-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 13094,
+      "usage": {
+        "prompt_tokens": 283,
+        "completion_tokens": 3,
+        "total_tokens": 286,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 12.449999809265137
+      }
+    },
+    {
+      "id": "tw-lb-04-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 997,
+      "usage": {
+        "prompt_tokens": 293,
+        "completion_tokens": 3,
+        "total_tokens": 296,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 12.859090805053711
+      }
+    },
+    {
+      "id": "tw-lb-06-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 825,
+      "usage": {
+        "prompt_tokens": 277,
+        "completion_tokens": 3,
+        "total_tokens": 280,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 12.204545021057129
+      }
+    },
+    {
+      "id": "tw-lb-07-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 954,
+      "usage": {
+        "prompt_tokens": 280,
+        "completion_tokens": 3,
+        "total_tokens": 283,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 12.327272415161133
+      }
+    },
+    {
+      "id": "tw-lb-08-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 1027,
+      "usage": {
+        "prompt_tokens": 276,
+        "completion_tokens": 3,
+        "total_tokens": 279,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 12.163636207580566
+      }
+    },
+    {
+      "id": "tw-lb-10-1",
+      "expected": "lower-bound",
+      "answer": "lower-bound",
+      "raw": "lower-bound",
+      "error": null,
+      "ms": 6839,
+      "usage": {
+        "prompt_tokens": 321,
+        "completion_tokens": 3,
+        "total_tokens": 324,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "neurons": 14.004545211791992
+      }
+    }
+  ]
+}
