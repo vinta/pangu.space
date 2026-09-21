@@ -15,7 +15,8 @@ const EXPERIMENTS = {
   'digit-plus': { prompt: 'browser-extensions/chrome/src/ai-spacing/shapes/digit-plus-prompt.ts', export: 'digitPlusPrompt' },
 };
 
-// ${NAME} anywhere in a url or header is read from the environment. Workers AI serves its own OpenAI-compatible path; cf-aig-gateway-id routes the call through the gateway for logging and caching
+// ${NAME} anywhere in a url or header is read from the environment. Workers AI serves its own OpenAI-compatible path; cf-aig-gateway-id routes the call through the gateway for logging
+// cf-aig-skip-cache keeps a repeated pass measuring the model, since the gateway shares its cache with production
 const PROVIDERS = {
   openrouter: {
     url: 'https://openrouter.ai/api/v1/chat/completions',
@@ -23,7 +24,7 @@ const PROVIDERS = {
   },
   'workers-ai': {
     url: 'https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions',
-    headers: { Authorization: 'Bearer ${CLOUDFLARE_API_TOKEN}', 'cf-aig-gateway-id': '${CLOUDFLARE_AI_GATEWAY}' },
+    headers: { Authorization: 'Bearer ${CLOUDFLARE_API_TOKEN}', 'cf-aig-gateway-id': '${CLOUDFLARE_AI_GATEWAY}', 'cf-aig-skip-cache': 'true' },
   },
 };
 
