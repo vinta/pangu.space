@@ -66,8 +66,6 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 - Pane and diff text uses the `pane` style. Its tall line height keeps mixed Chinese and Latin lines even, and the two panes must stay line for line.
 
-- A Chinese headline never breaks between characters. Set `word-break: keep-all` and mark the one allowed break with a zero-width space in the string.
-
 ## Layout and spacing
 
 - Every gap, padding and margin is a spacing token. Control heights are sizes, not spacing, and they live with each component.

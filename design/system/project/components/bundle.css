@@ -148,8 +148,6 @@ main .shell {
   font-size: var(--text-3xl);
   font-weight: 600;
   line-height: 1.2;
-  /* Chinese breaks only at the zero-width space in the title string, never mid-phrase */
-  word-break: keep-all;
 }
 
 .hero p {
