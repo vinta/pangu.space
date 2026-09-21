@@ -3,7 +3,6 @@
   "name": "pangu-api",
   "main": "src/index.ts",
   "compatibility_date": "2026-09-11",
-  "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
   "routes": [{ "pattern": "api.pangu.space", "custom_domain": true }],
   "ai": { "binding": "AI", "remote": true },
