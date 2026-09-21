@@ -211,8 +211,8 @@ function requestAiSpacing() {
         renderSpaced(text);
         // An error stays up until an answer lands, so typing does not make it blink
         showAiStatus(null);
-        // No candidates means the model was never asked
-        showAiProgress(candidates.length > 0 ? "status_ai_done" : null);
+        // No label means no model answer landed, so the text is the rules' spacing alone
+        showAiProgress(candidates.some((candidate) => candidate.label !== null) ? "status_ai_done" : null);
         aiProgressTimer = setTimeout(() => showAiProgress(null), 1500);
         return;
       }
