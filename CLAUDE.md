@@ -9,4 +9,4 @@
 
 ## Gotchas
 
-- Store scratch files and downloaded artifact copies under `./tmp/` (gitignored), never in the system temp folder or the session scratchpad. Those are wiped on reboot, and a session must be resumable after one
+- Store downloaded artifact copies under `./tmp/` (gitignored), never in the system temp folder or the session scratchpad. Those are wiped on reboot, and a session must be resumable after one. One-off scratch (logs, screenshots, throwaway scripts) belongs in the scratchpad instead
