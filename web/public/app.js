@@ -15,12 +15,12 @@ const ZH_TW = {
   copied: "已複製",
   added: "新增空格",
   removed: "移除空格",
-  note: "除非你啟用空格之神 AI，否則沒有任何資料會被上傳到雲端。啟用之後，文字會送到 Cloudflare Workers AI，也可能留在紀錄裡。",
+  note: "空格之神 AI 使用 Cloudflare Workers AI 來處理文字",
   status_copied: "已複製到剪貼簿",
   status_copy_failed: "複製失敗，請選取文字後手動複製",
   status_ai_asking: "正在請示空格之神",
   status_ai_done: "處理好了",
-  status_ai_quota: "空格之神 AI 今天的免費額度用完了，會在 UTC 00:00 重置",
+  status_ai_quota: "空格之神 AI 今天的額度用完了，會在 UTC 00:00 重置",
   status_ai_failed: "空格之神 AI 暫時無法使用",
 };
 
@@ -30,7 +30,7 @@ const EN = {
   status_copy_failed: "Copy failed. Select the text and copy it manually",
   status_ai_asking: "Thinking",
   status_ai_done: "Done",
-  status_ai_quota: "AI Spacing is out of free quota until 00:00 UTC",
+  status_ai_quota: "AI Spacing is out of quota until 00:00 UTC",
   status_ai_failed: "AI Spacing is unavailable right now",
 };
 
