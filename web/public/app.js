@@ -201,7 +201,7 @@ function requestAiSpacing() {
     aiProgressTimer = setTimeout(() => showAiProgress("status_ai_asking"), 300);
     try {
       const response = await fetch(AI_SPACING_URL, {
-        method: "POST",
+        method: "QUERY",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: source.value }),
         signal: aiController.signal,
