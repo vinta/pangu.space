@@ -45,7 +45,7 @@ $ curl https://api.pangu.space/text --data '{"text": "與PM戰鬥的人，應當
 
 ### AI Spacing
 
-Regex rules can't tell a minus sign from a separator, so add `feature=ai-spacing` to the query string and an LLM decides. Works with GET, POST, and QUERY.
+Regex rules can't tell a minus sign from a separator, so add `feature=ai-spacing` to the query string and an LLM decides. Works with GET, QUERY, and POST.
 
 ```bash
 $ curl --get "https://api.pangu.space/text?feature=ai-spacing" --data-urlencode "text=女朋友今天的氣溫是-273.15度"
@@ -67,12 +67,12 @@ $ curl --get "https://api.pangu.space/text?feature=ai-spacing" --data-urlencode 
 Errors come with a `code` you can check:
 
 - `missing_text` (400): no `text` in the query string, or no string `text` in the JSON body
-- `invalid_json` (400): the POST or QUERY body is not valid JSON
-- `unsupported_media_type` (415): POST or QUERY provides a content type other than `application/json`
+- `invalid_json` (400): the QUERY or POST body is not valid JSON
+- `unsupported_media_type` (415): QUERY or POST provides a content type other than `application/json`
 - `unknown_feature` (400): any `feature` other than `ai-spacing`
 - `too_many_candidates` (413): the text has more than 20 ambiguous spots. Split it into smaller requests
 - `ai_quota_exceeded` (429): the daily AI quota is used up. It resets at 00:00 UTC, and `Retry-After` tells you how many seconds are left
-- `method_not_allowed` (405): any method other than GET, POST, QUERY, and OPTIONS
+- `method_not_allowed` (405): any method other than GET, QUERY, POST, and OPTIONS
 - `not_found` (404): any path other than `/text`
 
 ```json

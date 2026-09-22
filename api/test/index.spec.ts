@@ -19,7 +19,7 @@ describe("GET /text", () => {
   });
 });
 
-describe.each(["POST", "QUERY"])("%s /text", (method) => {
+describe.each(["QUERY", "POST"])("%s /text", (method) => {
   it("spaces text from a JSON body", async () => {
     const response = await exports.default.fetch(TEXT_URL, {
       method,
@@ -44,7 +44,7 @@ describe.each(["POST", "QUERY"])("%s /text", (method) => {
   });
 });
 
-describe.each(["POST", "QUERY"])("%s Content-Type", (method) => {
+describe.each(["QUERY", "POST"])("%s Content-Type", (method) => {
   it.each(["application/x-www-form-urlencoded", "text/plain", "application/jsonp"])("rejects %s", async (contentType) => {
     const response = await exports.default.fetch(TEXT_URL, {
       method,
@@ -81,16 +81,16 @@ describe("/text", () => {
     const response = await exports.default.fetch(TEXT_URL, { method: "OPTIONS" });
     expect(response.status).toBe(204);
     expect(response.headers.get("Access-Control-Allow-Origin")).toBe("*");
-    expect(response.headers.get("Access-Control-Allow-Methods")).toBe("GET, POST, QUERY, OPTIONS");
+    expect(response.headers.get("Access-Control-Allow-Methods")).toBe("GET, QUERY, POST, OPTIONS");
     expect(response.headers.get("Access-Control-Allow-Headers")).toBe("Content-Type");
-    expect(response.headers.get("Allow")).toBe("GET, POST, QUERY, OPTIONS");
+    expect(response.headers.get("Allow")).toBe("GET, QUERY, POST, OPTIONS");
     expect(response.headers.get("Accept-Query")).toBe("application/json");
   });
 
   it("rejects other methods", async () => {
     const response = await exports.default.fetch(TEXT_URL, { method: "PUT" });
     expect(response.status).toBe(405);
-    expect(response.headers.get("Allow")).toBe("GET, POST, QUERY, OPTIONS");
+    expect(response.headers.get("Allow")).toBe("GET, QUERY, POST, OPTIONS");
     expect(await response.json()).toEqual({ error: { code: "method_not_allowed", message: "method not allowed: PUT" } });
   });
 
@@ -108,7 +108,7 @@ describe("feature=ai-spacing", () => {
     vi.restoreAllMocks();
   });
 
-  it.each(["GET", "POST", "QUERY"])("applies the model's label with %s", async (method) => {
+  it.each(["GET", "QUERY", "POST"])("applies the model's label with %s", async (method) => {
     const run = vi.spyOn(env.AI, "run").mockResolvedValue({ choices: [{ message: { content: "signed-number" } }] });
     const response = await exports.default.fetch(method === "GET" ? AI_TEXT_URL : `${TEXT_URL}?feature=ai-spacing`, {
       method,

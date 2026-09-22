@@ -3,7 +3,7 @@ import { applyAiSpacing, MAX_CANDIDATES, PROMPT_VERSIONS, TooManyCandidatesError
 import { AiQuotaExceededError, classifyOneCandidate, MODEL } from "./ai-spacing/classify";
 
 const CORS_HEADERS = { "Access-Control-Allow-Origin": "*" };
-const ALLOWED_METHODS = "GET, POST, QUERY, OPTIONS";
+const ALLOWED_METHODS = "GET, QUERY, POST, OPTIONS";
 
 function errorResponse(status: number, code: string, message: string, headers: Record<string, string> = {}) {
   return Response.json({ error: { code, message } }, { status, headers: { ...CORS_HEADERS, ...headers } });
@@ -53,7 +53,7 @@ export default {
       return respond(unspaced);
     }
 
-    if (request.method === "POST" || request.method === "QUERY") {
+    if (request.method === "QUERY" || request.method === "POST") {
       const contentType = request.headers.get("Content-Type");
       if (contentType !== null && contentType.split(";", 1)[0].trim().toLowerCase() !== "application/json") {
         return errorResponse(415, "unsupported_media_type", `unsupported Content-Type: ${contentType}; use application/json`, { "Accept-Query": "application/json" });
