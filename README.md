@@ -18,23 +18,34 @@ Try it at [pangu.space](https://pangu.space): paste text on the left, get the sp
 
 ### GET
 
+Use `GET` with query strings.
+
 ```bash
 $ curl --get https://api.pangu.space/text --data-urlencode "text=當你凝視著bug，bug也凝視著你"
 {"text":"當你凝視著 bug，bug 也凝視著你","lib":"pangu-js","version":"10.1.1"}
 ```
 
-### POST
+### QUERY
 
-Use this for long text.
+Use [`QUERY`](https://www.rfc-editor.org/rfc/rfc10008.html) if you want to use a JSON body. `Content-Type` is optional; if provided, it must be `application/json`.
 
 ```bash
-$ curl https://api.pangu.space/text --header "Content-Type: application/json" --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
+$ curl --request QUERY https://api.pangu.space/text --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
+{"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.1.1"}
+```
+
+### POST
+
+Same as `QUERY`, for convenience.
+
+```bash
+$ curl https://api.pangu.space/text --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
 {"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.1.1"}
 ```
 
 ### AI Spacing
 
-Regex rules can't tell a minus sign from a separator, so add `feature=ai-spacing` to the query string and an LLM decides. Works with both GET and POST.
+Regex rules can't tell a minus sign from a separator, so add `feature=ai-spacing` to the query string and an LLM decides. Works with GET, POST, and QUERY.
 
 ```bash
 $ curl --get "https://api.pangu.space/text?feature=ai-spacing" --data-urlencode "text=女朋友今天的氣溫是-273.15度"
@@ -56,11 +67,12 @@ $ curl --get "https://api.pangu.space/text?feature=ai-spacing" --data-urlencode 
 Errors come with a `code` you can check:
 
 - `missing_text` (400): no `text` in the query string, or no string `text` in the JSON body
-- `invalid_json` (400): the POST body is not valid JSON
+- `invalid_json` (400): the POST or QUERY body is not valid JSON
+- `unsupported_media_type` (415): POST or QUERY provides a content type other than `application/json`
 - `unknown_feature` (400): any `feature` other than `ai-spacing`
 - `too_many_candidates` (413): the text has more than 20 ambiguous spots. Split it into smaller requests
 - `ai_quota_exceeded` (429): the daily AI quota is used up. It resets at 00:00 UTC, and `Retry-After` tells you how many seconds are left
-- `method_not_allowed` (405): any method other than GET, POST, and OPTIONS
+- `method_not_allowed` (405): any method other than GET, POST, QUERY, and OPTIONS
 - `not_found` (404): any path other than `/text`
 
 ```json

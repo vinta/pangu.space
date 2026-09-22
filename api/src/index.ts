@@ -3,7 +3,7 @@ import { applyAiSpacing, MAX_CANDIDATES, PROMPT_VERSIONS, TooManyCandidatesError
 import { AiQuotaExceededError, classifyOneCandidate, MODEL } from "./ai-spacing/classify";
 
 const CORS_HEADERS = { "Access-Control-Allow-Origin": "*" };
-const ALLOWED_METHODS = "GET, POST, OPTIONS";
+const ALLOWED_METHODS = "GET, POST, QUERY, OPTIONS";
 
 function errorResponse(status: number, code: string, message: string, headers: Record<string, string> = {}) {
   return Response.json({ error: { code, message } }, { status, headers: { ...CORS_HEADERS, ...headers } });
@@ -53,7 +53,11 @@ export default {
       return respond(unspaced);
     }
 
-    if (request.method === "POST") {
+    if (request.method === "POST" || request.method === "QUERY") {
+      const contentType = request.headers.get("Content-Type");
+      if (contentType !== null && contentType.split(";", 1)[0].trim().toLowerCase() !== "application/json") {
+        return errorResponse(415, "unsupported_media_type", `unsupported Content-Type: ${contentType}; use application/json`, { "Accept-Query": "application/json" });
+      }
       let body: unknown;
       try {
         body = await request.json();
@@ -69,7 +73,7 @@ export default {
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 204,
-        headers: { ...CORS_HEADERS, "Access-Control-Allow-Methods": ALLOWED_METHODS, "Access-Control-Allow-Headers": "Content-Type" },
+        headers: { ...CORS_HEADERS, Allow: ALLOWED_METHODS, "Accept-Query": "application/json", "Access-Control-Allow-Methods": ALLOWED_METHODS, "Access-Control-Allow-Headers": "Content-Type" },
       });
     }
 

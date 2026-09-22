@@ -19,10 +19,10 @@ describe("GET /text", () => {
   });
 });
 
-describe("POST /text", () => {
+describe.each(["POST", "QUERY"])("%s /text", (method) => {
   it("spaces text from a JSON body", async () => {
     const response = await exports.default.fetch(TEXT_URL, {
-      method: "POST",
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: "中文abc" }),
     });
@@ -32,15 +32,47 @@ describe("POST /text", () => {
   });
 
   it("rejects a body that is not JSON", async () => {
-    const response = await exports.default.fetch(TEXT_URL, { method: "POST", body: "中文abc" });
+    const response = await exports.default.fetch(TEXT_URL, { method, headers: { "Content-Type": "application/json" }, body: "中文abc" });
     expect(response.status).toBe(400);
     expect(await response.json()).toEqual({ error: { code: "invalid_json", message: "request body is not valid JSON" } });
   });
 
   it("rejects a body without a string text", async () => {
-    const response = await exports.default.fetch(TEXT_URL, { method: "POST", body: JSON.stringify({ text: 1 }) });
+    const response = await exports.default.fetch(TEXT_URL, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: 1 }) });
     expect(response.status).toBe(400);
     expect(await response.json()).toEqual({ error: { code: "missing_text", message: "body field text must be a string" } });
+  });
+});
+
+describe.each(["POST", "QUERY"])("%s Content-Type", (method) => {
+  it.each(["application/x-www-form-urlencoded", "text/plain", "application/jsonp"])("rejects %s", async (contentType) => {
+    const response = await exports.default.fetch(TEXT_URL, {
+      method,
+      headers: { "Content-Type": contentType },
+      body: new TextEncoder().encode(JSON.stringify({ text: "中文abc" })),
+    });
+    expect(response.status).toBe(415);
+    expect(response.headers.get("Accept-Query")).toBe("application/json");
+    expect(await response.json()).toMatchObject({ error: { code: "unsupported_media_type" } });
+  });
+
+  it("accepts a case-insensitive media type with parameters", async () => {
+    const response = await exports.default.fetch(TEXT_URL, {
+      method,
+      headers: { "Content-Type": "Application/JSON; charset=utf-8" },
+      body: JSON.stringify({ text: "中文abc" }),
+    });
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ text: "中文 abc" });
+  });
+
+  it("accepts JSON without Content-Type", async () => {
+    const response = await exports.default.fetch(TEXT_URL, {
+      method,
+      body: new TextEncoder().encode(JSON.stringify({ text: "中文abc" })),
+    });
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ text: "中文 abc" });
   });
 });
 
@@ -49,14 +81,16 @@ describe("/text", () => {
     const response = await exports.default.fetch(TEXT_URL, { method: "OPTIONS" });
     expect(response.status).toBe(204);
     expect(response.headers.get("Access-Control-Allow-Origin")).toBe("*");
-    expect(response.headers.get("Access-Control-Allow-Methods")).toBe("GET, POST, OPTIONS");
+    expect(response.headers.get("Access-Control-Allow-Methods")).toBe("GET, POST, QUERY, OPTIONS");
     expect(response.headers.get("Access-Control-Allow-Headers")).toBe("Content-Type");
+    expect(response.headers.get("Allow")).toBe("GET, POST, QUERY, OPTIONS");
+    expect(response.headers.get("Accept-Query")).toBe("application/json");
   });
 
   it("rejects other methods", async () => {
     const response = await exports.default.fetch(TEXT_URL, { method: "PUT" });
     expect(response.status).toBe(405);
-    expect(response.headers.get("Allow")).toBe("GET, POST, OPTIONS");
+    expect(response.headers.get("Allow")).toBe("GET, POST, QUERY, OPTIONS");
     expect(await response.json()).toEqual({ error: { code: "method_not_allowed", message: "method not allowed: PUT" } });
   });
 
@@ -74,9 +108,12 @@ describe("feature=ai-spacing", () => {
     vi.restoreAllMocks();
   });
 
-  it("applies the model's label", async () => {
+  it.each(["GET", "POST", "QUERY"])("applies the model's label with %s", async (method) => {
     const run = vi.spyOn(env.AI, "run").mockResolvedValue({ choices: [{ message: { content: "signed-number" } }] });
-    const response = await exports.default.fetch(AI_TEXT_URL);
+    const response = await exports.default.fetch(method === "GET" ? AI_TEXT_URL : `${TEXT_URL}?feature=ai-spacing`, {
+      method,
+      ...(method === "GET" ? {} : { headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text: "今天-5度" }) }),
+    });
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({
       text: "今天 -5 度",
