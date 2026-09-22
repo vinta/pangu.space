@@ -30,7 +30,7 @@ $ curl --get https://api.pangu.space/text --data-urlencode "text=當你凝視著
 Use [`QUERY`](https://www.rfc-editor.org/rfc/rfc10008.html) if you want to use a JSON body. `Content-Type` is optional; if provided, it must be `application/json`.
 
 ```bash
-$ curl --request QUERY https://api.pangu.space/text --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
+$ curl --request QUERY https://api.pangu.space/text --header "Content-Type: application/json" --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
 {"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.1.1"}
 ```
 
@@ -39,7 +39,7 @@ $ curl --request QUERY https://api.pangu.space/text --data '{"text": "與PM戰�
 Same as `QUERY`, for convenience.
 
 ```bash
-$ curl https://api.pangu.space/text --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
+$ curl https://api.pangu.space/text --header "Content-Type: application/json" --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
 {"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.1.1"}
 ```
 
