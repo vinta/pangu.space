@@ -440,17 +440,19 @@ main .shell {
   background: var(--color-diff-row-mix);
 }
 
-.a,
-.d {
-  border-radius: 2px;
-}
-
 .a {
+  border-radius: 2px;
   background: var(--color-diff-add);
 }
 
+/* A 2px bar where the removed space was. The negative margin cancels its width */
 .d {
-  background: var(--color-diff-del);
+  display: inline-block;
+  width: 0;
+  height: 1.1em;
+  margin: 0 -1px;
+  vertical-align: text-bottom;
+  border-left: 2px solid var(--color-diff-del);
 }
 
 .strip {

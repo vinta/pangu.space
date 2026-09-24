@@ -142,7 +142,10 @@ function renderRow(before, after) {
   let removed = false;
   for (const part of whitespaceParts(before, after) ?? diffChars(before, after)) {
     if (part.removed) {
-      // Not drawn, so the row reads exactly as the output; the row tint is the only sign
+      // An empty mark takes no width, so the row reads exactly as the output
+      const mark = document.createElement("span");
+      mark.className = "d";
+      row.append(mark);
       removed = true;
     } else if (part.added) {
       const mark = document.createElement("span");
