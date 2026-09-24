@@ -22,7 +22,7 @@ Use `GET` with query strings.
 
 ```bash
 $ curl --get https://api.pangu.space/text --data-urlencode "text=當你凝視著bug，bug也凝視著你"
-{"text":"當你凝視著 bug，bug 也凝視著你","lib":"pangu-js","version":"10.3.0"}
+{"text":"當你凝視著 bug，bug 也凝視著你","lib":"pangu-js","version":"10.4.0"}
 ```
 
 ### QUERY
@@ -31,7 +31,7 @@ Use [`QUERY`](https://www.rfc-editor.org/rfc/rfc10008.html) if you want to use a
 
 ```bash
 $ curl --request QUERY https://api.pangu.space/text --header "Content-Type: application/json" --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
-{"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.3.0"}
+{"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.4.0"}
 ```
 
 ### POST
@@ -40,7 +40,7 @@ Same as `QUERY`, for convenience.
 
 ```bash
 $ curl https://api.pangu.space/text --header "Content-Type: application/json" --data '{"text": "與PM戰鬥的人，應當小心自己不要成為PM"}'
-{"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.3.0"}
+{"text":"與 PM 戰鬥的人，應當小心自己不要成為 PM","lib":"pangu-js","version":"10.4.0"}
 ```
 
 ### AI Spacing
@@ -52,7 +52,7 @@ $ curl --get "https://api.pangu.space/text?feature=ai-spacing" --data-urlencode 
 {
   "text": "女朋友今天的氣溫是 -273.15 度",
   "lib": "pangu-js",
-  "version": "10.3.0",
+  "version": "10.4.0",
   "model": "@cf/google/gemma-4-26b-a4b-it",
   "promptVersions": { "hyphen-digit": "v29-zh", "digit-plus": "v18-en-real-examples" },
   "candidates": [{ "kind": "hyphen-digit", "sentence": "女朋友今天的氣溫是-273.15度", "at": 9, "label": "signed-number" }]
