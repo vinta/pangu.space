@@ -10,8 +10,8 @@
       "y": -390
     },
     "StyleP.dc.html": {
-      "x": 0,
-      "y": 9280,
+      "x": 1830,
+      "y": 2050,
       "w": 1280,
       "h": 900,
       "title": "P · Picked: A + F hero/bg + D diff + popup toggle",
@@ -39,6 +39,22 @@
       "h": 930,
       "title": "Diff · removed space options (decided: 2px bar in --color-diff-del, no width)"
     },
+    "StyleQ.dc.html": {
+      "x": 0,
+      "y": 2050,
+      "w": 1280,
+      "h": 900,
+      "title": "Q · P + neutral ink (Apple)",
+      "is_interactive": true
+    },
+    "PhoneQ.dc.html": {
+      "x": 1360,
+      "y": 2050,
+      "w": 390,
+      "h": 1300,
+      "title": "Phone · Q",
+      "is_interactive": true
+    },
     "AiProcessing.dc.html": {
       "x": 0,
       "y": 7220,
@@ -63,8 +79,8 @@
       "title": "pangu",
       "namespace": "pangu",
       "artifact": "https://claude.ai/artifact/758ABWKCNd8AQ5qxYRmqBm",
-      "version": "1789764645-f065",
-      "copiedAt": "2026-09-18T20:51:12Z"
+      "version": "1790209789-381c",
+      "copiedAt": "2026-09-24T00:30:46Z"
     }
   ],
   "launch": {
@@ -81,17 +97,17 @@
     },
     "t4": {
       "kind": "title1",
-      "maxW": 1280,
-      "text": "Round 2 · Picked mix",
+      "maxW": 3110,
+      "text": "Picked · Style Q, with the earlier pick P",
       "w": 240,
       "x": 0,
-      "y": 8980
+      "y": 1750
     },
     "n7": {
       "color": "blue",
       "w": 320,
-      "x": 1360,
-      "y": 9280,
+      "x": 3190,
+      "y": 2550,
       "text": "A as base. Hero from F (40px, 600, -0.04em). Main background #fafafa from F, navbar stays white. Diff colors from D (#86efac / #fca5a5 marks, #dcfce7 / #fee2e2 / #fef9c3 rows). Disabled toggle as the extension popup: track #f3f4f6, white knob, label #6b7280, no fade. Shell max-width 1280px, fluid below."
     },
     "n9": {
@@ -124,6 +140,13 @@
       "x": 0,
       "y": 5390
     },
+    "n8": {
+      "color": "green",
+      "w": 320,
+      "x": 3190,
+      "y": 2050,
+      "text": "Q = P with two changes from developer.apple.com/design. Neutral ink: text #1d1d1f, secondary #6e6e73, light fill #f5f5f7 (read from their CSS); border #e5e5e7 and tertiary #a1a1a6 are derived to match. Hero letter-spacing started at -0.02em and was dropped later: negative tracking squeezes Chinese glyphs. Blue accent, diff colors, toggle unchanged."
+    },
     "t7": {
       "kind": "title1",
       "maxW": 3280,
@@ -139,6 +162,8 @@
     "DiffCue.dc.html",
     "Motion.dc.html",
     "DiffRemoved.dc.html",
+    "StyleQ.dc.html",
+    "PhoneQ.dc.html",
     "AiProcessing.dc.html",
     "AiErrors.dc.html"
   ],
