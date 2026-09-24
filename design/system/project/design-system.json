@@ -35,8 +35,8 @@
   },
   "lastChange": {
     "by": "Vinta",
-    "at": "2026-09-18T20:49:14Z",
-    "via": "GitHub · vinta/pangu.space@e4fb18f",
-    "note": "Shared tokens gain font-mono, text-lg and text-xl. The description under the headline is 18px. Select padding and the toggle knob read tokens"
+    "at": "2026-09-24T00:29:16Z",
+    "via": "GitHub · vinta/pangu.space@c2c53ec",
+    "note": "A removed space is drawn as a 2px bar in color-diff-del that takes no width. AI status styles and the zh headline wrap from the site"
   }
 }
