@@ -94,7 +94,7 @@
     .diff { flex-grow: 1; display: flex; flex-direction: column; padding: 16px 0; font-family: var(--fontPane); font-size: var(--paneSize); line-height: 1.8; letter-spacing: var(--paneSpacing); overflow-x: auto; }
     .row { width: max-content; min-width: 100%; padding: 0 16px; white-space: pre; }
     .row.add { background: var(--rowAdd); } .row.del { background: var(--rowDel); } .row.mix { background: var(--rowMix); }
-    .a { background: var(--add); border-radius: var(--markRadius); } .d { background: var(--del); border-radius: var(--markRadius); }
+    .a { background: var(--add); border-radius: var(--markRadius); } .d { padding: 0 1px; margin: 0 -1px; background: var(--del); border-radius: var(--markRadius); }
     .strip { display: flex; align-items: center; justify-content: flex-end; gap: 16px; padding: 12px 16px; border-top: var(--bw) solid var(--border); background: var(--surface2); }
     .legend { display: flex; align-items: center; gap: 12px; font-family: var(--labelFont); font-size: 14px; letter-spacing: var(--labelSpacing); color: var(--text2); }
     .legend span { display: inline-flex; align-items: center; gap: 8px; }
@@ -176,25 +176,19 @@
           <div class="pane left">
             <div class="pane-head"><label for="source">Original</label></div>
             <textarea id="source" wrap="off" class="text hscroll" >當你凝視著bug，bug也凝視著你
-所以,請問Jackey的鼻子有幾個?3.14個!
-用 pangu.js 就對了
-請在2026年9月17日前完成
-時間:3點
-女朋友今天的氣溫是 - 273.15度
-台北今天 - 3 度
-漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在34歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。</textarea>
+女朋友今天的氣溫是-273.15度
+中文 ( 盤古之白 ) 英文
+[ 盤古新聞網 ]工程師會議中默不作聲，PM恐成最大贏家
+Workaround 雖可恥但有用</textarea>
           </div>
           <div class="pane">
             <div class="pane-head"><span>Spaced</span><button type="button" class="btn">Copy</button></div>
                         <div class="diff hscroll">
               <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
-              <div class="row add">所以,<span class="a"> </span>請問<span class="a"> </span>Jackey<span class="a"> </span>的鼻子有幾個?<span class="a"> </span>3.14<span class="a"> </span>個!</div>
-              <div class="row">用 pangu.js 就對了</div>
-              <div class="row add">請在<span class="a"> </span>2026<span class="a"> </span>年<span class="a"> </span>9<span class="a"> </span>月<span class="a"> </span>17<span class="a"> </span>日前完成</div>
-              <div class="row add">時間:<span class="a"> </span>3<span class="a"> </span>點</div>
-              <div class="row mix">女朋友今天的氣溫是 -273.15<span class="a"> </span>度</div>
-              <div class="row del">台北今天 -3 度</div>
-              <div class="row add">漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在<span class="a"> </span>34<span class="a"> </span>歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。</div>
+              <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-<span class="a"> </span>273.15<span class="a"> </span>度</div>
+              <div class="row del">中文 (<span class="d"></span>盤古之白<span class="d"></span>) 英文</div>
+              <div class="row mix">[<span class="d"></span>盤古新聞網<span class="d"></span>]<span class="a"> </span>工程師會議中默不作聲，PM<span class="a"> </span>恐成最大贏家</div>
+              <div class="row">Workaround 雖可恥但有用</div>
             </div>
                                   </div>
         </div>
@@ -206,7 +200,7 @@
           </div>
         </div>
               </section>
-      <p class="note">Nothing leaves your machine, unless you enable AI Spacing.</p>
+      <p class="note">AI Spacing uses Cloudflare Workers AI</p>
       </div>
     </div>
   </main>

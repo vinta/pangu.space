@@ -12,7 +12,7 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 ## Content
 
-- Plain, short, direct. Talk to the reader as "you". No marketing voice, and features get deflated, never hyped: "Nothing leaves your machine."
+- Plain, short, direct. Talk to the reader as "you". No marketing voice, and features get deflated, never hyped: "AI Spacing uses Cloudflare Workers AI"
 
 - Sentence case everywhere. Write casing in the markup, never with `text-transform`.
 

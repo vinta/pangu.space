@@ -122,13 +122,10 @@
             <sc-if value="{{showDiff}}" hint-placeholder-val="{{ true }}">
             <div class="diff hscroll">
               <div class="row add">當你凝視著<span class="a"> </span>bug，bug<span class="a"> </span>也凝視著你</div>
-              <div class="row add">所以,<span class="a"> </span>請問<span class="a"> </span>Jackey<span class="a"> </span>的鼻子有幾個?<span class="a"> </span>3.14<span class="a"> </span>個!</div>
-              <div class="row">用 pangu.js 就對了</div>
-              <div class="row add">請在<span class="a"> </span>2026<span class="a"> </span>年<span class="a"> </span>9<span class="a"> </span>月<span class="a"> </span>17<span class="a"> </span>日前完成</div>
-              <div class="row add">時間:<span class="a"> </span>3<span class="a"> </span>點</div>
-              <div class="row mix">女朋友今天的氣溫是 -273.15<span class="a"> </span>度</div>
-              <div class="row del">台北今天 -3 度</div>
-              <div class="row add">漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在<span class="a"> </span>34<span class="a"> </span>歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。</div>
+              <div class="row add">女朋友今天的氣溫是<span class="a"> </span>-<span class="a"> </span>273.15<span class="a"> </span>度</div>
+              <div class="row del">中文 (<span class="d"></span>盤古之白<span class="d"></span>) 英文</div>
+              <div class="row mix">[<span class="d"></span>盤古新聞網<span class="d"></span>]<span class="a"> </span>工程師會議中默不作聲，PM<span class="a"> </span>恐成最大贏家</div>
+              <div class="row">Workaround 雖可恥但有用</div>
             </div>
             </sc-if>
             <sc-if value="{{plain}}" hint-placeholder-val="{{ false }}">
@@ -146,7 +143,7 @@
         </div>
         </sc-if>
       </section>
-      <p class="note">Nothing leaves your machine, unless you enable AI Spacing.</p>
+      <p class="note">AI Spacing uses Cloudflare Workers AI</p>
       </div>
     </div>
   </main>
@@ -167,8 +164,8 @@
 </div>
 </x-dc>
 <script data-dc-script data-props='{"$preview":{"width":@@W@@,"height":@@H@@}}'>
-const SAMPLE_IN = "當你凝視著bug，bug也凝視著你\n所以,請問Jackey的鼻子有幾個?3.14個!\n用 pangu.js 就對了\n請在2026年9月17日前完成\n時間:3點\n女朋友今天的氣溫是 - 273.15度\n台北今天 - 3 度\n漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在34歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。";
-const SAMPLE_OUT = "當你凝視著 bug，bug 也凝視著你\n所以, 請問 Jackey 的鼻子有幾個? 3.14 個!\n用 pangu.js 就對了\n請在 2026 年 9 月 17 日前完成\n時間: 3 點\n女朋友今天的氣溫是 -273.15 度\n台北今天 -3 度\n漢學家稱這個空白字元為「盤古之白」，因為它劈開了全形字和半形字之間的混沌。江湖上也有傳言，打字的時候不喜歡在中文和英文之間加空格的人，感情路都走得很辛苦，有七成的比例會在 34 歲的時候跟自己不愛的人結婚，而其餘三成的人最後只能把遺產留給自己的貓。畢竟愛情跟書寫都需要適時地留白。";
+const SAMPLE_IN = "當你凝視著bug，bug也凝視著你\n女朋友今天的氣溫是-273.15度\n中文 ( 盤古之白 ) 英文\n[ 盤古新聞網 ]工程師會議中默不作聲，PM恐成最大贏家\nWorkaround 雖可恥但有用";
+const SAMPLE_OUT = "當你凝視著 bug，bug 也凝視著你\n女朋友今天的氣溫是 - 273.15 度\n中文 (盤古之白) 英文\n[盤古新聞網] 工程師會議中默不作聲，PM 恐成最大贏家\nWorkaround 雖可恥但有用";
 class Component extends DCLogic {
   constructor(props) {
     super(props);
