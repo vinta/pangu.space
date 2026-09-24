@@ -5,10 +5,11 @@ import { fileURLToPath } from "node:url";
 const out = new URL("../public/vendor/", import.meta.url);
 mkdirSync(new URL("diff/", out), { recursive: true });
 
-for (const [specifier, name] of [
-  ["pangu/browser", "pangu.js"],
-  ["diff/lib/diff/character.js", "diff/character.js"],
-  ["diff/lib/diff/base.js", "diff/base.js"],
+for (const [source, name] of [
+  // pangu/browser resolves to the bundler build, whose imports point at sibling files. pangu.js next to it is the self-contained single file, which the exports map does not expose
+  [new URL("pangu.js", import.meta.resolve("pangu/browser")), "pangu.js"],
+  [import.meta.resolve("diff/lib/diff/character.js"), "diff/character.js"],
+  [import.meta.resolve("diff/lib/diff/base.js"), "diff/base.js"],
 ]) {
-  cpSync(fileURLToPath(import.meta.resolve(specifier)), fileURLToPath(new URL(name, out)));
+  cpSync(fileURLToPath(source), fileURLToPath(new URL(name, out)));
 }
