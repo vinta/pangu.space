@@ -5,10 +5,10 @@ import { fileURLToPath } from "node:url";
 const out = new URL("../public/vendor/", import.meta.url);
 mkdirSync(new URL("diff/", out), { recursive: true });
 
-for (const [source, name] of [
-  [import.meta.resolve("pangu/browser/standalone"), "pangu.js"],
-  [import.meta.resolve("diff/lib/diff/character.js"), "diff/character.js"],
-  [import.meta.resolve("diff/lib/diff/base.js"), "diff/base.js"],
+for (const [specifier, name] of [
+  ["pangu/browser/standalone", "pangu.js"],
+  ["diff/lib/diff/character.js", "diff/character.js"],
+  ["diff/lib/diff/base.js", "diff/base.js"],
 ]) {
-  cpSync(fileURLToPath(source), fileURLToPath(new URL(name, out)));
+  cpSync(fileURLToPath(import.meta.resolve(specifier)), fileURLToPath(new URL(name, out)));
 }
