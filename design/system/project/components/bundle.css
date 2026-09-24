@@ -454,7 +454,10 @@ main .shell {
   background: var(--color-diff-add);
 }
 
+/* An empty inline box keeps the text's height, like .a. The negative margin cancels its 2px width */
 .d {
+  padding: 0 1px;
+  margin: 0 -1px;
   background: var(--color-diff-del);
 }
 

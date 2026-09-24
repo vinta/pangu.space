@@ -40,7 +40,7 @@ This page holds the rules: what to use, when, and what never to do. It states no
 
 - A green or red button is soft: a `color-success-light` or `color-danger-light` fill, the matching text color, and a `color-success-border` or `color-danger-border` edge. Hover swaps in the `-hover` pair. Always give it a word, never color alone.
 
-- Diff colors mean one thing each. `color-diff-add` sits behind an added space. A row is tinted `color-diff-row-add`, `color-diff-row-del` or `color-diff-row-mix` by what changed in it. A removed space is not drawn at all: the row tint is its only sign, and the row reads exactly as the output.
+- Diff colors mean one thing each. `color-diff-add` sits behind an added space. A row is tinted `color-diff-row-add`, `color-diff-row-del` or `color-diff-row-mix` by what changed in it. `color-diff-del` marks where a removed space was, as a 2px bar that takes no width, so the row reads exactly as the output.
 
 ## Links
 

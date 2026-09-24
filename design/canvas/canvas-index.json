@@ -37,7 +37,7 @@
       "y": 5690,
       "w": 1600,
       "h": 930,
-      "title": "Diff · removed space options (decided: B, row tint only)"
+      "title": "Diff · removed space options (decided: 2px bar in --color-diff-del, no width)"
     },
     "AiProcessing.dc.html": {
       "x": 0,
