@@ -89,7 +89,7 @@ const tokens = {
   meta: {
     source: "github",
     repo: "vinta/pangu.space",
-    ref: process.argv[2] ?? previousRef() ?? "main",
+    ref: process.argv[2] ?? previousRef() ?? "master",
     paths: { tokens: ["web/public/tokens.css"], components: ["web/public/styles.css"], assets: ["web/public/favicon.svg"] },
     synced: new Date().toISOString().slice(0, 10),
   },
