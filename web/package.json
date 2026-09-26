@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "diff": "9.0.0",
-    "pangu": "10.4.0"
+    "pangu": "10.4.1"
   }
 }

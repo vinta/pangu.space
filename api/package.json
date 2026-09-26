@@ -11,7 +11,7 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "pangu": "10.4.0"
+    "pangu": "10.4.1"
   },
   "devDependencies": {
     "@cloudflare/vitest-plugin": "1.1.8",
