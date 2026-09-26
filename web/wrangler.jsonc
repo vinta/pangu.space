@@ -5,6 +5,7 @@
   "workers_dev": false,
   "routes": [{ "pattern": "pangu.space", "custom_domain": true }],
   "dev": { "port": 5566, "inspector_port": 9230 },
+  "build": { "command": "node scripts/vendor.mjs", "watch_dir": "scripts" },
   "assets": {
     "directory": "./public",
   },

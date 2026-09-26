@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/vendor.mjs && wrangler dev",
+    "dev": "wrangler dev",
     "vendor": "node scripts/vendor.mjs",
-    "deploy": "node scripts/vendor.mjs && wrangler deploy"
+    "deploy": "wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "4.131.1"
