@@ -1,0 +1,659 @@
+{
+  "provider": "clef",
+  "model": "clef-flash",
+  "experiment": "hyphen-digit",
+  "thinking": true,
+  "promptVersion": "v29-zh",
+  "timestamp": "2026-10-03T08:55:42.772Z",
+  "passed": 52,
+  "total": 53,
+  "errors": 0,
+  "avgMs": 770,
+  "tokens": {
+    "prompt_tokens": 24614,
+    "completion_tokens": 0
+  },
+  "classes": {
+    "signed-number": "16/16",
+    "range-or-separator": "36/37",
+    "unsure": "0/0"
+  },
+  "results": [
+    {
+      "id": "readme-negative-273-15",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9755,\"range-or-separator\":0.0161,\"unsure\":0.0084},\"confidence\":0.928}",
+      "error": null,
+      "ms": 5336,
+      "usage": {
+        "prompt_tokens": 420,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-01",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9827,\"range-or-separator\":0.0126,\"unsure\":0.0047},\"confidence\":0.9488}",
+      "error": null,
+      "ms": 689,
+      "usage": {
+        "prompt_tokens": 410,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-02",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9819,\"range-or-separator\":0.013,\"unsure\":0.0051},\"confidence\":0.9465}",
+      "error": null,
+      "ms": 709,
+      "usage": {
+        "prompt_tokens": 410,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-03",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9818,\"range-or-separator\":0.0133,\"unsure\":0.0049},\"confidence\":0.9463}",
+      "error": null,
+      "ms": 844,
+      "usage": {
+        "prompt_tokens": 410,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-04",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9832,\"range-or-separator\":0.0123,\"unsure\":0.0045},\"confidence\":0.9503}",
+      "error": null,
+      "ms": 645,
+      "usage": {
+        "prompt_tokens": 468,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-05",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9794,\"range-or-separator\":0.015,\"unsure\":0.0056},\"confidence\":0.9392}",
+      "error": null,
+      "ms": 863,
+      "usage": {
+        "prompt_tokens": 468,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-06",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9827,\"range-or-separator\":0.0123,\"unsure\":0.005},\"confidence\":0.9488}",
+      "error": null,
+      "ms": 999,
+      "usage": {
+        "prompt_tokens": 425,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-07",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.8694,\"range-or-separator\":0.0618,\"unsure\":0.0688},\"confidence\":0.6467}",
+      "error": null,
+      "ms": 789,
+      "usage": {
+        "prompt_tokens": 412,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-08",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9894,\"range-or-separator\":0.0078,\"unsure\":0.0028},\"confidence\":0.9686}",
+      "error": null,
+      "ms": 848,
+      "usage": {
+        "prompt_tokens": 428,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-09",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0445,\"range-or-separator\":0.9268,\"unsure\":0.0287},\"confidence\":0.7927}",
+      "error": null,
+      "ms": 633,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-10",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.1671,\"range-or-separator\":0.8026,\"unsure\":0.0303},\"confidence\":0.5096}",
+      "error": null,
+      "ms": 530,
+      "usage": {
+        "prompt_tokens": 438,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-10-stage-1",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0334,\"range-or-separator\":0.9512,\"unsure\":0.0154},\"confidence\":0.8593}",
+      "error": null,
+      "ms": 715,
+      "usage": {
+        "prompt_tokens": 432,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-10-stage-2",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0333,\"range-or-separator\":0.9542,\"unsure\":0.0125},\"confidence\":0.8677}",
+      "error": null,
+      "ms": 645,
+      "usage": {
+        "prompt_tokens": 431,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-11",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0234,\"range-or-separator\":0.9622,\"unsure\":0.0144},\"confidence\":0.8899}",
+      "error": null,
+      "ms": 531,
+      "usage": {
+        "prompt_tokens": 407,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-12",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9752,\"range-or-separator\":0.0175,\"unsure\":0.0073},\"confidence\":0.927}",
+      "error": null,
+      "ms": 530,
+      "usage": {
+        "prompt_tokens": 429,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-blocktempo-19",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0322,\"range-or-separator\":0.9508,\"unsure\":0.017},\"confidence\":0.858}",
+      "error": null,
+      "ms": 677,
+      "usage": {
+        "prompt_tokens": 419,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-blocktempo-18",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0302,\"range-or-separator\":0.9572,\"unsure\":0.0126},\"confidence\":0.8758}",
+      "error": null,
+      "ms": 795,
+      "usage": {
+        "prompt_tokens": 443,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-development-blocktempo-17",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0286,\"range-or-separator\":0.9597,\"unsure\":0.0117},\"confidence\":0.883}",
+      "error": null,
+      "ms": 797,
+      "usage": {
+        "prompt_tokens": 424,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "books-4-percent-ebook",
+      "expected": "range-or-separator",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.931,\"range-or-separator\":0.0466,\"unsure\":0.0224},\"confidence\":0.8043}",
+      "error": null,
+      "ms": 616,
+      "usage": {
+        "prompt_tokens": 423,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "macromicro-labor-15-64",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0467,\"range-or-separator\":0.9354,\"unsure\":0.0179},\"confidence\":0.8162}",
+      "error": null,
+      "ms": 574,
+      "usage": {
+        "prompt_tokens": 415,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "macromicro-global-labor-25-54",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0488,\"range-or-separator\":0.9269,\"unsure\":0.0243},\"confidence\":0.7932}",
+      "error": null,
+      "ms": 719,
+      "usage": {
+        "prompt_tokens": 421,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "macromicro-us-cds-5y",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0658,\"range-or-separator\":0.9111,\"unsure\":0.0231},\"confidence\":0.7525}",
+      "error": null,
+      "ms": 806,
+      "usage": {
+        "prompt_tokens": 411,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "macromicro-us-treasury-10y",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0295,\"range-or-separator\":0.9608,\"unsure\":0.0097},\"confidence\":0.8861}",
+      "error": null,
+      "ms": 771,
+      "usage": {
+        "prompt_tokens": 412,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-01",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9894,\"range-or-separator\":0.0077,\"unsure\":0.0029},\"confidence\":0.9684}",
+      "error": null,
+      "ms": 530,
+      "usage": {
+        "prompt_tokens": 439,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-02",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9883,\"range-or-separator\":0.0085,\"unsure\":0.0032},\"confidence\":0.9653}",
+      "error": null,
+      "ms": 559,
+      "usage": {
+        "prompt_tokens": 423,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-03",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0325,\"range-or-separator\":0.9419,\"unsure\":0.0256},\"confidence\":0.8334}",
+      "error": null,
+      "ms": 755,
+      "usage": {
+        "prompt_tokens": 451,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-04",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0325,\"range-or-separator\":0.9445,\"unsure\":0.023},\"confidence\":0.8406}",
+      "error": null,
+      "ms": 606,
+      "usage": {
+        "prompt_tokens": 458,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-05",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0308,\"range-or-separator\":0.9578,\"unsure\":0.0114},\"confidence\":0.8776}",
+      "error": null,
+      "ms": 559,
+      "usage": {
+        "prompt_tokens": 409,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-06",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0274,\"range-or-separator\":0.9545,\"unsure\":0.0181},\"confidence\":0.8683}",
+      "error": null,
+      "ms": 646,
+      "usage": {
+        "prompt_tokens": 406,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-07",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.6384,\"range-or-separator\":0.286,\"unsure\":0.0756},\"confidence\":0.2427}",
+      "error": null,
+      "ms": 518,
+      "usage": {
+        "prompt_tokens": 415,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "real-holdout-08",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9807,\"range-or-separator\":0.0143,\"unsure\":0.005},\"confidence\":0.9429}",
+      "error": null,
+      "ms": 825,
+      "usage": {
+        "prompt_tokens": 500,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "jinbao-frozen-egg-white-minus-18",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9899,\"range-or-separator\":0.0073,\"unsure\":0.0028},\"confidence\":0.9699}",
+      "error": null,
+      "ms": 988,
+      "usage": {
+        "prompt_tokens": 411,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "ncku-advanced-course-file-1",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0348,\"range-or-separator\":0.9479,\"unsure\":0.0173},\"confidence\":0.85}",
+      "error": null,
+      "ms": 778,
+      "usage": {
+        "prompt_tokens": 431,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "ptt-delivery-duration-3-to-5-days",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.1071,\"range-or-separator\":0.8622,\"unsure\":0.0307},\"confidence\":0.6337}",
+      "error": null,
+      "ms": 567,
+      "usage": {
+        "prompt_tokens": 419,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "macromicro-labor-15-plus",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0538,\"range-or-separator\":0.9246,\"unsure\":0.0216},\"confidence\":0.7873}",
+      "error": null,
+      "ms": 796,
+      "usage": {
+        "prompt_tokens": 412,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-01",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0305,\"range-or-separator\":0.9559,\"unsure\":0.0136},\"confidence\":0.8722}",
+      "error": null,
+      "ms": 512,
+      "usage": {
+        "prompt_tokens": 483,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-02",
+      "expected": "signed-number",
+      "answer": "signed-number",
+      "raw": "{\"type\":\"choice\",\"choice\":\"signed-number\",\"probabilities\":{\"signed-number\":0.9893,\"range-or-separator\":0.0079,\"unsure\":0.0028},\"confidence\":0.9682}",
+      "error": null,
+      "ms": 490,
+      "usage": {
+        "prompt_tokens": 445,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-03",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0363,\"range-or-separator\":0.9535,\"unsure\":0.0102},\"confidence\":0.8659}",
+      "error": null,
+      "ms": 601,
+      "usage": {
+        "prompt_tokens": 497,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-04",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0359,\"range-or-separator\":0.9534,\"unsure\":0.0107},\"confidence\":0.8656}",
+      "error": null,
+      "ms": 559,
+      "usage": {
+        "prompt_tokens": 505,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-05",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0349,\"range-or-separator\":0.9552,\"unsure\":0.0099},\"confidence\":0.8707}",
+      "error": null,
+      "ms": 638,
+      "usage": {
+        "prompt_tokens": 514,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-06",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0341,\"range-or-separator\":0.9569,\"unsure\":0.009},\"confidence\":0.8754}",
+      "error": null,
+      "ms": 979,
+      "usage": {
+        "prompt_tokens": 523,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-07",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0325,\"range-or-separator\":0.959,\"unsure\":0.0085},\"confidence\":0.8813}",
+      "error": null,
+      "ms": 560,
+      "usage": {
+        "prompt_tokens": 532,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-08",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0389,\"range-or-separator\":0.9504,\"unsure\":0.0107},\"confidence\":0.8574}",
+      "error": null,
+      "ms": 637,
+      "usage": {
+        "prompt_tokens": 539,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-09",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0356,\"range-or-separator\":0.9541,\"unsure\":0.0103},\"confidence\":0.8676}",
+      "error": null,
+      "ms": 744,
+      "usage": {
+        "prompt_tokens": 548,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-10",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0359,\"range-or-separator\":0.9541,\"unsure\":0.01},\"confidence\":0.8676}",
+      "error": null,
+      "ms": 533,
+      "usage": {
+        "prompt_tokens": 556,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-11",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0403,\"range-or-separator\":0.9485,\"unsure\":0.0112},\"confidence\":0.8522}",
+      "error": null,
+      "ms": 649,
+      "usage": {
+        "prompt_tokens": 564,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-12",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0339,\"range-or-separator\":0.9559,\"unsure\":0.0102},\"confidence\":0.8725}",
+      "error": null,
+      "ms": 561,
+      "usage": {
+        "prompt_tokens": 572,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-13",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0346,\"range-or-separator\":0.9559,\"unsure\":0.0095},\"confidence\":0.8726}",
+      "error": null,
+      "ms": 551,
+      "usage": {
+        "prompt_tokens": 578,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-14",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0372,\"range-or-separator\":0.9516,\"unsure\":0.0112},\"confidence\":0.8607}",
+      "error": null,
+      "ms": 906,
+      "usage": {
+        "prompt_tokens": 576,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-15",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0332,\"range-or-separator\":0.9573,\"unsure\":0.0095},\"confidence\":0.8763}",
+      "error": null,
+      "ms": 793,
+      "usage": {
+        "prompt_tokens": 568,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-16",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0395,\"range-or-separator\":0.9494,\"unsure\":0.0111},\"confidence\":0.8545}",
+      "error": null,
+      "ms": 629,
+      "usage": {
+        "prompt_tokens": 558,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-17",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0361,\"range-or-separator\":0.9538,\"unsure\":0.0101},\"confidence\":0.8668}",
+      "error": null,
+      "ms": 528,
+      "usage": {
+        "prompt_tokens": 548,
+        "completion_tokens": 0
+      }
+    },
+    {
+      "id": "blind-age-threshold-20260913-18",
+      "expected": "range-or-separator",
+      "answer": "range-or-separator",
+      "raw": "{\"type\":\"choice\",\"choice\":\"range-or-separator\",\"probabilities\":{\"signed-number\":0.0298,\"range-or-separator\":0.9621,\"unsure\":0.0081},\"confidence\":0.8898}",
+      "error": null,
+      "ms": 746,
+      "usage": {
+        "prompt_tokens": 539,
+        "completion_tokens": 0
+      }
+    }
+  ]
+}

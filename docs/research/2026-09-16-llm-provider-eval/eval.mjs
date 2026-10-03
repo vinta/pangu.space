@@ -3,6 +3,8 @@
 //   node --env-file-if-exists=docs/research/2026-09-16-llm-provider-eval/.env docs/research/2026-09-16-llm-provider-eval/eval.mjs run <provider>:<model> [--experiment hyphen-digit|digit-plus]
 //   node docs/research/2026-09-16-llm-provider-eval/eval.mjs compare
 //
+// clef:<clef|clef-flash> runs Cloudflare's decision models, which score the menu labels instead of generating text
+//
 // Provider keys come from the env vars named in PROVIDERS. Results land in results/<experiment>/<provider>--<model>.json; a rerun overwrites.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
@@ -25,6 +27,11 @@ const PROVIDERS = {
   'workers-ai': {
     url: 'https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions',
     headers: { Authorization: 'Bearer ${CLOUDFLARE_API_TOKEN}', 'cf-aig-gateway-id': '${CLOUDFLARE_AI_GATEWAY}', 'cf-aig-skip-cache': 'true' },
+  },
+  clef: {
+    url: 'https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/@cf/cloudflare/${MODEL}',
+    headers: { Authorization: 'Bearer ${CLOUDFLARE_API_TOKEN}', 'cf-aig-gateway-id': '${CLOUDFLARE_AI_GATEWAY}', 'cf-aig-skip-cache': 'true' },
+    decision: true,
   },
 };
 
@@ -51,13 +58,25 @@ function parseLabel(raw, labels) {
   return labels.find((label) => label === cleaned) ?? null;
 }
 
-async function complete({ url, headers, thinking }, model, messages) {
+// A decision model takes the system prompt as instructions, the question as state, and the question's menu lines as its choices, so the prompt bytes stay the shipping ones
+function decisionBody(model, [system, user], labels) {
+  const criteria = Object.fromEntries(labels.map((label) => [label, user.content.match(new RegExp(`^- ${label}(?:：|: )(.+)$`, 'm'))[1]]));
+  return { model, state: user.content, questions: { label: { type: 'choice', instructions: system.content, criteria } } };
+}
+
+async function complete({ url, headers, thinking, decision }, model, messages, labels) {
   // Workers AI turns a reasoning model's thinking off through the chat template, not a top-level field
-  const body = JSON.stringify({ model, messages, temperature: 0, ...(thinking ? {} : { chat_template_kwargs: { enable_thinking: false } }) });
+  const body = JSON.stringify(
+    decision ? decisionBody(model, messages, labels) : { model, messages, temperature: 0, ...(thinking ? {} : { chat_template_kwargs: { enable_thinking: false } }) },
+  );
   for (let attempt = 0; ; attempt++) {
     const response = await fetch(url, { method: 'POST', headers, body });
     if (response.ok) {
       const data = await response.json();
+      if (decision) {
+        const { answers, usage } = data.result;
+        return { content: JSON.stringify(answers.label), usage: { prompt_tokens: usage.input_tokens, completion_tokens: usage.output_tokens } };
+      }
       return { content: data.choices[0].message.content ?? '', usage: data.usage ?? null };
     }
     const text = await response.text();
@@ -77,12 +96,13 @@ async function run(target, experiments, thinking) {
   if (!PROVIDERS[provider] || !model) {
     throw new Error(`use <provider>:<model> with provider in ${Object.keys(PROVIDERS).join(', ')}`);
   }
-  const { url, headers } = PROVIDERS[provider];
-  const expand = (text) => text.replace(/\$\{(\w+)\}/g, (_, name) => env(name));
+  const { url, headers, decision } = PROVIDERS[provider];
+  const expand = (text) => text.replace(/\$\{(\w+)\}/g, (_, name) => (name === 'MODEL' ? model : env(name)));
   const endpoint = {
     url: expand(url),
     headers: { 'Content-Type': 'application/json', ...Object.fromEntries(Object.entries(headers).map(([name, value]) => [name, expand(value)])) },
     thinking,
+    decision,
   };
   for (const experiment of experiments) {
     const { spec, cases } = await loadExperiment(experiment);
@@ -97,11 +117,11 @@ async function run(target, experiments, thinking) {
       let usage = null;
       let error = null;
       try {
-        ({ content: raw, usage } = await complete(endpoint, model, messages));
+        ({ content: raw, usage } = await complete(endpoint, model, messages, spec.candidateLabels));
       } catch (caught) {
         error = String(caught.message ?? caught);
       }
-      const answer = raw === null ? null : parseLabel(raw, spec.candidateLabels);
+      const answer = raw === null ? null : decision ? JSON.parse(raw).choice : parseLabel(raw, spec.candidateLabels);
       results.push({ id: kase.id, expected: kase.expected_label, answer, raw, error, ms: Math.round(performance.now() - started), usage });
       process.stderr.write(answer === kase.expected_label ? '.' : 'x');
     }

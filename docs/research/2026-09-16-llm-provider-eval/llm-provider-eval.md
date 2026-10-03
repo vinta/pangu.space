@@ -1,6 +1,6 @@
 # LLM provider eval
 
-Runs of `eval.mjs` on 2026-09-16, asking which gateway to integrate with and which model classifies better. The gateway question has an answer. The model question turned out to be two questions, and the useful one was never about size. A later run on 2026-09-21 added `qwen3.8-27b`, the one model in the catalog newer than Gemma 4.
+Runs of `eval.mjs` on 2026-09-16, asking which gateway to integrate with and which model classifies better. The gateway question has an answer. The model question turned out to be two questions, and the useful one was never about size. A later run on 2026-09-21 added `qwen3.8-27b`, the one model in the catalog newer than Gemma 4. A run on 2026-10-03 added Cloudflare's Clef decision models.
 
 ## What was run
 
@@ -86,6 +86,42 @@ One 58-second call kills a request that fans out to N candidates, so Gemma 4 sta
 
 Worth a rerun at another hour. If the tail drops near the p50, the extra case makes it the better model.
 
+## Clef-flash ties Gemma 4 and costs more
+
+Run on 2026-10-03. Cloudflare's [Clef](https://blog.cloudflare.com/clef-decision-models/) models don't generate text. They take a `state` and a typed `choice` question, then score every label in one pass. That is exactly this task: pick one of three labels.
+
+The prompt bytes are the shipping ones. The system prompt goes in `instructions`, the question goes in `state`, and the question's menu lines become `criteria`.
+
+| | clef | clef-flash | gemma-4-26b-a4b off |
+| --- | --- | --- | --- |
+| score | 60/60 | 59/60 | 59/60 |
+| neurons per pass | 616 | 231 | 178 |
+
+Clef takes `real-development-10`, the case Gemma misses, at 0.97 probability. Clef-flash gets it at 0.80, then misses `books-4-percent-ebook` instead, answering `signed-number` at 0.93.
+
+Cost is the catch. Clef bills input tokens only, but at $0.24 per M (21,818 neurons per M), 2.4 times Gemma's input rate; Clef-flash is $0.09. A pass also takes 28.2k input tokens against Gemma's 18.6k, partly because the menu is sent twice, once in `state` and once in `criteria`. Per candidate that is about 10 neurons on Clef and 4 on Clef-flash, so about 970 and 2,600 classifications a day free, against Gemma's 3,300.
+
+Every answer comes with per-label probabilities and a confidence, which a chat model doesn't give you. On this corpus a confidence threshold would not help: Clef-flash's one miss has confidence 0.80, and its hit on `real-development-10` has 0.51.
+
+So Gemma 4 stays. Clef-flash is the same score for 1.3 times the neurons, and Clef buys one case for 3.5 times.
+
+Gemma 4 went down during the rerun, and nearly every call returned `429`. A probe afterwards got `Service temporarily at capacity` with code `4006`, with or without the gateway header. Clef-flash on the same account answered 200, so it was not the quota. If that keeps happening, availability is a better reason to switch than the score.
+
+## Clef-flash is fast, but the overhead is not
+
+Don't read latency from `eval.mjs`. Clef-flash measured 646ms p50 there, and most of it is overhead every model pays. The REST API itself costs about 300ms: a call that never reaches a model (`/ai/models/search`) takes 327ms p50. The `cf-aig-gateway-id` header adds about 350ms more.
+
+So the numbers below come from a throwaway Worker calling `env.AI.run`, which is where production calls it. Same 53 hyphen-digit cases, every target back to back per case, order rotated.
+
+| p50 / p95 | clef-flash | clef | gemma-4-26b-a4b off |
+| --- | --- | --- | --- |
+| direct | 142 / 210ms | 389 / 765ms | 166 / 260ms (10 of 53 answered) |
+| `gateway` option | 293 / 364ms | 481 / 772ms | 321 / 580ms (15 of 53 answered) |
+
+Clef-flash is the fastest, but its edge over Gemma is too small to measure while most Gemma calls fail. It's still far from the blog's 38.8ms median, and Clef from 209ms, even inside a Worker.
+
+The gateway costs about 150ms per call, more than the 90ms measured over REST on 2026-09-16. Production pays it on every candidate, since `classify.ts` passes `gateway`.
+
 ## Cost
 
 One full 60-case pass on Gemma 4 with thinking off is about 18.6k prompt and 311 completion tokens, roughly 178 neurons. The free allocation of 10,000 neurons per day is about 56 full passes.
@@ -134,6 +170,9 @@ The Cloudflare token needs AI Gateway Run plus Workers AI Read and Edit. Read al
 - The prompts are Nano-tuned and Nano is roughly 3B-class, yet `llama-3.2-3b` scores 0/16 on `signed-number` at the same size. Same size, opposite outcome, so the small-model failures here are model-specific rather than a size limit. Optimizing prompts for a small model would buy nothing for pangu.space, since Gemma 4 is already faster and better, but it is the one result that would justify a prompt experiment for its own sake.
 
 ref:
+https://blog.cloudflare.com/clef-decision-models/
+https://developers.cloudflare.com/workers-ai/models/clef/
+https://developers.cloudflare.com/workers-ai/platform/pricing/
 https://developers.cloudflare.com/workers-ai/configuration/open-ai-compatibility/
 https://developers.cloudflare.com/workers-ai/get-started/workers-wrangler/
 https://developers.cloudflare.com/ai-gateway/usage/providers/workersai/
