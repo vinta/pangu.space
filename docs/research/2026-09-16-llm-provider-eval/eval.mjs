@@ -1,11 +1,11 @@
 // Runs pangu.js's shipping AI-spacing prompts against a hosted model over the OpenAI chat-completions API and scores the answers on the pangu.js corpora.
 //
-//   node --env-file-if-exists=docs/research/2026-09-16-llm-provider-eval/.env docs/research/2026-09-16-llm-provider-eval/eval.mjs run <provider>:<model> [--experiment hyphen-digit|digit-plus]
+//   node --env-file-if-exists=docs/research/2026-09-16-llm-provider-eval/.env docs/research/2026-09-16-llm-provider-eval/eval.mjs run <provider>:<model> [--experiment hyphen-digit|digit-plus] [--limit N]
 //   node docs/research/2026-09-16-llm-provider-eval/eval.mjs compare
 //
 // clef:<clef|clef-flash> runs Cloudflare's decision models, which score the menu labels instead of generating text
 //
-// Provider keys come from the env vars named in PROVIDERS. Results land in results/<experiment>/<provider>--<model>.json; a rerun overwrites.
+// Provider keys come from the env vars named in PROVIDERS. Results land in results/<experiment>/<provider>--<model>.json; a rerun overwrites. --limit N runs only the first N cases and writes nothing, so a smoke test never replaces a full result.
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 
@@ -90,7 +90,7 @@ async function complete({ url, headers, thinking, decision }, model, messages, l
   }
 }
 
-async function run(target, experiments, thinking) {
+async function run(target, experiments, thinking, limit) {
   const [provider, ...rest] = target.split(':');
   const model = rest.join(':');
   if (!PROVIDERS[provider] || !model) {
@@ -107,7 +107,7 @@ async function run(target, experiments, thinking) {
   for (const experiment of experiments) {
     const { spec, cases } = await loadExperiment(experiment);
     const results = [];
-    for (const kase of cases) {
+    for (const kase of cases.slice(0, limit)) {
       const messages = [
         { role: 'system', content: spec.systemPrompt },
         { role: 'user', content: spec.buildQuestion(kase.input, kase.at) },
@@ -149,9 +149,11 @@ async function run(target, experiments, thinking) {
       classes,
       results,
     };
-    const directory = new URL(`${experiment}/`, RESULTS);
-    mkdirSync(directory, { recursive: true });
-    writeFileSync(new URL(`${provider}--${model.replaceAll('/', '_')}${thinking ? '' : '--nothink'}.json`, directory), `${JSON.stringify(summary, null, 2)}\n`);
+    if (limit === undefined) {
+      const directory = new URL(`${experiment}/`, RESULTS);
+      mkdirSync(directory, { recursive: true });
+      writeFileSync(new URL(`${provider}--${model.replaceAll('/', '_')}${thinking ? '' : '--nothink'}.json`, directory), `${JSON.stringify(summary, null, 2)}\n`);
+    }
 
     console.log(`${target}${thinking ? '' : ' (no thinking)'} ${experiment}: ${passed}/${results.length}; classes ${JSON.stringify(classes)}; errors ${summary.errors}; avg ${summary.avgMs}ms; tokens ${JSON.stringify(summary.tokens)}`);
     console.log(
@@ -176,13 +178,13 @@ function compare() {
   console.table(rows);
 }
 
-const { positionals, values } = parseArgs({ allowPositionals: true, options: { experiment: { type: 'string' }, 'no-thinking': { type: 'boolean' } } });
+const { positionals, values } = parseArgs({ allowPositionals: true, options: { experiment: { type: 'string' }, 'no-thinking': { type: 'boolean' }, limit: { type: 'string' } } });
 const [command, target] = positionals;
 if (command === 'run' && target) {
-  await run(target, values.experiment ? [values.experiment] : Object.keys(EXPERIMENTS), !values['no-thinking']);
+  await run(target, values.experiment ? [values.experiment] : Object.keys(EXPERIMENTS), !values['no-thinking'], values.limit === undefined ? undefined : Number(values.limit));
 } else if (command === 'compare') {
   compare();
 } else {
-  console.error('usage: eval.mjs run <provider>:<model> [--experiment <name>] [--no-thinking] | eval.mjs compare');
+  console.error('usage: eval.mjs run <provider>:<model> [--experiment <name>] [--no-thinking] [--limit N] | eval.mjs compare');
   process.exitCode = 1;
 }
