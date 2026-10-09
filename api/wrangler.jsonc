@@ -10,6 +10,7 @@
     "enabled": true,
     "logs": { "enabled": true },
     "traces": { "enabled": true },
+    "issues": { "enabled": true },
   },
   "upload_source_maps": true,
 }
