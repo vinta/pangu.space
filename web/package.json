@@ -8,7 +8,7 @@
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
-    "wrangler": "4.147.0"
+    "wrangler": "4.151.1"
   },
   "dependencies": {
     "diff": "9.0.0",
