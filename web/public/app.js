@@ -2,7 +2,8 @@ import { diffChars } from "./vendor/diff/character.js";
 import pangu from "./vendor/pangu.js";
 
 const ZH_TW = {
-  title: "為什麼你們就是不能加個空格呢？",
+  // The zero-width space is the only place the headline may wrap
+  title: "為什麼你們就是​不能加個空格呢？",
   description: "自動在中文和英文、數字、符號之間插入空白",
   language: "語言",
   library: "函式庫",
