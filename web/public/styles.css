@@ -28,6 +28,8 @@ body {
   color: var(--color-text-primary);
   background: var(--site-paper);
   -webkit-font-smoothing: antialiased;
+  /* The page shows only the spaces the text holds. Browsers that start auto-spacing would fake the Original pane */
+  text-autospace: no-autospace;
 }
 
 ::selection {
@@ -512,6 +514,7 @@ main .shell {
   translate: 0 0;
 }
 
+/* .text, .diff and .row share font, size, line height and side padding, or the panes stop pairing line for line */
 .text {
   flex-grow: 1;
   box-sizing: border-box;
