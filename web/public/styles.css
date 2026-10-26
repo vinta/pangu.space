@@ -61,7 +61,7 @@ button {
 
 a,
 .btn {
-  transition: color var(--transition-fast), border-color var(--transition-fast);
+  transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
 a:focus-visible,
@@ -123,6 +123,11 @@ select:focus-visible,
   height: 26px;
   fill: currentColor;
   flex-shrink: 0;
+  transition: transform 600ms var(--site-ease-spring);
+}
+
+.brand:hover svg {
+  transform: rotate(-12deg);
 }
 
 .links {
@@ -133,6 +138,16 @@ select:focus-visible,
   font-weight: 500;
 }
 
+/* An underline that draws in from the left */
+.links a {
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
+  transition: color var(--transition-fast), background-size 400ms var(--site-ease-out);
+}
+
+.links a:hover {
+  background-size: 100% 1px;
+}
+
 .select {
   height: 32px;
   /* The right side reserves room for the native arrow */
@@ -141,6 +156,12 @@ select:focus-visible,
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.select:hover {
+  border-color: var(--color-text-tertiary);
 }
 
 main {
@@ -240,7 +261,7 @@ main .shell {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--site-shadow-card);
 }
 
 .toolbar {
@@ -297,7 +318,20 @@ main .shell {
   background: var(--color-surface);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow);
-  transition: background-color var(--transition), transform var(--transition);
+  transition: background-color var(--transition), transform 400ms var(--site-ease-spring), width 200ms var(--site-ease-out);
+}
+
+/* The knob stretches while pressed, then springs across */
+.toggle:active .toggle-switch::after {
+  width: 24px;
+}
+
+.toggle:active .toggle-input:checked + .toggle-switch::after {
+  transform: translateX(16px);
+}
+
+.toggle:hover .toggle-input:not(:checked, :disabled) + .toggle-switch {
+  box-shadow: inset 0 0 0 1px var(--color-text-tertiary);
 }
 
 .toggle-input:checked + .toggle-switch {
@@ -335,7 +369,7 @@ main .shell {
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-3);
-  height: 40px;
+  height: 44px;
   padding: 0 var(--spacing-2) 0 var(--spacing-4);
   border-bottom: 1px solid var(--color-border-light);
   font-size: var(--text-base);
@@ -411,6 +445,10 @@ main .shell {
   color: var(--color-primary);
 }
 
+.btn:active {
+  background: var(--color-surface-tertiary);
+}
+
 /* The main action of a page. Measurements match the pangu.js extension's .btn-primary */
 .btn-primary {
   display: inline-flex;
@@ -445,20 +483,33 @@ main .shell {
   display: inline-grid;
   align-items: center;
   justify-items: center;
+  overflow: hidden;
 }
 
+/* The idle label rises out as the copied one rises in */
 .btn-copy span {
   grid-area: 1 / 1;
-  transition: opacity var(--transition-fast);
+  transition: opacity 250ms var(--site-ease-out), translate 400ms var(--site-ease-out);
 }
 
-.btn-copy .when-copied,
+.btn-copy .when-copied {
+  opacity: 0;
+  translate: 0 100%;
+}
+
+.btn-copy.copied {
+  color: var(--color-success);
+  border-color: var(--color-success-border);
+}
+
 .btn-copy.copied .when-idle {
   opacity: 0;
+  translate: 0 -100%;
 }
 
 .btn-copy.copied .when-copied {
   opacity: 1;
+  translate: 0 0;
 }
 
 .text {
@@ -632,6 +683,35 @@ main .shell {
   display: none !important;
 }
 
+/* Rises in once on load. Without motion, everything is already in place */
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1,
+  .lede,
+  .specimen,
+  .tool {
+    animation: rise 900ms var(--site-ease-out) both;
+  }
+
+  .lede {
+    animation-delay: 120ms;
+  }
+
+  .specimen {
+    animation-delay: 200ms;
+  }
+
+  .tool {
+    animation-delay: 280ms;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
 @media (max-width: 640px) {
   .shell {
     padding: 0 var(--spacing-4);
@@ -699,10 +779,6 @@ main .shell {
   .pane .text,
   .pane .diff {
     min-height: 262px;
-  }
-
-  .pane-head {
-    height: 44px;
   }
 
   .btn {
