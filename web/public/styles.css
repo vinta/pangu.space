@@ -224,21 +224,13 @@ main .shell {
   vertical-align: -0.2em;
   background: var(--color-diff-add);
   border-radius: 2px;
-  transition: width 700ms var(--site-ease-spring) 900ms, background-color 400ms var(--site-ease-out) 900ms;
-}
-
-@starting-style {
-  .gap {
-    width: 0;
-    background-color: transparent;
-  }
+  transition: width 500ms var(--site-ease-spring), background-color 300ms var(--site-ease-out);
 }
 
 /* Pointing at the line shows it as typed */
 .specimen:hover .gap {
   width: 0;
   background-color: transparent;
-  transition-delay: 0ms;
 }
 
 .lede {
@@ -736,6 +728,18 @@ main .shell {
 
   .tool {
     animation-delay: 280ms;
+  }
+
+  /* Opens once the line has risen in. Only the start keyframe fills, so hover transitions take over after */
+  .gap {
+    animation: gap-open 700ms var(--site-ease-spring) 900ms backwards;
+  }
+}
+
+@keyframes gap-open {
+  from {
+    width: 0;
+    background-color: transparent;
   }
 }
 
