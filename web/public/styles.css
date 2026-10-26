@@ -364,7 +364,36 @@ main .shell {
 }
 
 .pane.left {
+  position: relative;
   border-right: 1px solid var(--color-border);
+}
+
+/* An arrow on the divider, from Original to Spaced, at the middle of the text below the heads */
+.pane.left::before,
+.pane.left::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  /* Half the 44px pane head */
+  top: calc(50% + 22px);
+  /* Half the 1px border, so the chip centers on the line */
+  right: -0.5px;
+  translate: 50% -50%;
+}
+
+.pane.left::before {
+  width: 28px;
+  height: 28px;
+  background: var(--color-surface);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 0 1px var(--color-border), var(--shadow-sm);
+}
+
+.pane.left::after {
+  width: 14px;
+  height: 14px;
+  background: var(--color-text-secondary);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8h10M9 4l4 4-4 4'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .pane-head {
@@ -783,6 +812,19 @@ main .shell {
   .pane.left {
     border-right: 0;
     border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Stacked panes: the arrow sits on the line between them and points down */
+  .pane.left::before,
+  .pane.left::after {
+    top: auto;
+    bottom: -0.5px;
+    right: 50%;
+    translate: 50% 50%;
+  }
+
+  .pane.left::after {
+    rotate: 90deg;
   }
 
   .pane .text,
