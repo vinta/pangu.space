@@ -166,6 +166,80 @@ select:focus-visible,
   border-color: var(--color-text-tertiary);
 }
 
+/* Browsers with customizable select get the site's own picker; the rest keep the native one */
+@supports (appearance: base-select) {
+  .select,
+  .select::picker(select) {
+    appearance: base-select;
+  }
+
+  .select {
+    display: inline-flex;
+    align-items: center;
+    /* The full-width phone select keeps its chevron at the right edge */
+    justify-content: space-between;
+    gap: var(--spacing-2);
+    padding: 0 var(--spacing-3);
+  }
+
+  .select::picker-icon {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: var(--color-text-secondary);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+    transition: rotate 300ms var(--site-ease-out);
+  }
+
+  .select:open::picker-icon {
+    rotate: 180deg;
+  }
+
+  .select::picker(select) {
+    margin-block: var(--spacing-1);
+    padding: var(--spacing-1);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--site-shadow-card);
+    opacity: 0;
+    translate: 0 -4px;
+    transition: opacity 200ms var(--site-ease-out), translate 300ms var(--site-ease-out), overlay 200ms allow-discrete, display 200ms allow-discrete;
+  }
+
+  .select::picker(select):popover-open {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @starting-style {
+    .select::picker(select):popover-open {
+      opacity: 0;
+      translate: 0 -4px;
+    }
+  }
+
+  .select option {
+    gap: var(--spacing-2);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+
+  .select option:hover,
+  .select option:focus-visible {
+    background: var(--color-surface-tertiary);
+    outline: none;
+  }
+
+  /* The current choice carries a check at the end of its row */
+  .select option::checkmark {
+    order: 1;
+    margin-left: auto;
+    color: var(--color-primary);
+  }
+}
+
 main {
   flex-grow: 1;
 }
