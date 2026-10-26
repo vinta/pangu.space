@@ -1,3 +1,15 @@
+/* Site-only values. Shared names stay in tokens.css, which the pangu.js extension mirrors */
+:root {
+  --site-paper: #f6f5f1;
+  --site-rule: #e4e2dc;
+  --site-font-display: "Instrument Serif", "Songti TC", "Noto Serif TC", "Source Han Serif TC", "PMingLiU", serif;
+  --site-shadow-card: 0 1px 0 rgb(0 0 0 / 0.02), 0 1px 3px rgb(0 0 0 / 0.04), 0 24px 48px -24px rgb(0 0 0 / 0.14);
+  --site-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --site-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* clreq caps the gap between Han and Latin at a quarter em */
+  --site-gap: 0.25em;
+}
+
 @font-face {
   font-family: "Instrument Serif";
   font-style: normal;
@@ -14,8 +26,12 @@ body {
   flex-direction: column;
   font-family: var(--font-sans);
   color: var(--color-text-primary);
-  background: var(--color-surface-secondary);
+  background: var(--site-paper);
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-primary-light);
 }
 
 a {
@@ -83,13 +99,11 @@ select:focus-visible,
 }
 
 .nav {
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--site-rule);
 }
 
-.nav .shell,
-.foot .shell {
-  height: 56px;
+.nav .shell {
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -135,29 +149,80 @@ main {
 
 main .shell {
   padding-top: var(--spacing-12);
-  padding-bottom: var(--spacing-10);
+  padding-bottom: var(--spacing-12);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-8);
+  gap: var(--spacing-12);
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--spacing-8);
+  padding-top: var(--spacing-8);
 }
 
 .hero h1 {
   margin: 0;
-  font-size: var(--text-3xl);
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: var(--site-font-display);
+  font-size: clamp(2.75rem, 0.5rem + 7.6vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-synthesis: none;
+  text-wrap: balance;
+  text-box: trim-start cap alphabetic;
 }
 
-.hero p {
+/* Han glyphs fill the em box, so the same size reads larger than Latin */
+:lang(zh-TW) .hero h1 {
+  font-size: clamp(2.25rem, 0.75rem + 4.4vw, 5rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+  /* Wraps only at the phrase break app.js marks, never inside a word like 不能 */
+  word-break: keep-all;
+}
+
+.specimen {
+  margin: 0;
+  font-size: clamp(1.125rem, 0.6rem + 2vw, 2.25rem);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.gap {
+  display: inline-block;
+  width: var(--site-gap);
+  /* Keeps the space's width once the box opens; collapsed, it holds nothing */
+  white-space: pre;
+  overflow: hidden;
+  /* With overflow hidden the box sits on its bottom edge, so this spans the Han glyph box like the diff's marks */
+  height: 1.1em;
+  vertical-align: -0.2em;
+  background: var(--color-diff-add);
+  border-radius: 2px;
+  transition: width 700ms var(--site-ease-spring) 900ms, background-color 400ms var(--site-ease-out) 900ms;
+}
+
+@starting-style {
+  .gap {
+    width: 0;
+    background-color: transparent;
+  }
+}
+
+/* Pointing at the line shows it as typed */
+.specimen:hover .gap {
+  width: 0;
+  background-color: transparent;
+  transition-delay: 0ms;
+}
+
+.lede {
+  max-width: 40em;
   margin: 0;
   font-size: var(--text-lg);
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-text-secondary);
   text-wrap: pretty;
 }
@@ -518,9 +583,17 @@ main .shell {
 }
 
 .foot {
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--site-rule);
   font-size: var(--text-base);
   color: var(--color-text-secondary);
+}
+
+.foot .shell {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
 }
 
 .foot nav {
@@ -565,7 +638,7 @@ main .shell {
   }
 
   .nav .shell {
-    height: 52px;
+    height: 56px;
   }
 
   .brand svg {
@@ -589,11 +662,12 @@ main .shell {
   main .shell {
     padding-top: var(--spacing-8);
     padding-bottom: var(--spacing-8);
-    gap: var(--spacing-6);
+    gap: var(--spacing-8);
   }
 
-  .hero h1 {
-    font-size: var(--text-2xl);
+  .hero {
+    gap: var(--spacing-6);
+    padding-top: var(--spacing-2);
   }
 
   .toolbar {
